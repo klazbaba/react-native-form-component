@@ -5,13 +5,13 @@ A customizable form component for react-native. It does validation of input, and
 ## Installation
 
 ```sh
-npm install react-native-form-component
+yarn add react-native-form-component
 ```
 
 ## Usage
 
 ```js
-import FormComponent from "react-native-form-component";
+import FormComponent from 'react-native-form-component';
 
 // ...
 
