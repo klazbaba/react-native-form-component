@@ -12,8 +12,6 @@ yarn add react-native-form-component
 
 - [Form](#form)
 
-### Usage
-
 ### Form
 
 ```jsx
