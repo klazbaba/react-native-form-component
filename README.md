@@ -10,13 +10,40 @@ yarn add react-native-form-component
 
 ## Usage
 
-```js
-import FormComponent from 'react-native-form-component';
-
+```jsx
+import { Form } from 'react-native-form-component';
 // ...
 
-const result = await FormComponent.multiply(3, 7);
+return (
+  <Form>
+    {
+      //...
+    }
+  </Form>
+);
 ```
+
+## Components
+
+### Usage
+
+```jsx
+import { Form } from 'react-native-form-component'
+
+render(
+    return (
+        <Form>
+        {}
+        </Form>
+    )
+)
+```
+
+### Props
+
+| Prop                   | Type   | Required |
+| ---------------------- | ------ | -------- |
+| keyboardVerticalOffset | number | no       |
 
 ## Contributing
 
