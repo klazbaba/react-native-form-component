@@ -28,9 +28,9 @@ render(
 
 ### Props
 
-| Prop                   | Function                                                                                                                             | Type   | Required |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------ | -------- |
-| keyboardVerticalOffset | This is the distance between the top of the user screen and the react native view, may be non-zero in some use cases. Defaults to 0. | number | no       |
+| Prop                   | Function                                                                                               | Type   | Required | Default | Platform |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------ | -------- | ------- | -------- |
+| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number | no       | 50      | ios      |
 
 ## Contributing
 
