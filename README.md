@@ -8,24 +8,13 @@ A customizable form component for react-native. It does validation of input, and
 yarn add react-native-form-component
 ```
 
-## Usage
-
-```jsx
-import { Form } from 'react-native-form-component';
-// ...
-
-return (
-  <Form>
-    {
-      //...
-    }
-  </Form>
-);
-```
-
 ## Components
 
+- [Form](#form)
+
 ### Usage
+
+### Form
 
 ```jsx
 import { Form } from 'react-native-form-component'
