@@ -15,15 +15,14 @@ yarn add react-native-form-component
 ### Form
 
 ```jsx
-import { Form } from 'react-native-form-component'
+import { Form } from 'react-native-form-component';
+//...
 
-render(
-    return (
-        <Form>
-        {}
-        </Form>
-    )
-)
+return (
+  <Form>
+    <FormItem />
+  </Form>
+);
 ```
 
 ### Props
