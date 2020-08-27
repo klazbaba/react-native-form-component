@@ -105,7 +105,8 @@
           "trailingComma": "es5",
           "useTabs": false
         }
-      ]
+      ],
+      "eqeqeq": 0
     }
   },
   "eslintIgnore": [

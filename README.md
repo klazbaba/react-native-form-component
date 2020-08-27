@@ -8,15 +8,28 @@ A customizable form component for react-native. It does validation of input, and
 yarn add react-native-form-component
 ```
 
-## Usage
+## Components
 
-```js
-import FormComponent from 'react-native-form-component';
+- [Form](#form)
 
-// ...
+### Form
 
-const result = await FormComponent.multiply(3, 7);
+```jsx
+import { Form } from 'react-native-form-component';
+//...
+
+return (
+  <Form>
+    <FormItem />
+  </Form>
+);
 ```
+
+### Props
+
+| Prop                   | Function                                                                                               | Type   | Required | Default | Platform |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------ | -------- | ------- | -------- |
+| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number | no       | 50      | ios      |
 
 ## Contributing
 
