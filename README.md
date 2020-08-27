@@ -11,6 +11,7 @@ yarn add react-native-form-component
 ## Components
 
 - [Form](#form)
+- [FormItem](#form-item)
 
 ### Form
 
@@ -30,6 +31,8 @@ return (
 | Prop                   | Function                                                                                               | Type   | Required | Default | Platform |
 | ---------------------- | ------------------------------------------------------------------------------------------------------ | ------ | -------- | ------- | -------- |
 | keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number | no       | 50      | ios      |
+
+### Form Item
 
 ## Contributing
 
