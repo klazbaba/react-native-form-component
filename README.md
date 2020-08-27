@@ -42,11 +42,17 @@ import { Label } from 'react-native-form-component';
 //...
 
 return (
-  <Form>
-    <FormItem />
-  </Form>
+  //...
+  <Label text="repository name" isRequired />
 );
 ```
+
+### Props
+
+| Prop       | Type    | Required |
+| ---------- | ------- | -------- |
+| text       | string  | yes      |
+| isRequired | boolean | no       |
 
 ## Contributing
 
