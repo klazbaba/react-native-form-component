@@ -41,7 +41,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
           // @ts-ignore
           ref={ref}
         />
-        {props.hasError && <Text>{'\u026A0'}</Text>}
+        {props.hasError && <Text style={{ color: 'red' }}>{'\u274C'}</Text>}
       </View>
       {!!props.underneathText && (
         <Label
