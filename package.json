@@ -19,17 +19,16 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it",
-    "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
-    "bootstrap": "yarn example && yarn && yarn pods"
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
     "ios",
     "android",
     "form",
-    "validated form"
+    "validated form",
+    "form component",
+    "component"
   ],
   "repository": "https://github.com/klazbaba/react-native-form-component",
   "author": "klazbaba <giwaklaz@gmail.com> (https://github.com/klazbaba)",
