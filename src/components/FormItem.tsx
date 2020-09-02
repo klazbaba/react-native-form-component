@@ -26,11 +26,17 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
       {props.text && (
         <Label
           text={props.text}
-          style={props.labelStyle}
+          style={[styles.label, props.labelStyle]}
           isRequired={props.isRequired}
         />
       )}
-      <View style={[styles.wrapper, props.style]}>
+      <View
+        style={[
+          styles.wrapper,
+          props.hasError ? { borderColor: 'red', borderWidth: 0.5 } : undefined,
+          props.style,
+        ]}
+      >
         {
           // this is separated from props because adding it causes TextInput to throw an exception
           children
@@ -70,6 +76,9 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 8,
     color: 'white',
+  },
+  label: {
+    marginBottom: 2,
   },
 });
 
