@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontWeight: 'bold',
     textTransform: 'capitalize',
+    color: 'black',
   },
 });
