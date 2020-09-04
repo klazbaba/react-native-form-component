@@ -7,11 +7,10 @@ import {
   Text,
   NativeSyntheticEvent,
   TextInputFocusEventData,
+  KeyboardTypeOptions,
 } from 'react-native';
 
 import Label from '../components/Label';
-
-type DataType = 'email' | 'number' | 'default';
 
 interface Props extends TextInputProperties {
   textInputStyle?: object;
@@ -21,15 +20,14 @@ interface Props extends TextInputProperties {
   label?: string;
   labelStyle?: object;
   isRequired?: boolean;
-  dataType?: DataType;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   const [hasError, setHasError] = useState(false);
-  const { isRequired, value, dataType } = props;
+  const { isRequired, value, keyboardType } = props;
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setHasError(!isErrorFree(dataType, isRequired!, value!));
+    setHasError(!isErrorFree(keyboardType, isRequired!, value!));
     if (props.onBlur) props.onBlur(e);
   };
 
@@ -64,9 +62,6 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
           // @ts-ignore
           ref={ref}
           onBlur={handleBlur}
-          keyboardType={
-            props.keyboardType || getKeyboardType((props.dataType = 'default'))
-          }
           onFocus={handleFocus}
         />
         {hasError && (
@@ -85,23 +80,17 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   );
 });
 
-const getKeyboardType = (dataType: DataType) => {
-  if (dataType == 'email') return 'email-address';
-  if (dataType == 'number') return 'numeric';
-  return 'default';
-};
-
 const validateEmail = (email: string) => {
   return /^\S+@\S+\.\S+$/.test(email);
 };
 
 const isErrorFree = (
-  dataType: DataType = 'default',
+  keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
   value: string
 ) => {
   if (isRequired && !value?.length) return false;
-  if (dataType == 'email') {
+  if (keyboardType == 'email-address') {
     if (!isRequired && !value?.length) return true;
     const isEmail = validateEmail(value);
     if (!isEmail) return false;
