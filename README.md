@@ -32,6 +32,9 @@ return (
 | Prop                   | Function                                                                                               | Type   | Required | Default | Platform |
 | ---------------------- | ------------------------------------------------------------------------------------------------------ | ------ | -------- | ------- | -------- |
 | keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number | no       | 50      | ios      |
+| submitButtonText       | Text to be displayed by submit button                                                                  | string | no       | Submit  | All      |
+| submitButtonStyle      | Style of submit button                                                                                 | object | object[] | no      | -        | All |
+| submitButtonTextStyle  | Style of submit button text                                                                            | object | object[] | no      | -        | All |
 
 ### Form Item
 
