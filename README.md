@@ -1,6 +1,6 @@
 # react-native-form-component
 
-A customizable form component for react-native. It does validation of input, and also alerts you of a failed validation.
+A customizable form component for react-native. It handles basic validation of inputs, and also alerts you of a failed validation.
 
 ## Installation
 

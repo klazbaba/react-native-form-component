@@ -4,14 +4,14 @@ import { Text, StyleSheet } from 'react-native';
 interface Props {
   text: string;
   isRequired?: boolean;
-  labelStyle?: object | object[];
+  style?: object | object[];
 }
 
 export default function Label(props: Props) {
   return (
     <Text style={styles.asterik}>
       {props.isRequired ? '*' : ''}
-      <Text style={[styles.label, props.labelStyle]}>{props.text}</Text>
+      <Text style={[styles.label, props.style]}>{props.text}</Text>
     </Text>
   );
 }
@@ -26,5 +26,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontWeight: 'bold',
     textTransform: 'capitalize',
+    color: 'black',
   },
 });
