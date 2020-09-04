@@ -1,5 +1,5 @@
 import React, { useEffect, Children } from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, Text } from 'react-native';
 
 import { isErrorFree } from './FormItem';
 
@@ -27,6 +27,9 @@ export default function Form(props: Props) {
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
     >
       {props.children}
+      <Pressable>
+        <Text>Sex</Text>
+      </Pressable>
     </KeyboardAvoidingView>
   );
 }
