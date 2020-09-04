@@ -8,6 +8,7 @@ interface Props extends TextInputProperties {
     label?: string;
     labelStyle?: object;
     isRequired?: boolean;
+    value: string;
 }
 declare const FormItem: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;
 export default FormItem;
