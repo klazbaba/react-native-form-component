@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, Children } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
 
 interface Props {
@@ -7,6 +7,13 @@ interface Props {
 }
 
 export default function Form(props: Props) {
+  useEffect(() => {
+    Children.forEach(props.children, (child) => {
+      //@ts-ignore
+      console.warn(child.props);
+    });
+  }, [props.children]);
+
   return (
     <KeyboardAvoidingView
       keyboardVerticalOffset={
