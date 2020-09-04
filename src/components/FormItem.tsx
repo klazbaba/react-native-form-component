@@ -22,7 +22,6 @@ interface Props extends TextInputProperties {
   isRequired?: boolean;
   value: string;
   hasError: boolean;
-  validationCondition?: string | (() => boolean);
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
@@ -90,7 +89,7 @@ const validateEmail = (email: string) => {
   return /^\S+@\S+\.\S+$/.test(email);
 };
 
-const isErrorFree = (
+export const isErrorFree = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
   value: string
