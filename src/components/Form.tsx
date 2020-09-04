@@ -1,23 +1,40 @@
-import React, { useEffect, Children } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, Text } from 'react-native';
+import React, { Children } from 'react';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  Text,
+  StyleSheet,
+} from 'react-native';
 
 import { isErrorFree } from './FormItem';
 
 interface Props {
   children: Element | Element[];
   keyboardVerticalOffset?: number;
+  submitButtonText?: string;
+  submitButtonStyle?: object | object[];
+  submitButtonTextStyle?: object | object[];
 }
 
 export default function Form(props: Props) {
-  const errors: boolean[] = [];
-  useEffect(() => {
+  const handleButtonPress = () => {
+    const fieldsWithError: boolean[] = [];
     Children.forEach(props.children, (child) => {
       //@ts-ignore
       const { keyboardType, isRequired, value } = child.props;
-      errors.push(isErrorFree(keyboardType, isRequired, value));
+      if (!isErrorFree(keyboardType, isRequired, value)) {
+        //@ts-ignore
+        fieldsWithError.push(child.props.label);
+      }
+      if (fieldsWithError.length) {
+        console.error(
+          'The following fields do not fulfil their conditions:\n' +
+            fieldsWithError
+        );
+      }
     });
-    console.warn(errors);
-  });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -27,9 +44,31 @@ export default function Form(props: Props) {
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
     >
       {props.children}
-      <Pressable>
-        <Text>Sex</Text>
+
+      <Pressable
+        style={[styles.button, props.submitButtonStyle]}
+        onPress={handleButtonPress}
+      >
+        <Text style={[styles.buttonText, props.submitButtonTextStyle]}>
+          {props.submitButtonText || 'Submit'}
+        </Text>
       </Pressable>
     </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    height: 42,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
+    borderRadius: 8,
+    marginVertical: 32,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});
