@@ -27,13 +27,15 @@ export default function Form(props: Props) {
         //@ts-ignore
         fieldsWithError.push(child.props.label);
       }
-      if (fieldsWithError.length) {
-        console.error(
-          'The following fields do not fulfil their conditions:\n' +
-            fieldsWithError
-        );
-      }
     });
+
+    if (fieldsWithError.length) {
+      console.error(
+        'The following fields do not fulfil their conditions:\n' +
+          JSON.stringify(fieldsWithError, null, 2)
+      );
+      return;
+    }
   };
 
   return (
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     height: 42,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: '#b22222',
     borderRadius: 8,
     marginVertical: 32,
   },

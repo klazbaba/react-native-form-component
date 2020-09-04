@@ -54,7 +54,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
         ]}
       >
         {
-          // this is separated from props because adding it causes TextInput to throw an exception
+          // this is separated from props because adding it causes TextInput to throw an error
           children
         }
         <TextInput
@@ -68,7 +68,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
         />
         {hasError && (
           <View style={styles.errorWrapper}>
-            <Text style={{ color: 'white', fontSize: 24 }}>{'\u0021'}</Text>
+            <Text style={styles.exclamation}>{'\u0021'}</Text>
           </View>
         )}
       </View>
@@ -130,6 +130,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red',
+  },
+  exclamation: {
+    color: 'white',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
 
