@@ -20,6 +20,7 @@ interface Props extends TextInputProperties {
   label?: string;
   labelStyle?: object;
   isRequired?: boolean;
+  value: string;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
@@ -63,6 +64,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
           ref={ref}
           onBlur={handleBlur}
           onFocus={handleFocus}
+          value={props.value}
         />
         {hasError && (
           <View style={styles.errorWrapper}>
