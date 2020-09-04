@@ -1,31 +1,43 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   TextInput,
   TextInputProperties,
   View,
   StyleSheet,
   Text,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
 } from 'react-native';
 
 import Label from '../components/Label';
 
+type DataType = 'email' | 'number' | 'default';
+
 interface Props extends TextInputProperties {
   textInputStyle?: object;
   children?: Element;
-  hasError?: boolean;
   underneathText?: string;
   underneathTextStyle?: object;
-  text?: string;
+  label?: string;
   labelStyle?: object;
   isRequired?: boolean;
+  dataType: DataType;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
+  const [hasError, setHasError] = useState(false);
+  const { dataType, isRequired, value } = props;
+
+  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setHasError(isErrorFree(dataType, isRequired!, value!));
+    if (props.onBlur) props.onBlur(e);
+  };
+
   return (
     <>
-      {props.text && (
+      {props.label && (
         <Label
-          text={props.text}
+          text={props.label}
           style={[styles.label, props.labelStyle]}
           isRequired={props.isRequired}
         />
@@ -33,7 +45,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
       <View
         style={[
           styles.wrapper,
-          props.hasError ? { borderColor: 'red', borderWidth: 0.5 } : undefined,
+          hasError ? { borderColor: 'red', borderWidth: 0.8 } : undefined,
           props.style,
         ]}
       >
@@ -46,8 +58,14 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
           style={[styles.inputText, props.textInputStyle]}
           // @ts-ignore
           ref={ref}
+          onBlur={handleBlur}
+          keyboardType={props.keyboardType || getKeyboardType(props.dataType)}
         />
-        {props.hasError && <Text style={{ color: 'red' }}>{'\u274C'}</Text>}
+        {hasError && (
+          <View style={styles.errorWrapper}>
+            <Text style={{ color: 'white', fontSize: 24 }}>{'\u0021'}</Text>
+          </View>
+        )}
       </View>
       {!!props.underneathText && (
         <Label
@@ -59,6 +77,34 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   );
 });
 
+const getKeyboardType = (dataType: DataType) => {
+  if (dataType == 'email') return 'email-address';
+  if (dataType == 'number') return 'numeric';
+  return 'default';
+};
+
+const validateEmail = (email: string) => {
+  return /^\S+@\S+\.\S+$/.test(email);
+};
+
+const isErrorFree = (
+  dataType: DataType,
+  isRequired: boolean,
+  value: string
+) => {
+  if (isRequired && !value?.length) return false;
+  if (dataType == 'email') {
+    const isEmail = validateEmail(value);
+    if (!isEmail) return false;
+  }
+
+  return true;
+};
+
+FormItem.defaultProps = {
+  dataType: 'default',
+};
+
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
@@ -67,6 +113,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     minHeight: 48,
     alignItems: 'center',
+    marginBottom: 16,
   },
   inputText: {
     flex: 1,
@@ -79,6 +126,14 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: 2,
+  },
+  errorWrapper: {
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
   },
 });
 
