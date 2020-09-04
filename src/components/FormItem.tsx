@@ -21,16 +21,21 @@ interface Props extends TextInputProperties {
   label?: string;
   labelStyle?: object;
   isRequired?: boolean;
-  dataType: DataType;
+  dataType?: DataType;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   const [hasError, setHasError] = useState(false);
-  const { dataType, isRequired, value } = props;
+  const { isRequired, value, dataType } = props;
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setHasError(isErrorFree(dataType, isRequired!, value!));
+    setHasError(!isErrorFree(dataType, isRequired!, value!));
     if (props.onBlur) props.onBlur(e);
+  };
+
+  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setHasError(false);
+    if (props.onFocus) props.onFocus(e);
   };
 
   return (
@@ -59,7 +64,10 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
           // @ts-ignore
           ref={ref}
           onBlur={handleBlur}
-          keyboardType={props.keyboardType || getKeyboardType(props.dataType)}
+          keyboardType={
+            props.keyboardType || getKeyboardType((props.dataType = 'default'))
+          }
+          onFocus={handleFocus}
         />
         {hasError && (
           <View style={styles.errorWrapper}>
@@ -88,21 +96,18 @@ const validateEmail = (email: string) => {
 };
 
 const isErrorFree = (
-  dataType: DataType,
+  dataType: DataType = 'default',
   isRequired: boolean,
   value: string
 ) => {
   if (isRequired && !value?.length) return false;
   if (dataType == 'email') {
+    if (!isRequired && !value?.length) return true;
     const isEmail = validateEmail(value);
     if (!isEmail) return false;
   }
 
   return true;
-};
-
-FormItem.defaultProps = {
-  dataType: 'default',
 };
 
 const styles = StyleSheet.create({
