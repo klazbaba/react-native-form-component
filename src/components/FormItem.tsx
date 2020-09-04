@@ -21,7 +21,6 @@ interface Props extends TextInputProperties {
   labelStyle?: object;
   isRequired?: boolean;
   value: string;
-  hasError: boolean;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
@@ -30,13 +29,11 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setHasError(!isErrorFree(keyboardType, isRequired!, value));
-    props.hasError = hasError;
     if (props.onBlur) props.onBlur(e);
   };
 
   const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setHasError(false);
-    props.hasError = hasError;
     if (props.onFocus) props.onFocus(e);
   };
 
