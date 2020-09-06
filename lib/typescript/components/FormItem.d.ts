@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInputProperties } from 'react-native';
 interface Props extends TextInputProperties {
-    textInputStyle?: object;
+    textInputStyle?: object | object[];
     children?: Element;
     underneathText?: string;
     underneathTextStyle?: object;
