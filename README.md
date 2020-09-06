@@ -29,12 +29,14 @@ return (
 
 ### Props
 
-| Prop                   | Function                                                                                               | Type Default      | Platform |
-| ---------------------- | ------------------------------------------------------------------------------------------------------ | ----------------- | -------- |
-| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number            | 50       | iOS |
-| submitButtonText       | Text to be displayed by submit button                                                                  | string            | Submit   | All |
-| submitButtonStyle      | Style of submit button                                                                                 | object / object[] | -        | All |
-| submitButtonTextStyle  | Style of submit button text                                                                            | object / object[] | -        | All |
+| Prop                   | Function                                                                                               | Type Default       | Platform |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------------------ | -------- |
+| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number             | 50       | iOS |
+| submitButtonText       | Text to be displayed by submit button                                                                  | string             | Submit   | All |
+| submitButtonStyle      | Style of submit button                                                                                 | object \| object[] | -        | All |
+| submitButtonTextStyle  | Style of submit button text                                                                            | object \| object[] | -        | All |
+
+\n
 
 ### Form Item
 
@@ -44,7 +46,7 @@ import { FormItem } from 'react-native-form-component';
 
 return (
   //...
-  <FormItem />
+  <FormItem label="Email" isRequired />
 );
 ```
 
@@ -52,6 +54,9 @@ return (
 | -------------- | -------------------------------------- | ---------------- | -------- |
 | label          | Label for FormItem                     | string           | no       |
 | textInputStyle | Style of TextInput portion of FormItem | object\|object[] | no       |
+| isRequired     | Indicates whethter this Form           |
+
+\n
 
 ### Label
 
