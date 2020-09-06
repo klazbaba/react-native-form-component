@@ -38,6 +38,21 @@ return (
 
 ### Form Item
 
+```jsx
+import { FormItem } from 'react-native-form-component';
+//...
+
+return (
+  //...
+  <FormItem />
+);
+```
+
+| Prop           | Function                               | Type             | Required |
+| -------------- | -------------------------------------- | ---------------- | -------- |
+| label          | Label for FormItem                     | string           | no       |
+| textInputStyle | Style of TextInput portion of FormItem | object\|object[] | no       |
+
 ### Label
 
 ```jsx

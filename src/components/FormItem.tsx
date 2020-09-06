@@ -13,7 +13,7 @@ import {
 import Label from '../components/Label';
 
 interface Props extends TextInputProperties {
-  textInputStyle?: object;
+  textInputStyle?: object | object[];
   children?: Element;
   underneathText?: string;
   underneathTextStyle?: object;
