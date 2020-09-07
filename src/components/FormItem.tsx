@@ -23,7 +23,7 @@ interface Props extends TextInputProperties {
   value: string;
 }
 
-export type FormItemProps = Props;
+export interface FormItemProps extends Props {}
 
 const FormItem = forwardRef(({ children, ...props }: FormItemProps, ref) => {
   const [hasError, setHasError] = useState(false);
