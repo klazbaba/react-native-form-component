@@ -29,11 +29,30 @@ return (
 
 ### Props
 
-| Prop                   | Function                                                                                               | Type   | Required | Default | Platform |
-| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------ | -------- | ------- | -------- |
-| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number | no       | 50      | ios      |
+| Prop                   | Function                                                                                               | Type Default       | Platform |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------------------ | -------- |
+| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number             | 50       | iOS |
+| submitButtonText       | Text to be displayed by submit button                                                                  | string             | Submit   | All |
+| submitButtonStyle      | Style of submit button                                                                                 | object \| object[] | -        | All |
+| submitButtonTextStyle  | Style of submit button text                                                                            | object \| object[] | -        | All |
 
 ### Form Item
+
+```jsx
+import { FormItem } from 'react-native-form-component';
+//...
+
+return (
+  //...
+  <FormItem label="Email" isRequired />
+);
+```
+
+| Prop           | Function                               | Type             | Required |
+| -------------- | -------------------------------------- | ---------------- | -------- |
+| label          | Label for FormItem                     | string           | no       |
+| textInputStyle | Style of TextInput portion of FormItem | object\|object[] | no       |
+| isRequired     | Indicates whethter this Form           |
 
 ### Label
 
