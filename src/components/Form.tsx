@@ -25,7 +25,7 @@ export default function Form(props: Props) {
       const { keyboardType, isRequired, value } = child.props;
       if (!isErrorFree(keyboardType, isRequired, value)) {
         //@ts-ignore
-        fieldsWithError.push(child.props.label);
+        fieldsWithError.push(child.props.label || child.props.placeholder);
       }
     });
 
