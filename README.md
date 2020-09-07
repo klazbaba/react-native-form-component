@@ -36,8 +36,6 @@ return (
 | submitButtonStyle      | Style of submit button                                                                                 | object \| object[] | -        | All |
 | submitButtonTextStyle  | Style of submit button text                                                                            | object \| object[] | -        | All |
 
-\n
-
 ### Form Item
 
 ```jsx
@@ -55,8 +53,6 @@ return (
 | label          | Label for FormItem                     | string           | no       |
 | textInputStyle | Style of TextInput portion of FormItem | object\|object[] | no       |
 | isRequired     | Indicates whethter this Form           |
-
-\n
 
 ### Label
 
