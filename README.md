@@ -39,6 +39,8 @@ return (
 | buttonTextStyle        | Style of submit button text                                                                            | object \| object[] | -       | All      |
 | onButtonPress          | Action to be performed when button is pressed                                                          | () => void         | -       | All      |
 
+<br />
+
 ### Form Item
 
 ```jsx
@@ -90,6 +92,8 @@ return (
 | ---------- | ------- | -------- |
 | text       | string  | yes      |
 | isRequired | boolean | no       |
+
+<br />
 
 ## Contributing
 
