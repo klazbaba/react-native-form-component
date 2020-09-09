@@ -37,7 +37,7 @@ return (
 | buttonText             | Text to be displayed by submit button                                                                  | string             | Submit  | All      |
 | buttonStyle            | Style of submit button                                                                                 | object \| object[] | -       | All      |
 | buttonTextStyle        | Style of submit button text                                                                            | object \| object[] | -       | All      |
-| onButtonPress          | Action to be performed whn button is pressed                                                           | () => void         | -       | All      |
+| onButtonPress          | Action to be performed when button is pressed                                                          | () => void         | -       | All      |
 
 ### Form Item
 
