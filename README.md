@@ -14,6 +14,8 @@ yarn add react-native-form-component
 - [FormItem](#form-item)
 - [Label](#label)
 
+<br />
+
 ### Form
 
 Wrapper component for form items. It is advised to use this component to wrap every other component contained in this library. The `Form` component comes with a button that does validation of `FormItem`s when clicked. The default validation for each `FormItem` is based on the value of its keyboardType prop.
