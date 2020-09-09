@@ -2,9 +2,10 @@
 interface Props {
     children: Element | Element[];
     keyboardVerticalOffset?: number;
-    submitButtonText?: string;
-    submitButtonStyle?: object | object[];
-    submitButtonTextStyle?: object | object[];
+    buttonText?: string;
+    buttonStyle?: object | object[];
+    buttonTextStyle?: object | object[];
+    onButtonPress: () => void;
 }
 export default function Form(props: Props): JSX.Element;
 export {};
