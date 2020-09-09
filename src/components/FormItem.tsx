@@ -16,9 +16,9 @@ interface Props extends TextInputProperties {
   textInputStyle?: object | object[];
   children?: Element;
   underneathText?: string;
-  underneathTextStyle?: object;
+  underneathTextStyle?: object | object[];
   label?: string;
-  labelStyle?: object;
+  labelStyle?: object | object[];
   isRequired?: boolean;
   value: string;
 }
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   underneathText: {
-    marginTop: 8,
+    marginTop: -24,
     marginLeft: 8,
-    color: 'white',
+    marginBottom: 24,
   },
   label: {
     marginBottom: 2,
