@@ -12,14 +12,15 @@ import { isErrorFree } from './FormItem';
 interface Props {
   children: Element | Element[];
   keyboardVerticalOffset?: number;
-  submitButtonText?: string;
-  submitButtonStyle?: object | object[];
-  submitButtonTextStyle?: object | object[];
+  buttonText?: string;
+  buttonStyle?: object | object[];
+  buttonTextStyle?: object | object[];
+  onButtonPress: () => void;
 }
 
 export default function Form(props: Props) {
   const handleButtonPress = () => {
-    const fieldsWithError: boolean[] = [];
+    const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child) => {
       //@ts-ignore
       const { keyboardType, isRequired, value } = child.props;
@@ -36,6 +37,8 @@ export default function Form(props: Props) {
       );
       return;
     }
+
+    props.onButtonPress();
   };
 
   return (
@@ -48,12 +51,12 @@ export default function Form(props: Props) {
       {props.children}
 
       <Pressable
-        style={[styles.button, props.submitButtonStyle]}
+        style={[styles.button, props.buttonStyle]}
         onPress={handleButtonPress}
         android_ripple={{ color: 'lightgrey', radius: 300 }}
       >
-        <Text style={[styles.buttonText, props.submitButtonTextStyle]}>
-          {props.submitButtonText || 'Submit'}
+        <Text style={[styles.buttonText, props.buttonTextStyle]}>
+          {props.buttonText || 'Submit'}
         </Text>
       </Pressable>
     </KeyboardAvoidingView>

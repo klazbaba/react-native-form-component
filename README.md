@@ -31,12 +31,13 @@ return (
 
 ### Props
 
-| Prop                   | Function                                                                                               | Type Default       | Platform |
-| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------------------ | -------- |
-| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number             | 50       | iOS |
-| submitButtonText       | Text to be displayed by submit button                                                                  | string             | Submit   | All |
-| submitButtonStyle      | Style of submit button                                                                                 | object \| object[] | -        | All |
-| submitButtonTextStyle  | Style of submit button text                                                                            | object \| object[] | -        | All |
+| Prop                   | Function                                                                                               | Type               | Default | Platform |
+| ---------------------- | ------------------------------------------------------------------------------------------------------ | ------------------ | ------- | -------- |
+| keyboardVerticalOffset | Distance between the top of the user screen and the Form component, may be non-zero in some use cases. | number             | 50      | iOS      |
+| buttonText             | Text to be displayed by submit button                                                                  | string             | Submit  | All      |
+| buttonStyle            | Style of submit button                                                                                 | object \| object[] | -       | All      |
+| buttonTextStyle        | Style of submit button text                                                                            | object \| object[] | -       | All      |
+| onButtonPress          | Action to be performed whn button is pressed                                                           | () => void         | -       | All      |
 
 ### Form Item
 
