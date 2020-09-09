@@ -16,7 +16,7 @@ yarn add react-native-form-component
 
 ### Form
 
-Wrapper component for form items. It is advised to use this component to wrap every other component contained in this library. The `Form` component comes with a submit button that does validation of form items.
+Wrapper component for form items. It is advised to use this component to wrap every other component contained in this library. The `Form` component comes with a button that does validation of `FormItem`s.
 
 ```jsx
 import { Form } from 'react-native-form-component';
