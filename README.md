@@ -70,6 +70,8 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 | underneathText      | Text just below the `FormItem`                  | string           | no       |
 | underneathTextStyle | Style of underneathText                         | object\|object[] | no       |
 
+<br />
+
 ### Label
 
 ```jsx
