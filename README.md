@@ -41,8 +41,6 @@ return (
 
 ### Form Item
 
-It is advised to use either the `label` or `placeholder`prop with `FormItem`, cos they are used to identify any `FormItem` that does not fulfil its validation conditions.
-
 ```jsx
 import { FormItem } from 'react-native-form-component';
 //...
