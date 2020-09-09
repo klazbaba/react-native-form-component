@@ -51,8 +51,8 @@ const FormItem = forwardRef(({ children, ...props }: FormItemProps, ref) => {
       <View
         style={[
           styles.wrapper,
-          hasError ? { borderColor: 'red', borderWidth: 0.8 } : undefined,
           props.style,
+          hasError ? { borderColor: 'red', borderWidth: 0.8 } : undefined,
         ]}
       >
         {
