@@ -61,7 +61,7 @@ export default function Form(props: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    height: 42,
+    height: 48,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#D81F28',
