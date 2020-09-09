@@ -21,12 +21,14 @@ interface Props {
 export default function Form(props: Props) {
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
-    Children.forEach(props.children, (child) => {
+    Children.forEach(props.children, (child, index) => {
       //@ts-ignore
       const { keyboardType, isRequired, value } = child.props;
       if (!isErrorFree(keyboardType, isRequired, value)) {
-        //@ts-ignore
-        fieldsWithError.push(child.props.label || child.props.placeholder);
+        fieldsWithError.push(
+          //@ts-ignore
+          child.props.label || child.props.placeholder || 'FormItem' + index
+        );
       }
     });
 

@@ -4,9 +4,9 @@ interface Props extends TextInputProperties {
     textInputStyle?: object | object[];
     children?: Element;
     underneathText?: string;
-    underneathTextStyle?: object;
+    underneathTextStyle?: object | object[];
     label?: string;
-    labelStyle?: object;
+    labelStyle?: object | object[];
     isRequired?: boolean;
     value: string;
 }

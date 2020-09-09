@@ -23,7 +23,7 @@ import { Form } from 'react-native-form-component';
 //...
 
 return (
-  <Form>
+  <Form onButtonPress={() => console.warn('do something')}>
     <FormItem />
   </Form>
 );
@@ -41,8 +41,6 @@ return (
 
 ### Form Item
 
-It is advised to use either the `label` or `placeholder`prop with `FormItem`, cos they are used to identify any `FormItem` that does not fulfil its validation conditions.
-
 ```jsx
 import { FormItem } from 'react-native-form-component';
 //...
@@ -53,11 +51,15 @@ return (
 );
 ```
 
-| Prop           | Function                               | Type             | Required |
-| -------------- | -------------------------------------- | ---------------- | -------- |
-| label          | Label for FormItem                     | string           | no       |
-| textInputStyle | Style of TextInput portion of FormItem | object\|object[] | no       |
-| isRequired     | Indicates whethter this Form           |
+| Prop                | Function                                        | Type             | Required |
+| ------------------- | ----------------------------------------------- | ---------------- | -------- |
+| label               | Label for FormItem                              | string           | no       |
+| labelStyle          | Style of label                                  | object\|object[] | no       |
+| textInputStyle      | Style of TextInput portion of `FormItem`        | object\|object[] | no       |
+| isRequired          | Indicates whethter this item is required or not | boolean          | no       |
+| value               | Value to show for the `FormItem`                | string           | yes      |
+| underneathText      | Text just below the `FormItem`                  | string           | no       |
+| underneathTextStyle | Style of underneathText                         | object\|object[] | no       |
 
 ### Label
 
