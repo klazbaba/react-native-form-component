@@ -50,6 +50,7 @@ export default function Form(props: Props) {
       <Pressable
         style={[styles.button, props.submitButtonStyle]}
         onPress={handleButtonPress}
+        android_ripple={{ color: 'lightgrey', radius: 300 }}
       >
         <Text style={[styles.buttonText, props.submitButtonTextStyle]}>
           {props.submitButtonText || 'Submit'}
