@@ -16,7 +16,7 @@ yarn add react-native-form-component
 
 ### Form
 
-Wrapper component for form items. It is advised to use this component to wrap every other component contained in this library. The `Form` component comes with a submit button that does validation of form items.
+Wrapper component for form items. It is advised to use this component to wrap every other component contained in this library. The `Form` component comes with a button that does validation of `FormItem`s when clicked. The default validation for each `FormItem` is based on the value of its keyboardType prop.
 
 ```jsx
 import { Form } from 'react-native-form-component';
@@ -47,9 +47,18 @@ import { FormItem } from 'react-native-form-component';
 
 return (
   //...
-  <FormItem label="Email" isRequired />
+  <FormItem
+    label="Email"
+    isRequired
+    value={email}
+    onChangeText={(email) => setEmail(email)}
+  />
 );
 ```
+
+### Props
+
+Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 
 | Prop                | Function                                        | Type             | Required |
 | ------------------- | ----------------------------------------------- | ---------------- | -------- |

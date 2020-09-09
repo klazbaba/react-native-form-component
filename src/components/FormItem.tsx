@@ -23,9 +23,7 @@ interface Props extends TextInputProperties {
   value: string;
 }
 
-export interface FormItemProps extends Props {}
-
-const FormItem = forwardRef(({ children, ...props }: FormItemProps, ref) => {
+const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   const [hasError, setHasError] = useState(false);
   const { isRequired, value, keyboardType } = props;
 
