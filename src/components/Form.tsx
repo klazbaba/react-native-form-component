@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { Children, useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -19,6 +19,8 @@ interface Props {
 }
 
 export default function Form(props: Props) {
+  const [width, setWidth] = useState(0);
+
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child, index) => {
@@ -55,7 +57,8 @@ export default function Form(props: Props) {
       <Pressable
         style={[styles.button, props.buttonStyle]}
         onPress={handleButtonPress}
-        android_ripple={{ color: 'lightgrey', radius: 300 }}
+        android_ripple={{ color: 'lightgrey', radius: width }}
+        onLayout={(event) => setWidth(event.nativeEvent.layout.width)}
       >
         <Text style={[styles.buttonText, props.buttonTextStyle]}>
           {props.buttonText || 'Submit'}
