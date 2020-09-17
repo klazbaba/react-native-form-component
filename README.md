@@ -64,15 +64,15 @@ return (
 
 Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 
-| Prop                | Function                                        | Type             | Required |
-| ------------------- | ----------------------------------------------- | ---------------- | -------- |
-| label               | Label for FormItem                              | string           | no       |
-| labelStyle          | Style of label                                  | object\|object[] | no       |
-| textInputStyle      | Style of TextInput portion of `FormItem`        | object\|object[] | no       |
-| isRequired          | Indicates whethter this item is required or not | boolean          | no       |
-| value               | Value to show for the `FormItem`                | string           | yes      |
-| underneathText      | Text just below the `FormItem`                  | string           | no       |
-| underneathTextStyle | Style of underneathText                         | object\|object[] | no       |
+| Prop                | Function                                        | Type               | Required |
+| ------------------- | ----------------------------------------------- | ------------------ | -------- |
+| label               | Label for FormItem                              | string             | no       |
+| labelStyle          | Style of label                                  | object \| object[] | no       |
+| textInputStyle      | Style of TextInput portion of `FormItem`        | object \| object[] | no       |
+| isRequired          | Indicates whethter this item is required or not | boolean            | no       |
+| value               | Value to show for the `FormItem`                | string             | yes      |
+| underneathText      | Text just below the `FormItem`                  | string             | no       |
+| underneathTextStyle | Style of underneathText                         | object \| object[] | no       |
 
 <br />
 
