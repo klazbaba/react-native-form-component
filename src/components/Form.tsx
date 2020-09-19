@@ -7,8 +7,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { containsError } from './FormItem';
-import { colors } from 'src/colors';
+import { containsError, displayError } from './FormItem';
+import { colors } from '../colors';
 
 interface Props {
   children: Element | Element[];
@@ -32,6 +32,7 @@ export default function Form(props: Props) {
           //@ts-ignore
           child.props.label || child.props.placeholder || 'FormItem' + index
         );
+        displayError();
       }
     });
 

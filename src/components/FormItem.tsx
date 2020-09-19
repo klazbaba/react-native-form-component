@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import Label from '../components/Label';
-import { colors } from 'src/colors';
+import { colors } from '../colors';
 
 interface Props extends TextInputProperties {
   textInputStyle?: object | object[];
@@ -24,12 +24,17 @@ interface Props extends TextInputProperties {
   value: string;
 }
 
+export let displayError: Function;
+
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   const [hasError, setHasError] = useState({ status: false, message: '' });
   const { isRequired, value, keyboardType } = props;
 
-  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  displayError = () =>
     setHasError(containsError(keyboardType, isRequired!, value));
+
+  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    displayError();
     if (props.onBlur) props.onBlur(e);
   };
 
@@ -78,7 +83,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
 
       {hasError.status && (
         <Text style={[styles.underneathText, props.underneathTextStyle]}>
-          {props.underneathText || hasError.message}
+          {props.underneathText || hasError.message + '!'}
         </Text>
       )}
     </>
@@ -97,7 +102,7 @@ export const containsError = (
   if (keyboardType == 'email-address' && !validateEmail(value))
     return { status: true, message: 'Enter a valid email' };
   if (isRequired && value.length === 0)
-    return { status: true, message: 'Cannot be empty!' };
+    return { status: true, message: 'Cannot be empty' };
 
   return { status: false, message: '' };
 };
