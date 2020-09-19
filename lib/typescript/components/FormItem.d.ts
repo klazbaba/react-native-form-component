@@ -11,5 +11,8 @@ interface Props extends TextInputProperties {
     value: string;
 }
 declare const FormItem: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;
-export declare const isErrorFree: (keyboardType: "default" | "email-address" | "numeric" | "phone-pad" | "number-pad" | "decimal-pad" | "visible-password" | "ascii-capable" | "numbers-and-punctuation" | "url" | "name-phone-pad" | "twitter" | "web-search" | undefined, isRequired: boolean, value: string) => boolean;
+export declare const containsError: (keyboardType: "default" | "email-address" | "numeric" | "phone-pad" | "number-pad" | "decimal-pad" | "visible-password" | "ascii-capable" | "numbers-and-punctuation" | "url" | "name-phone-pad" | "twitter" | "web-search" | undefined, isRequired: boolean, value: string) => {
+    status: boolean;
+    message: string;
+};
 export default FormItem;
