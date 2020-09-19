@@ -7,7 +7,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { isErrorFree } from './FormItem';
+import { containsError } from './FormItem';
+import { colors } from 'src/colors';
 
 interface Props {
   children: Element | Element[];
@@ -26,7 +27,7 @@ export default function Form(props: Props) {
     Children.forEach(props.children, (child, index) => {
       //@ts-ignore
       const { keyboardType, isRequired, value } = child.props;
-      if (!isErrorFree(keyboardType, isRequired, value)) {
+      if (containsError(keyboardType, isRequired, value).status) {
         fieldsWithError.push(
           //@ts-ignore
           child.props.label || child.props.placeholder || 'FormItem' + index
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#D81F28',
+    backgroundColor: colors.red,
     borderRadius: 8,
     marginVertical: 32,
   },

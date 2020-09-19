@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import Label from '../components/Label';
+import { colors } from 'src/colors';
 
 interface Props extends TextInputProperties {
   textInputStyle?: object | object[];
@@ -24,16 +25,16 @@ interface Props extends TextInputProperties {
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
-  const [hasError, setHasError] = useState(false);
+  const [hasError, setHasError] = useState({ status: false, message: '' });
   const { isRequired, value, keyboardType } = props;
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setHasError(!isErrorFree(keyboardType, isRequired!, value));
+    setHasError(containsError(keyboardType, isRequired!, value));
     if (props.onBlur) props.onBlur(e);
   };
 
   const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setHasError(false);
+    setHasError({ status: false, message: '' });
     if (props.onFocus) props.onFocus(e);
   };
 
@@ -50,7 +51,9 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
         style={[
           styles.wrapper,
           props.style,
-          hasError ? { borderColor: 'red', borderWidth: 1 } : undefined,
+          hasError.status
+            ? { borderColor: colors.red, borderWidth: 1 }
+            : undefined,
         ]}
       >
         {
@@ -66,17 +69,17 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
           onFocus={handleFocus}
           value={props.value}
         />
-        {hasError && (
+        {hasError.status && (
           <View style={styles.errorWrapper}>
             <Text style={styles.exclamation}>{'\u0021'}</Text>
           </View>
         )}
       </View>
-      {!!props.underneathText && (
-        <Label
-          text={props.underneathText}
-          style={[styles.underneathText, props.underneathTextStyle]}
-        />
+
+      {hasError.status && (
+        <Text style={[styles.underneathText, props.underneathTextStyle]}>
+          {props.underneathText || hasError.message}
+        </Text>
       )}
     </>
   );
@@ -86,19 +89,17 @@ const validateEmail = (email: string) => {
   return /^\S+@\S+\.\S+$/.test(email);
 };
 
-export const isErrorFree = (
+export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
   value: string
 ) => {
-  if (isRequired && !value?.length) return false;
-  if (keyboardType == 'email-address') {
-    if (!isRequired && !value?.length) return true;
-    const isEmail = validateEmail(value);
-    if (!isEmail) return false;
-  }
+  if (keyboardType == 'email-address' && !validateEmail(value))
+    return { status: true, message: 'Enter a valid email' };
+  if (isRequired && value.length === 0)
+    return { status: true, message: 'Cannot be empty!' };
 
-  return true;
+  return { status: false, message: '' };
 };
 
 const styles = StyleSheet.create({
@@ -119,6 +120,7 @@ const styles = StyleSheet.create({
     marginTop: -24,
     marginLeft: 8,
     marginBottom: 24,
+    color: colors.red,
   },
   label: {
     marginBottom: 2,
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: colors.red,
   },
   exclamation: {
     color: 'white',
