@@ -9,7 +9,7 @@ import {
 
 import { containsError } from './FormItem';
 import { colors } from '../colors';
-import { ErrorContext } from 'src/ErrorContext';
+import { ErrorContext } from '../ErrorContext';
 
 interface Props {
   children: Element | Element[];
