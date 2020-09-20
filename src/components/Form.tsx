@@ -9,7 +9,6 @@ import {
 
 import { containsError } from './FormItem';
 import { colors } from '../colors';
-import { ErrorContext } from '../ErrorContext';
 
 interface Props {
   children: Element | Element[];
@@ -22,7 +21,6 @@ interface Props {
 
 export default function Form(props: Props) {
   const [width, setWidth] = useState(0);
-  const [errors, setErrors] = useState([]);
 
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
@@ -55,10 +53,7 @@ export default function Form(props: Props) {
       }
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
     >
-      <ErrorContext.Provider value={{ errors, setErrors }}>
-        {props.children}
-      </ErrorContext.Provider>
-
+      {props.children}
       <Pressable
         style={[styles.button, props.buttonStyle]}
         onPress={handleButtonPress}

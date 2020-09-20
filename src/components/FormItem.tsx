@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useContext } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   TextInput,
   TextInputProperties,
@@ -12,7 +12,6 @@ import {
 
 import Label from '../components/Label';
 import { colors } from '../colors';
-import { ErrorContext } from '../ErrorContext';
 
 interface Props extends TextInputProperties {
   textInputStyle?: object | object[];
@@ -28,8 +27,6 @@ interface Props extends TextInputProperties {
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   const [hasError, setHasError] = useState({ status: false, message: '' });
   const { isRequired, value, keyboardType } = props;
-  const errorContext = useContext(ErrorContext);
-  console.warn(errorContext);
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setHasError(containsError(keyboardType, isRequired!, value));
@@ -42,56 +39,52 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   };
 
   return (
-    <ErrorContext.Consumer>
-      {() => (
-        <>
-          {props.label && (
-            <Label
-              text={props.label}
-              style={[styles.label, props.labelStyle]}
-              isRequired={props.isRequired}
-            />
-          )}
-          <View
-            style={[
-              styles.wrapper,
-              props.style,
-              hasError.status
-                ? { borderColor: colors.red, borderWidth: 1 }
-                : undefined,
-            ]}
-          >
-            {
-              // this is separated from props because adding it causes TextInput to throw an error
-              children
-            }
-            <TextInput
-              {...props}
-              style={[styles.inputText, props.textInputStyle]}
-              // @ts-ignore
-              ref={ref}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-              value={props.value}
-              autoCapitalize={
-                props.keyboardType == 'email-address' ? 'none' : undefined
-              }
-            />
-            {hasError.status && (
-              <View style={styles.errorWrapper}>
-                <Text style={styles.exclamation}>{'\u0021'}</Text>
-              </View>
-            )}
-          </View>
-
-          {hasError.status && (
-            <Text style={[styles.underneathText, props.underneathTextStyle]}>
-              {props.underneathText || hasError.message + '!'}
-            </Text>
-          )}
-        </>
+    <>
+      {props.label && (
+        <Label
+          text={props.label}
+          style={[styles.label, props.labelStyle]}
+          isRequired={props.isRequired}
+        />
       )}
-    </ErrorContext.Consumer>
+      <View
+        style={[
+          styles.wrapper,
+          props.style,
+          hasError.status
+            ? { borderColor: colors.red, borderWidth: 1 }
+            : undefined,
+        ]}
+      >
+        {
+          // this is separated from props because adding it causes TextInput to throw an error
+          children
+        }
+        <TextInput
+          {...props}
+          style={[styles.inputText, props.textInputStyle]}
+          // @ts-ignore
+          ref={ref}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          value={props.value}
+          autoCapitalize={
+            props.keyboardType == 'email-address' ? 'none' : undefined
+          }
+        />
+        {hasError.status && (
+          <View style={styles.errorWrapper}>
+            <Text style={styles.exclamation}>{'\u0021'}</Text>
+          </View>
+        )}
+      </View>
+
+      {hasError.status && (
+        <Text style={[styles.underneathText, props.underneathTextStyle]}>
+          {props.underneathText || hasError.message + '!'}
+        </Text>
+      )}
+    </>
   );
 });
 
