@@ -7,8 +7,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { containsError, displayError } from './FormItem';
+import { containsError } from './FormItem';
 import { colors } from '../colors';
+import { ErrorContext } from '../ErrorContext';
 
 interface Props {
   children: Element | Element[];
@@ -21,6 +22,7 @@ interface Props {
 
 export default function Form(props: Props) {
   const [width, setWidth] = useState(0);
+  const [errors, setErrors] = useState([]);
 
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
@@ -32,7 +34,6 @@ export default function Form(props: Props) {
           //@ts-ignore
           child.props.label || child.props.placeholder || 'FormItem' + index
         );
-        displayError();
       }
     });
 
@@ -54,7 +55,9 @@ export default function Form(props: Props) {
       }
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
     >
-      {props.children}
+      <ErrorContext.Provider value={{ errors, setErrors }}>
+        {props.children}
+      </ErrorContext.Provider>
 
       <Pressable
         style={[styles.button, props.buttonStyle]}
