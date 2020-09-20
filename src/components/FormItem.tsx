@@ -12,7 +12,7 @@ import {
 
 import Label from '../components/Label';
 import { colors } from '../colors';
-import { ErrorContext } from 'src/ErrorContext';
+import { ErrorContext } from '../ErrorContext';
 
 interface Props extends TextInputProperties {
   textInputStyle?: object | object[];
