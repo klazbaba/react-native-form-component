@@ -24,7 +24,7 @@ interface Props extends TextInputProperties {
   labelStyle?: object | object[];
   isRequired?: boolean;
   value: string;
-  extraValidation?: () => Validation;
+  validation?: () => Validation;
   asterik?: boolean;
 }
 
@@ -43,7 +43,7 @@ export default class FormItem extends Component<Props, State> {
   handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     const { keyboardType, isRequired, value } = this.props;
     let validation;
-    if (this.props.extraValidation) validation = this.props.extraValidation();
+    if (this.props.validation) validation = this.props.validation();
     this.setState({
       hasError: containsError(keyboardType, isRequired!, value, validation),
     });
@@ -117,14 +117,14 @@ export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
   value: string,
-  extraValidation: Validation = { status: true, message: '' }
+  customValidation: Validation = { status: true, message: '' }
 ) => {
-  if (keyboardType == 'email-address' && !validateEmail(value))
-    return { status: true, message: 'Enter a valid email' };
   if (isRequired && value.length === 0)
     return { status: true, message: 'Cannot be empty' };
-  if (!extraValidation.status)
-    return { status: true, message: extraValidation.message };
+  if (!customValidation.status)
+    return { status: true, message: customValidation.message };
+  if (keyboardType == 'email-address' && !validateEmail(value))
+    return { status: true, message: 'Enter a valid email' };
 
   return { status: false, message: '' };
 };
