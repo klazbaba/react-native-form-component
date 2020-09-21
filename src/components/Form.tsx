@@ -21,6 +21,7 @@ interface Props {
 
 export default function Form(props: Props) {
   const [width, setWidth] = useState(0);
+  const [opacity, setOpacity] = useState(1);
 
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
@@ -55,10 +56,12 @@ export default function Form(props: Props) {
     >
       {props.children}
       <Pressable
-        style={[styles.button, props.buttonStyle]}
+        style={[styles.button, { opacity }, props.buttonStyle]}
         onPress={handleButtonPress}
         android_ripple={{ color: 'lightgrey', radius: width }}
         onLayout={(event) => setWidth(event.nativeEvent.layout.width)}
+        onPressIn={() => setOpacity(0.5)}
+        onPressOut={() => setOpacity(1)}
       >
         <Text style={[styles.buttonText, props.buttonTextStyle]}>
           {props.buttonText || 'Submit'}
