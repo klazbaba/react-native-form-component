@@ -3,14 +3,14 @@ import { Text, StyleSheet } from 'react-native';
 
 interface Props {
   text: string;
-  isRequired?: boolean;
+  asterik?: boolean;
   style?: object | object[];
 }
 
 export default function Label(props: Props) {
   return (
     <Text style={styles.asterik}>
-      {props.isRequired ? '*' : ''}
+      {props.asterik ? '*' : ''}
       <Text style={[styles.label, props.style]}>{props.text}</Text>
     </Text>
   );

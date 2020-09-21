@@ -25,6 +25,7 @@ interface Props extends TextInputProperties {
   isRequired?: boolean;
   value: string;
   extraValidation?: () => Validation;
+  asterik?: boolean;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
@@ -49,7 +50,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
         <Label
           text={props.label}
           style={[styles.label, props.labelStyle]}
-          isRequired={props.isRequired}
+          asterik={props.asterik}
         />
       )}
       <View
