@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: 2,
+    marginLeft: 2,
   },
   errorWrapper: {
     height: 30,
