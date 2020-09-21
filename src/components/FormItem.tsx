@@ -26,6 +26,7 @@ interface Props extends TextInputProperties {
   value: string;
   validation?: () => Validation;
   asterik?: boolean;
+  ref?: RefObject<TextInput>;
 }
 
 interface State {
@@ -91,6 +92,7 @@ export default class FormItem extends Component<Props, State> {
             autoCapitalize={
               this.props.keyboardType == 'email-address' ? 'none' : undefined
             }
+            ref={this.props.ref}
           />
           {hasError.status && (
             <View style={styles.errorWrapper}>
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: 2,
-    marginLeft: 2,
+    marginLeft: 4,
   },
   errorWrapper: {
     height: 30,
