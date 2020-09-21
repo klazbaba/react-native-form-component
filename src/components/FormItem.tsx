@@ -13,6 +13,8 @@ import {
 import Label from '../components/Label';
 import { colors } from '../colors';
 
+type Validation = { status: boolean; message: string };
+
 interface Props extends TextInputProperties {
   textInputStyle?: object | object[];
   children?: Element;
@@ -22,6 +24,7 @@ interface Props extends TextInputProperties {
   labelStyle?: object | object[];
   isRequired?: boolean;
   value: string;
+  extraValidation?: () => Validation;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
@@ -29,7 +32,9 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
   const { isRequired, value, keyboardType } = props;
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setHasError(containsError(keyboardType, isRequired!, value));
+    let validation;
+    if (props.extraValidation) validation = props.extraValidation();
+    setHasError(containsError(keyboardType, isRequired!, value, validation));
     if (props.onBlur) props.onBlur(e);
   };
 
@@ -95,12 +100,15 @@ const validateEmail = (email: string) => {
 export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
-  value: string
+  value: string,
+  extraValidation: Validation = { status: true, message: '' }
 ) => {
   if (keyboardType == 'email-address' && !validateEmail(value))
     return { status: true, message: 'Enter a valid email' };
   if (isRequired && value.length === 0)
     return { status: true, message: 'Cannot be empty' };
+  if (!extraValidation.status)
+    return { status: true, message: extraValidation.message };
 
   return { status: false, message: '' };
 };
