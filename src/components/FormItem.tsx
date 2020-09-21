@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { Component } from 'react';
 import {
   TextInput,
   TextInputProperties,
@@ -28,71 +28,86 @@ interface Props extends TextInputProperties {
   asterik?: boolean;
 }
 
-const FormItem = forwardRef(({ children, ...props }: Props, ref) => {
-  const [hasError, setHasError] = useState({ status: false, message: '' });
-  const { isRequired, value, keyboardType } = props;
+interface State {
+  hasError: { status: boolean; message: string };
+}
 
-  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+export const instances: Array<{ setState: Function }> = [];
+
+export default class FormItem extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: { status: false, message: '' } };
+  }
+
+  handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    const { keyboardType, isRequired, value } = this.props;
     let validation;
-    if (props.extraValidation) validation = props.extraValidation();
-    setHasError(containsError(keyboardType, isRequired!, value, validation));
-    if (props.onBlur) props.onBlur(e);
+    if (this.props.extraValidation) validation = this.props.extraValidation();
+    this.setState({
+      hasError: containsError(keyboardType, isRequired!, value, validation),
+    });
+    if (this.props.onBlur) this.props.onBlur(e);
   };
 
-  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    setHasError({ status: false, message: '' });
-    if (props.onFocus) props.onFocus(e);
+  handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    this.setState({ hasError: { status: false, message: '' } });
+    if (this.props.onFocus) this.props.onFocus(e);
   };
 
-  return (
-    <>
-      {props.label && (
-        <Label
-          text={props.label}
-          style={[styles.label, props.labelStyle]}
-          asterik={props.asterik}
-        />
-      )}
-      <View
-        style={[
-          styles.wrapper,
-          props.style,
-          hasError.status
-            ? { borderColor: colors.red, borderWidth: 1 }
-            : undefined,
-        ]}
-      >
-        {
-          // this is separated from props because adding it causes TextInput to throw an error
-          children
-        }
-        <TextInput
-          {...props}
-          style={[styles.inputText, props.textInputStyle]}
-          // @ts-ignore
-          ref={ref}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          value={props.value}
-          autoCapitalize={
-            props.keyboardType == 'email-address' ? 'none' : undefined
-          }
-        />
-        {hasError.status && (
-          <View style={styles.errorWrapper}>
-            <Text style={styles.exclamation}>{'\u0021'}</Text>
-          </View>
+  componentDidMount = () => instances.push(this);
+
+  render() {
+    const { hasError } = this.state;
+    return (
+      <>
+        {this.props.label && (
+          <Label
+            text={this.props.label}
+            style={[styles.label, this.props.labelStyle]}
+            asterik={this.props.asterik}
+          />
         )}
-      </View>
+        <View
+          style={[
+            styles.wrapper,
+            this.props.style,
+            hasError.status
+              ? { borderColor: colors.red, borderWidth: 1 }
+              : undefined,
+          ]}
+        >
+          {
+            // this is separated from props because adding it causes TextInput to throw an error
+            this.props.children
+          }
+          <TextInput
+            {...this.props}
+            style={[styles.inputText, this.props.textInputStyle]}
+            // @ts-ignore
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
+            value={this.props.value}
+            autoCapitalize={
+              this.props.keyboardType == 'email-address' ? 'none' : undefined
+            }
+          />
+          {hasError.status && (
+            <View style={styles.errorWrapper}>
+              <Text style={styles.exclamation}>{'\u0021'}</Text>
+            </View>
+          )}
+        </View>
 
-      {hasError.status && (
-        <Text style={[styles.underneathText, props.underneathTextStyle]}>
-          {props.underneathText || hasError.message + '!'}
-        </Text>
-      )}
-    </>
-  );
-});
+        {hasError.status && (
+          <Text style={[styles.underneathText, this.props.underneathTextStyle]}>
+            {this.props.underneathText || hasError.message + '!'}
+          </Text>
+        )}
+      </>
+    );
+  }
+}
 
 const validateEmail = (email: string) => {
   return /^\S+@\S+\.\S+$/.test(email);
@@ -151,5 +166,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default FormItem;

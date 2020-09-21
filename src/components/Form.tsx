@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { containsError } from './FormItem';
+import { containsError, instances } from './FormItem';
 import { colors } from '../colors';
 
 interface Props {
@@ -33,6 +33,9 @@ export default function Form(props: Props) {
           //@ts-ignore
           child.props.label || child.props.placeholder || 'FormItem' + index
         );
+        instances[index].setState({
+          hasError: containsError(keyboardType, isRequired, value),
+        });
       }
     });
 
