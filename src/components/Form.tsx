@@ -56,7 +56,11 @@ export default function Form(props: Props) {
     >
       {props.children}
       <Pressable
-        style={[styles.button, { opacity }, props.buttonStyle]}
+        style={[
+          styles.button,
+          Platform.OS == 'ios' ? { opacity } : undefined,
+          props.buttonStyle,
+        ]}
         onPress={handleButtonPress}
         android_ripple={{ color: 'lightgrey', radius: width }}
         onLayout={(event) => setWidth(event.nativeEvent.layout.width)}
