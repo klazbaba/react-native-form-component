@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 
 interface Props {
   text: string;
@@ -9,10 +9,10 @@ interface Props {
 
 export default function Label(props: Props) {
   return (
-    <Text style={styles.asterik}>
-      {props.asterik ? '*' : ''}
+    <View style={styles.wrapper}>
+      {props.asterik ? <Text style={styles.asterik}>*</Text> : null}
       <Text style={[styles.label, props.style]}>{props.text}</Text>
-    </Text>
+    </View>
   );
 }
 
@@ -28,5 +28,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'capitalize',
     color: 'black',
+  },
+  wrapper: {
+    flexDirection: 'row',
   },
 });
