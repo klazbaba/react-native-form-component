@@ -26,7 +26,7 @@ interface Props extends TextInputProperties {
   value: string;
   validation?: () => Validation;
   asterik?: boolean;
-  ref?: RefObject<TextInput>;
+  textInputRef?: RefObject<TextInput>;
 }
 
 interface State {
@@ -92,7 +92,7 @@ export default class FormItem extends Component<Props, State> {
             autoCapitalize={
               this.props.keyboardType == 'email-address' ? 'none' : undefined
             }
-            ref={this.props.ref}
+            ref={this.props.textInputRef}
           />
           {hasError.status && (
             <View style={styles.errorWrapper}>
