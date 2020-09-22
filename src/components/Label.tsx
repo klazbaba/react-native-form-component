@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   asterik: {
     color: 'red',
     fontSize: 16,
+    marginLeft: 2,
   },
   label: {
     fontSize: 14,
