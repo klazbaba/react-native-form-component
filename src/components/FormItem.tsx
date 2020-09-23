@@ -30,7 +30,7 @@ interface Props extends TextInputProperties {
   labelStyle?: object | object[];
   isRequired?: boolean;
   value: string;
-  extraValidation?: () => Validation;
+  validation?: () => Validation;
   asterik?: boolean;
   ref: RefObject<TextInput>;
 }
@@ -43,7 +43,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   useImperativeHandle(ref, () => ({
     setState: () => {
       let validation;
-      if (props.extraValidation) validation = props.extraValidation();
+      if (props.validation) validation = props.validation();
       setHasError(containsError(keyboardType, isRequired!, value, validation));
     },
     focus: () => inputRef.current.focus(),
@@ -54,7 +54,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     let validation;
-    if (props.extraValidation) validation = props.extraValidation();
+    if (props.validation) validation = props.validation();
     setHasError(containsError(keyboardType, isRequired!, value, validation));
     if (props.onBlur) props.onBlur(e);
   };
