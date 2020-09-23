@@ -26,14 +26,19 @@ interface Props extends TextInputProperties {
   value: string;
   validation?: () => Validation;
   asterik?: boolean;
-  textInputRef?: RefObject<TextInput>;
+  textInputRef: RefObject<TextInput>;
 }
 
 interface State {
   hasError: { status: boolean; message: string };
 }
 
-export const instances: Array<{ setState: Function }> = [];
+let shouldRunCustomBlurAndFocus = true;
+
+export const setRunCustomBlurAndFocus = (state: boolean) =>
+  (shouldRunCustomBlurAndFocus = state);
+
+const getRunCustomBlurAndFocus = () => shouldRunCustomBlurAndFocus;
 
 export default class FormItem extends Component<Props, State> {
   constructor(props: Props) {
@@ -48,15 +53,19 @@ export default class FormItem extends Component<Props, State> {
     this.setState({
       hasError: containsError(keyboardType, isRequired!, value, validation),
     });
-    if (this.props.onBlur) this.props.onBlur(e);
+    if (this.props.onBlur && getRunCustomBlurAndFocus()) {
+      this.props.onBlur(e);
+      setRunCustomBlurAndFocus(false);
+    }
   };
 
   handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     this.setState({ hasError: { status: false, message: '' } });
-    if (this.props.onFocus) this.props.onFocus(e);
+    if (this.props.onFocus && getRunCustomBlurAndFocus()) {
+      this.props.onFocus(e);
+      setRunCustomBlurAndFocus(false);
+    }
   };
-
-  componentDidMount = () => instances.push(this);
 
   render() {
     const { hasError } = this.state;
@@ -93,6 +102,9 @@ export default class FormItem extends Component<Props, State> {
               this.props.keyboardType == 'email-address' ? 'none' : undefined
             }
             ref={this.props.textInputRef}
+            keyboardType={
+              !getRunCustomBlurAndFocus() ? undefined : this.props.keyboardType
+            }
           />
           {hasError.status && (
             <View style={styles.errorWrapper}>
