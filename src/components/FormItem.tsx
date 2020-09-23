@@ -3,6 +3,7 @@ import React, {
   useState,
   useImperativeHandle,
   useRef,
+  RefObject,
 } from 'react';
 import {
   TextInput,
@@ -31,6 +32,7 @@ interface Props extends TextInputProperties {
   value: string;
   extraValidation?: () => Validation;
   asterik?: boolean;
+  ref: RefObject<TextInput>;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
