@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { containsError, setRunCustomBlurAndFocus } from './FormItem';
+import { containsError } from './FormItem';
 import { colors } from '../colors';
 
 interface Props {
@@ -33,11 +33,8 @@ export default function Form(props: Props) {
           //@ts-ignore
           child.props.label || child.props.placeholder || 'FormItem' + index
         );
-        setRunCustomBlurAndFocus(false);
         //@ts-ignore
-        child.ref.current.focus();
-        //@ts-ignore
-        child.ref.current.blur();
+        child.ref.current.setState();
       }
     });
 

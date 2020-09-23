@@ -1,4 +1,10 @@
-import React, { Component, RefObject } from 'react';
+import React, {
+  forwardRef,
+  useState,
+  useImperativeHandle,
+  useRef,
+  RefObject,
+} from 'react';
 import {
   TextInput,
   TextInputProperties,
@@ -26,102 +32,90 @@ interface Props extends TextInputProperties {
   value: string;
   validation?: () => Validation;
   asterik?: boolean;
-  textInputRef: RefObject<TextInput>;
+  ref: RefObject<TextInput>;
 }
 
-interface State {
-  hasError: { status: boolean; message: string };
-}
+const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
+  const [hasError, setHasError] = useState({ status: false, message: '' });
+  const { isRequired, value, keyboardType } = props;
+  const inputRef: any = useRef();
 
-let shouldRunCustomBlurAndFocus = true;
+  useImperativeHandle(ref, () => ({
+    setState: () => {
+      let validation;
+      if (props.validation) validation = props.validation();
+      setHasError(containsError(keyboardType, isRequired!, value, validation));
+    },
+    focus: () => inputRef.current.focus(),
+    blur: () => inputRef.current.blur(),
+    clear: () => inputRef.current.clear(),
+    isFocused: () => inputRef.current.isFocused(),
+  }));
 
-export const setRunCustomBlurAndFocus = (state: boolean) =>
-  (shouldRunCustomBlurAndFocus = state);
-
-const getRunCustomBlurAndFocus = () => shouldRunCustomBlurAndFocus;
-
-export default class FormItem extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { hasError: { status: false, message: '' } };
-  }
-
-  handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    const { keyboardType, isRequired, value } = this.props;
+  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     let validation;
-    if (this.props.validation) validation = this.props.validation();
-    this.setState({
-      hasError: containsError(keyboardType, isRequired!, value, validation),
-    });
-    if (this.props.onBlur && getRunCustomBlurAndFocus()) {
-      this.props.onBlur(e);
-      setRunCustomBlurAndFocus(false);
-    }
+    if (props.validation) validation = props.validation();
+    setHasError(containsError(keyboardType, isRequired!, value, validation));
+    if (props.onBlur) props.onBlur(e);
   };
 
-  handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    this.setState({ hasError: { status: false, message: '' } });
-    if (this.props.onFocus && getRunCustomBlurAndFocus()) {
-      this.props.onFocus(e);
-      setRunCustomBlurAndFocus(false);
-    }
+  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setHasError({ status: false, message: '' });
+    if (props.onFocus) props.onFocus(e);
   };
 
-  render() {
-    const { hasError } = this.state;
-    return (
-      <>
-        {this.props.label && (
-          <Label
-            text={this.props.label}
-            style={[styles.label, this.props.labelStyle]}
-            asterik={this.props.asterik}
-          />
-        )}
-        <View
+  return (
+    <>
+      {props.label && (
+        <Label
+          text={props.label}
           style={[
-            styles.wrapper,
-            this.props.style,
-            hasError.status
-              ? { borderColor: colors.red, borderWidth: 1 }
-              : undefined,
+            styles.label,
+            !props.asterik ? { marginLeft: 4 } : undefined,
+            props.labelStyle,
           ]}
-        >
-          {
-            // this is separated from props because adding it causes TextInput to throw an error
-            this.props.children
+          asterik={props.asterik}
+        />
+      )}
+      <View
+        style={[
+          styles.wrapper,
+          props.style,
+          hasError.status
+            ? { borderColor: colors.red, borderWidth: 1 }
+            : undefined,
+        ]}
+      >
+        {
+          // this is separated from props because adding it causes TextInput to throw an error
+          children
+        }
+        <TextInput
+          {...props}
+          style={[styles.inputText, props.textInputStyle]}
+          ref={inputRef}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          value={props.value}
+          autoCapitalize={
+            props.keyboardType == 'email-address' ? 'none' : undefined
           }
-          <TextInput
-            {...this.props}
-            style={[styles.inputText, this.props.textInputStyle]}
-            // @ts-ignore
-            onBlur={this.handleBlur}
-            onFocus={this.handleFocus}
-            value={this.props.value}
-            autoCapitalize={
-              this.props.keyboardType == 'email-address' ? 'none' : undefined
-            }
-            ref={this.props.textInputRef}
-            keyboardType={
-              !getRunCustomBlurAndFocus() ? undefined : this.props.keyboardType
-            }
-          />
-          {hasError.status && (
-            <View style={styles.errorWrapper}>
-              <Text style={styles.exclamation}>{'\u0021'}</Text>
-            </View>
-          )}
-        </View>
-
+        />
         {hasError.status && (
-          <Text style={[styles.underneathText, this.props.underneathTextStyle]}>
-            {this.props.underneathText || hasError.message + '!'}
-          </Text>
+          <View style={styles.errorWrapper}>
+            <Text style={styles.exclamation}>{'\u0021'}</Text>
+          </View>
         )}
-      </>
-    );
-  }
-}
+      </View>
+
+      {hasError.status && (
+        <Text style={[styles.underneathText, props.underneathTextStyle]}>
+          {props.underneathText || hasError.message + '!'}
+        </Text>
+      )}
+    </>
+  );
+});
 
 const validateEmail = (email: string) => {
   return /^\S+@\S+\.\S+$/.test(email);
@@ -131,14 +125,14 @@ export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
   value: string,
-  customValidation: Validation = { status: true, message: '' }
+  extraValidation: Validation = { status: true, message: '' }
 ) => {
-  if (isRequired && value.length === 0)
-    return { status: true, message: 'Cannot be empty' };
-  if (!customValidation.status)
-    return { status: true, message: customValidation.message };
   if (keyboardType == 'email-address' && !validateEmail(value))
     return { status: true, message: 'Enter a valid email' };
+  if (isRequired && value.length === 0)
+    return { status: true, message: 'Cannot be empty' };
+  if (!extraValidation.status)
+    return { status: true, message: extraValidation.message };
 
   return { status: false, message: '' };
 };
@@ -165,7 +159,6 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: 2,
-    marginLeft: 4,
   },
   errorWrapper: {
     height: 30,
@@ -181,3 +174,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default FormItem;
