@@ -121,6 +121,10 @@ const validateEmail = (email: string) => {
   return /^\S+@\S+\.\S+$/.test(email);
 };
 
+const validateNumber = (number: string) => {
+  return /^\d+$/.test(number);
+};
+
 export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
@@ -131,6 +135,13 @@ export const containsError = (
     return { status: true, message: 'Enter a valid email' };
   if (isRequired && value.length === 0)
     return { status: true, message: 'Cannot be empty' };
+  if (
+    keyboardType == 'number-pad' ||
+    keyboardType == 'decimal-pad' ||
+    keyboardType == 'phone-pad' ||
+    (keyboardType == 'numeric' && !validateNumber(value))
+  )
+    return { status: true, message: 'Invalid number' };
   if (!extraValidation.status)
     return { status: true, message: extraValidation.message };
 
