@@ -125,6 +125,10 @@ const validateNumber = (number: string) => {
   return /^\d+$/.test(number);
 };
 
+const validateDecimalNumber = (number: string) => {
+  return /^\d+.*\d*/.test(number) && !number.endsWith('.');
+};
+
 export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
@@ -137,10 +141,11 @@ export const containsError = (
     return { status: true, message: 'Cannot be empty' };
   if (
     keyboardType == 'number-pad' ||
-    keyboardType == 'decimal-pad' ||
     keyboardType == 'phone-pad' ||
     (keyboardType == 'numeric' && !validateNumber(value))
   )
+    return { status: true, message: 'Invalid number' };
+  if (keyboardType == 'decimal-pad' && !validateDecimalNumber(value))
     return { status: true, message: 'Invalid number' };
   if (!extraValidation.status)
     return { status: true, message: extraValidation.message };
