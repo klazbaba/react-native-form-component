@@ -133,8 +133,17 @@ export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
   value: string,
-  extraValidation: Validation = { status: true, message: '' }
+  extraValidation?: Validation
 ) => {
+  if (extraValidation && !extraValidation.status) {
+    return {
+      status: true,
+      message: extraValidation.message,
+    };
+  } else if (extraValidation && extraValidation.status) {
+    return { status: false, message: '' };
+  }
+
   if (keyboardType == 'email-address' && !validateEmail(value))
     return { status: true, message: 'Enter a valid email' };
   if (isRequired && value.length === 0)
@@ -147,8 +156,6 @@ export const containsError = (
     return { status: true, message: 'Invalid number' };
   if (keyboardType == 'decimal-pad' && !validateDecimalNumber(value))
     return { status: true, message: 'Invalid number' };
-  if (!extraValidation.status)
-    return { status: true, message: extraValidation.message };
 
   return { status: false, message: '' };
 };
