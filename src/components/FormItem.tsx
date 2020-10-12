@@ -30,7 +30,7 @@ interface Props extends TextInputProperties {
   labelStyle?: object | object[];
   isRequired?: boolean;
   value: string;
-  validation?: () => Validation;
+  customValidation?: () => Validation;
   asterik?: boolean;
   ref: RefObject<TextInput>;
 }
@@ -43,7 +43,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   useImperativeHandle(ref, () => ({
     setState: () => {
       let validation;
-      if (props.validation) validation = props.validation();
+      if (props.customValidation) validation = props.customValidation();
       setHasError(containsError(keyboardType, isRequired!, value, validation));
     },
     focus: () => inputRef.current.focus(),
@@ -54,7 +54,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     let validation;
-    if (props.validation) validation = props.validation();
+    if (props.customValidation) validation = props.customValidation();
     setHasError(containsError(keyboardType, isRequired!, value, validation));
     if (props.onBlur) props.onBlur(e);
   };
@@ -129,6 +129,8 @@ const validateDecimalNumber = (number: string) => {
   return /^\d+.*\d*/.test(number) && !number.endsWith('.');
 };
 
+const validatePhoneNumber = (number: string) => /^\+{0,1}\d+$/.test(number);
+
 export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
   isRequired: boolean,
@@ -150,10 +152,11 @@ export const containsError = (
     return { status: true, message: 'Cannot be empty' };
   if (
     keyboardType == 'number-pad' ||
-    keyboardType == 'phone-pad' ||
     (keyboardType == 'numeric' && !validateNumber(value))
   )
     return { status: true, message: 'Invalid number' };
+  if (keyboardType == 'phone-pad' && !validatePhoneNumber(value))
+    return { status: true, message: 'Invalid phone number' };
   if (keyboardType == 'decimal-pad' && !validateDecimalNumber(value))
     return { status: true, message: 'Invalid number' };
 

@@ -19,6 +19,7 @@ interface Props {
   onButtonPress: () => void;
 }
 
+export let submitForm: Function;
 export default function Form(props: Props) {
   const [width, setWidth] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -48,6 +49,7 @@ export default function Form(props: Props) {
 
     props.onButtonPress();
   };
+  submitForm = handleButtonPress;
 
   return (
     <KeyboardAvoidingView
