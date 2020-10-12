@@ -156,7 +156,7 @@ export const containsError = (
   )
     return { status: true, message: 'Invalid number' };
   if (keyboardType == 'phone-pad' && !validatePhoneNumber(value))
-    return { status: true, message: 'Invalid number' };
+    return { status: true, message: 'Invalid phone number' };
   if (keyboardType == 'decimal-pad' && !validateDecimalNumber(value))
     return { status: true, message: 'Invalid number' };
 
