@@ -5,6 +5,8 @@ import {
   Pressable,
   Text,
   StyleSheet,
+  TextInputSubmitEditingEventData,
+  NativeSyntheticEvent,
 } from 'react-native';
 
 import { containsError } from './FormItem';
@@ -19,7 +21,10 @@ interface Props {
   onButtonPress: () => void;
 }
 
-export let submitForm: Function;
+export let submitForm: (
+  e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+) => void;
+
 export default function Form(props: Props) {
   const [width, setWidth] = useState(0);
   const [opacity, setOpacity] = useState(1);
@@ -27,15 +32,17 @@ export default function Form(props: Props) {
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child, index) => {
-      //@ts-ignore
-      const { keyboardType, isRequired, value } = child.props;
-      if (containsError(keyboardType, isRequired, value).status) {
-        fieldsWithError.push(
-          //@ts-ignore
-          child.props.label || child.props.placeholder || 'FormItem' + index
-        );
+      if (child) {
         //@ts-ignore
-        child.ref.current.setState();
+        const { keyboardType, isRequired, value } = child.props;
+        if (containsError(keyboardType, isRequired, value).status) {
+          fieldsWithError.push(
+            //@ts-ignore
+            child.props.label || child.props.placeholder || 'FormItem' + index
+          );
+          //@ts-ignore
+          child.ref.current.setState();
+        }
       }
     });
 
