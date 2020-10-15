@@ -148,7 +148,7 @@ export const containsError = (
 
   if (keyboardType == 'email-address' && !validateEmail(value))
     return { status: true, message: 'Enter a valid email' };
-  if (isRequired && value.length === 0)
+  if (isRequired && value?.length === 0)
     return { status: true, message: 'Cannot be empty' };
   if (
     keyboardType == 'number-pad' ||
