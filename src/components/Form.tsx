@@ -27,15 +27,17 @@ export default function Form(props: Props) {
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child, index) => {
-      //@ts-ignore
-      const { keyboardType, isRequired, value } = child.props;
-      if (containsError(keyboardType, isRequired, value).status) {
-        fieldsWithError.push(
-          //@ts-ignore
-          child.props.label || child.props.placeholder || 'FormItem' + index
-        );
+      if (child) {
         //@ts-ignore
-        child.ref.current.setState();
+        const { keyboardType, isRequired, value } = child.props;
+        if (containsError(keyboardType, isRequired, value).status) {
+          fieldsWithError.push(
+            //@ts-ignore
+            child.props.label || child.props.placeholder || 'FormItem' + index
+          );
+          //@ts-ignore
+          child.ref.current.setState();
+        }
       }
     });
 
