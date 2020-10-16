@@ -33,9 +33,17 @@ export default function Form(props: Props) {
     const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child, index) => {
       if (child) {
-        //@ts-ignore
-        const { keyboardType, isRequired, value } = child.props;
-        if (containsError(keyboardType, isRequired, value).status) {
+        const {
+          keyboardType,
+          isRequired,
+          value,
+          customValidation,
+          //@ts-ignore
+        } = child.props;
+        let validation;
+
+        if (customValidation) validation = customValidation();
+        if (containsError(keyboardType, isRequired, value, validation).status) {
           fieldsWithError.push(
             //@ts-ignore
             child.props.label || child.props.placeholder || 'FormItem' + index
