@@ -41,7 +41,7 @@ export default function Form(props: Props) {
             child.props.label || child.props.placeholder || 'FormItem' + index
           );
           //@ts-ignore
-          child.ref.current.setState();
+          child.ref?.current.setState();
         }
       }
     });
