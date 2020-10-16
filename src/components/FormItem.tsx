@@ -33,6 +33,7 @@ interface Props extends TextInputProperties {
   customValidation?: () => Validation;
   asterik?: boolean;
   ref: RefObject<TextInput>;
+  type?: 'FormItem';
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -161,6 +162,8 @@ export const containsError = (
 
   return { status: false, message: '' };
 };
+
+FormItem.defaultProps = { type: 'FormItem' };
 
 const styles = StyleSheet.create({
   wrapper: {
