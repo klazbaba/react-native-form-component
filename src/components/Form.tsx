@@ -32,7 +32,8 @@ export default function Form(props: Props) {
   const handleButtonPress = () => {
     const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child, index) => {
-      if (child) {
+      //@ts-ignore
+      if (child && child.ref?.current.getComponent() == 'FormItem') {
         const {
           keyboardType,
           isRequired,
@@ -62,7 +63,7 @@ export default function Form(props: Props) {
       return;
     }
 
-    props.onButtonPress();
+    // props.onButtonPress();
   };
   submitForm = handleButtonPress;
 

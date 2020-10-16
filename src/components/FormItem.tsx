@@ -33,7 +33,6 @@ interface Props extends TextInputProperties {
   customValidation?: () => Validation;
   asterik?: boolean;
   ref: RefObject<TextInput>;
-  type?: 'FormItem';
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -51,6 +50,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     blur: () => inputRef.current.blur(),
     clear: () => inputRef.current.clear(),
     isFocused: () => inputRef.current.isFocused(),
+    getComponent: () => 'FormItem',
   }));
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -162,8 +162,6 @@ export const containsError = (
 
   return { status: false, message: '' };
 };
-
-FormItem.defaultProps = { type: 'FormItem' };
 
 const styles = StyleSheet.create({
   wrapper: {
