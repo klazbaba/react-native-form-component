@@ -50,6 +50,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     blur: () => inputRef.current.blur(),
     clear: () => inputRef.current.clear(),
     isFocused: () => inputRef.current.isFocused(),
+    getComponent: () => 'FormItem',
   }));
 
   const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
