@@ -63,7 +63,7 @@ export default function Form(props: Props) {
       return;
     }
 
-    // props.onButtonPress();
+    props.onButtonPress();
   };
   submitForm = handleButtonPress;
 
