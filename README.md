@@ -8,19 +8,19 @@ A customizable form component for react-native. It handles basic validation of i
 yarn add react-native-form-component
 ```
 
-## Components
-
-- [Form](#form)
-- [FormItem](#form-item)
-- [Label](#label)
-
-<br />
-
 ## Functions
 
 | Name       | Description                                                                                                                 |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
 | submitForm | Does the same thing as `onButtonPress()` in `Form` component. It does validation first, then carries out the defined action |
+
+<br />
+
+## Components
+
+- [Form](#form)
+- [FormItem](#form-item)
+- [Label](#label)
 
 ### Form
 
