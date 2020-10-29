@@ -33,7 +33,7 @@ export default function Form(props: Props) {
     const fieldsWithError: string[] = [];
     Children.forEach(props.children, (child, index) => {
       //@ts-ignore
-      if (child && child.ref?.current.getComponent() == 'FormItem') {
+      if (child && child.ref?.current?.getComponent() == 'FormItem') {
         const {
           keyboardType,
           isRequired,
