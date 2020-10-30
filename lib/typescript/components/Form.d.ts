@@ -8,6 +8,6 @@ interface Props {
     buttonTextStyle?: object | object[];
     onButtonPress: () => void;
 }
-export declare let submitForm: (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void;
+export declare let submitForm: (e?: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void;
 export default function Form(props: Props): JSX.Element;
 export {};

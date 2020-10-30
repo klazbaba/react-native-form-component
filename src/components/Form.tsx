@@ -22,7 +22,7 @@ interface Props {
 }
 
 export let submitForm: (
-  e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  e?: NativeSyntheticEvent<TextInputSubmitEditingEventData>
 ) => void;
 
 export default function Form(props: Props) {
