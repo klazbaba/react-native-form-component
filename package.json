@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-component",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A customizable form component for react-native. It does validation of input, and also alerts you of a failed validation.",
   "main": "src/index",
   "types": "lib/typescript/index.d.ts",
@@ -55,7 +55,7 @@
     "react": "16.11.0",
     "react-native": "^0.63.2",
     "release-it": "^13.5.8",
-    "typescript": "^3.8.3"
+    "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "react": "*",
