@@ -99,9 +99,8 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           onFocus={handleFocus}
           value={props.value}
           autoCapitalize={
-            props.autoCapitalize || props.keyboardType == 'email-address'
-              ? 'none'
-              : undefined
+            props.autoCapitalize ||
+            (props.keyboardType == 'email-address' ? 'none' : undefined)
           }
         />
         {hasError.status && (
