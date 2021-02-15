@@ -4,10 +4,10 @@ import React, {
   useImperativeHandle,
   useRef,
   RefObject,
+  ComponentProps,
 } from 'react';
 import {
   TextInput,
-  TextInputProperties,
   View,
   StyleSheet,
   Text,
@@ -21,7 +21,7 @@ import { colors } from '../colors';
 
 type Validation = { status: boolean; message: string };
 
-interface Props extends TextInputProperties {
+interface Props extends ComponentProps<typeof TextInput> {
   textInputStyle?: object | object[];
   children?: Element;
   underneathText?: string;
