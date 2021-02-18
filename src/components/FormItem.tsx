@@ -112,7 +112,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
 
       {hasError.status && (
         <Text style={[styles.underneathText, props.underneathTextStyle]}>
-          {props.underneathText || hasError.message + '!'}
+          {props.underneathText || hasError.message}
         </Text>
       )}
     </>
@@ -131,7 +131,8 @@ const validateDecimalNumber = (number: string) => {
   return /^\d+.*\d*/.test(number) && !number.endsWith('.');
 };
 
-const validatePhoneNumber = (number: string) => /^\+{0,1}\d+$/.test(number);
+const validatePhoneNumber = (number: string) =>
+  /^\+{0,1}\d+$/.test(number.replace(/ /g, ''));
 
 export const containsError = (
   keyboardType: KeyboardTypeOptions = 'default',
