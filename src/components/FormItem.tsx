@@ -102,6 +102,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             props.autoCapitalize ||
             (props.keyboardType == 'email-address' ? 'none' : undefined)
           }
+          maxLength={props.maxLength || 150}
         />
         {hasError.status && (
           <View style={styles.errorWrapper}>
