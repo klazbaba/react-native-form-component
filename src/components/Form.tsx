@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react';
+import React, { Children, useState, ReactNode } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -13,7 +13,7 @@ import { containsError } from './FormItem';
 import { colors } from '../colors';
 
 interface Props {
-  children: Element | Element[];
+  children: ReactNode;
   keyboardVerticalOffset?: number;
   buttonText?: string;
   buttonStyle?: object | object[];

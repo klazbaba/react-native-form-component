@@ -1,7 +1,7 @@
-/// <reference types="react" />
+import { ReactNode } from 'react';
 import { TextInputSubmitEditingEventData, NativeSyntheticEvent } from 'react-native';
 interface Props {
-    children: Element | Element[];
+    children: ReactNode;
     keyboardVerticalOffset?: number;
     buttonText?: string;
     buttonStyle?: object | object[];
