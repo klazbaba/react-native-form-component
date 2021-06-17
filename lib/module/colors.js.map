@@ -1,0 +1,1 @@
+{"version":3,"sources":["colors.ts"],"names":["colors","red"],"mappings":"AAAA,OAAO,MAAMA,MAAM,GAAG;AACpBC,EAAAA,GAAG,EAAE;AADe,CAAf","sourcesContent":["export const colors = {\n  red: '#D81F28',\n};\n"]}

@@ -1,0 +1,22 @@
+{
+  "name": "library-example",
+  "displayName": "Library Example",
+  "expo": {
+    "name": "library-example",
+    "slug": "library-example",
+    "description": "Example app for library",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
