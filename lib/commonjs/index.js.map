@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.tsx"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;AACA;;AACA","sourcesContent":["import Form from './components/Form';\nimport Label from './components/Label';\nimport FormItem from './components/FormItem';\nimport { submitForm } from './components/Form';\n\nexport { Form, Label, FormItem, submitForm };\n"]}
