@@ -5,6 +5,7 @@ import React, {
   useRef,
   RefObject,
   ComponentProps,
+  ReactNode,
 } from 'react';
 import {
   TextInput,
@@ -23,7 +24,7 @@ type Validation = { status: boolean; message: string };
 
 interface Props extends ComponentProps<typeof TextInput> {
   textInputStyle?: object | object[];
-  children?: Element;
+  children?: ReactNode;
   underneathText?: string;
   underneathTextStyle?: object | object[];
   label?: string;
