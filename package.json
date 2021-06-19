@@ -1,7 +1,7 @@
 {
   "name": "react-native-form-component",
   "version": "0.1.14",
-  "description": "A customizable form component for react-native. It does validation of input, and also alerts you of a failed validation.",
+  "description": "A customizable form component for react-native and react-native-web. It does validation of input, and also alerts you of a failed validation.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -13,7 +13,8 @@
     "!lib/typescript/example",
     "!**/__tests__",
     "!**/__fixtures__",
-    "!**/__mocks__"
+    "!**/__mocks__",
+    "!example"
   ],
   "scripts": {
     "test": "jest",
@@ -32,7 +33,9 @@
     "form",
     "validated form",
     "form component",
-    "component"
+    "component",
+    "react-native-web",
+    "web"
   ],
   "repository": "https://github.com/klazbaba/react-native-form-component",
   "author": "klazbaba <giwaklaz@gmail.com> (https://github.com/klazbaba)",
@@ -48,7 +51,6 @@
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
     "@types/react-native": "0.63.16",
-    "commitlint": "^11.0.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.1.3",
@@ -75,7 +77,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "yarn lint && yarn typescript"
     }
   },
