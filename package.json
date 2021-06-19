@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-component",
-  "version": "0.14.15",
+  "version": "0.1.17",
   "description": "A customizable form component for react-native and react-native-web. It does validation of input, and also alerts you of a failed validation.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
