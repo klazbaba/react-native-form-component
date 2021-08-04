@@ -10,8 +10,8 @@ interface Props {
 export default function Label(props: Props) {
   return (
     <View style={styles.wrapper}>
-      {props.asterik ? <Text style={styles.asterik}>*</Text> : null}
       <Text style={[styles.label, props.style]}>{props.text}</Text>
+      {props.asterik ? <Text style={styles.asterik}>*</Text> : null}
     </View>
   );
 }
