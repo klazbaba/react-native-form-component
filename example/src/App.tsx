@@ -7,7 +7,7 @@ export default function App() {
   return (
     <View style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
       <Form onButtonPress={() => console.warn('slap')}>
-        <FormItem value="tell" />
+        <FormItem value="tell" label="Afford" asterik />
       </Form>
     </View>
   );
