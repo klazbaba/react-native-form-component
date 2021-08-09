@@ -18,9 +18,8 @@ export default function Label(props: Props) {
 
 const styles = StyleSheet.create({
   asterik: {
-    color: 'red',
+    color: '#C92B2B',
     fontSize: 16,
-    marginLeft: 2,
   },
   label: {
     fontSize: 14,
