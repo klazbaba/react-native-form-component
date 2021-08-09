@@ -55,6 +55,8 @@ return (
 import { FormItem } from 'react-native-form-component';
 //...
 
+const inputRef = createRef();
+
 return (
   //...
   <FormItem
@@ -62,6 +64,8 @@ return (
     isRequired
     value={email}
     onChangeText={(email) => setEmail(email)}
+    ref={inputRef}
+    asterik
   />
 );
 ```
