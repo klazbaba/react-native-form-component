@@ -55,7 +55,7 @@ return (
 import { FormItem } from 'react-native-form-component';
 //...
 
-const inputRef = createRef();
+const inputRef = React.createRef();
 
 return (
   //...
