@@ -44,9 +44,7 @@ export default function Form(props: Props) {
         let validation;
 
         if (customValidation) validation = customValidation();
-        if (
-          !containsError(keyboardType, isRequired, value, validation).status
-        ) {
+        if (containsError(keyboardType, isRequired, value, validation).status) {
           fieldsWithError.push(
             //@ts-ignore
             child.props.label || child.props.placeholder || 'FormItem' + index
@@ -67,7 +65,8 @@ export default function Form(props: Props) {
 
     props.onButtonPress();
   };
-  submitForm = handleButtonPress;
+
+  submitForm = () => handleButtonPress();
 
   return (
     <KeyboardAvoidingView
