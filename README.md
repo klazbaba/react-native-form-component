@@ -5,6 +5,7 @@ A customizable form component for react-native. It handles basic validation of i
 ![WhatsApp Image 2021-09-28 at 6 30 53 PM](https://user-images.githubusercontent.com/34392299/135136968-bac788af-8e2e-41d0-8eeb-93e088e5c678.jpeg)
 
 
+
 ## Installation
 
 ```sh
