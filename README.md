@@ -2,7 +2,7 @@
 
 A customizable form component for react-native. It handles basic validation of inputs, and also alerts you of a failed validation.
 
-![WhatsApp Image 2021-09-28 at 6 30 53 PM](https://user-images.githubusercontent.com/34392299/135136968-bac788af-8e2e-41d0-8eeb-93e088e5c678.jpeg)
+![WhatsApp Image 2021-09-28 at 6 30 53 PM](https://user-images.githubusercontent.com/34392299/135331616-78e74fb6-2e89-4529-9bb3-e50b99213adc.jpeg)
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135331258-525de545-1937-40dc-8225-122d9a102572.gif)
 
 
