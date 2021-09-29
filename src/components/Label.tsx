@@ -1,18 +1,19 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, Animated } from 'react-native';
 
 interface Props {
   text: string;
   asterik?: boolean;
   style?: object | object[];
+  textStyle?: object | object[];
 }
 
 export default function Label(props: Props) {
   return (
-    <View style={styles.wrapper}>
-      <Text style={[styles.label, props.style]}>{props.text}</Text>
+    <Animated.View style={[styles.wrapper, props.style]}>
+      <Text style={[styles.label, props.textStyle]}>{props.text}</Text>
       {props.asterik ? <Text style={styles.asterik}>*</Text> : null}
-    </View>
+    </Animated.View>
   );
 }
 

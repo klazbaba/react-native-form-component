@@ -52,6 +52,7 @@ return (
 ### Form Item
 
 ```jsx
+import { createRef } from 'react';
 import { FormItem } from 'react-native-form-component';
 //...
 
@@ -87,6 +88,7 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 | asterik             | Whether or not to add an asterik to label                                                                                                                                                                                                                                            | boolean                                  | no       |
 | ref                 | Used to identify the component and also to expose TextInput methods `FormItem`                                                                                                                                                                                                       | `RefObject<TextInput>`                   | yes      |
 | children            | A ReactElement to render on the left part of the TextInput. Usually an icon                                                                                                                                                                                                          | ReactElement                             | no       |
+| floatingLabel       | Whether or not the label should float                                                                                                                                                                                                                                                | boolean                                  | no       |
 
 <br />
 
@@ -104,11 +106,12 @@ return (
 
 ### Props
 
-| Prop       | Type    | Required |
-| ---------- | ------- | -------- |
-| text       | string  | yes      |
-| isRequired | boolean | no       |
-| asterik    | boolean | no       |
+| Prop      | Type                                                       | Required |
+| --------- | ---------------------------------------------------------- | -------- |
+| text      | string                                                     | yes      |
+| asterik   | boolean                                                    | no       |
+| textStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
+| style     | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 
 <br />
 
