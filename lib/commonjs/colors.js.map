@@ -1,1 +1,1 @@
-{"version":3,"sources":["colors.ts"],"names":["colors","red"],"mappings":";;;;;;AAAO,MAAMA,MAAM,GAAG;AACpBC,EAAAA,GAAG,EAAE;AADe,CAAf","sourcesContent":["export const colors = {\n  red: '#D81F28',\n};\n"]}
+{"version":3,"sources":["colors.ts"],"names":["colors","red","white"],"mappings":";;;;;;AAAO,MAAMA,MAAM,GAAG;AACpBC,EAAAA,GAAG,EAAE,SADe;AAEpBC,EAAAA,KAAK,EAAE;AAFa,CAAf","sourcesContent":["export const colors = {\n  red: '#D81F28',\n  white: 'white',\n};\n"]}
