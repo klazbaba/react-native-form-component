@@ -15,6 +15,7 @@ import {
   NativeSyntheticEvent,
   TextInputFocusEventData,
   KeyboardTypeOptions,
+  Animated,
 } from 'react-native';
 
 import Label from '../components/Label';
@@ -34,10 +35,16 @@ interface Props extends ComponentProps<typeof TextInput> {
   customValidation?: () => Validation;
   asterik?: boolean;
   ref: RefObject<TextInput>;
+  floatingLabel?: boolean;
 }
+
+let wrapperHeight = 0;
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   const [hasError, setHasError] = useState({ status: false, message: '' });
+  const [animatedBottom] = useState(new Animated.Value(0));
+  const [additionalStyle, setAdditionalStyle] = useState({});
+  const [shouldAnimate, setShouldAnimate] = useState(true);
   const { isRequired, value, keyboardType } = props;
   const inputRef: any = useRef();
 
@@ -63,8 +70,99 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
 
   const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setHasError({ status: false, message: '' });
+    if (props.floatingLabel && shouldAnimate)
+      Animated.timing(animatedBottom, {
+        toValue: wrapperHeight / 2,
+        useNativeDriver: false,
+        duration: 300,
+      }).start(() => {
+        setAdditionalStyle({
+          position: 'absolute',
+          width: '98%',
+          marginHorizontal: 16,
+        });
+        setShouldAnimate(false);
+      });
+
     if (props.onFocus) props.onFocus(e);
   };
+
+  if (props.floatingLabel) {
+    return (
+      <>
+        <View
+          style={[
+            styles.wrapper,
+            props.style,
+            hasError.status
+              ? { borderColor: colors.red, borderWidth: 1 }
+              : undefined,
+          ]}
+          onLayout={({ nativeEvent }) =>
+            (wrapperHeight = nativeEvent.layout.height)
+          }
+        >
+          {props.label && (
+            <Label
+              text={props.label}
+              textStyle={[
+                !props.asterik ? { marginLeft: 4 } : undefined,
+                props.floatingLabel
+                  ? { marginBottom: 0, marginHorizontal: 8 }
+                  : undefined,
+                props.labelStyle,
+              ]}
+              asterik={props.asterik}
+              style={{
+                position: 'relative',
+                bottom: animatedBottom,
+                backgroundColor: animatedBottom.interpolate({
+                  inputRange: [0, wrapperHeight / 2],
+                  outputRange: ['transparent', colors.white],
+                }),
+              }}
+            />
+          )}
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              width: '78%',
+              ...additionalStyle,
+            }}
+          >
+            {children}
+            <TextInput
+              {...props}
+              style={[styles.inputText, props.textInputStyle]}
+              ref={inputRef}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+              value={props.value}
+              autoCapitalize={
+                props.autoCapitalize ||
+                (props.keyboardType == 'email-address' ? 'none' : undefined)
+              }
+              maxLength={props.maxLength || 150}
+              placeholder=""
+            />
+            {hasError.status && (
+              <View style={styles.errorWrapper}>
+                <Text style={styles.exclamation}>{'\u0021'}</Text>
+              </View>
+            )}
+          </View>
+        </View>
+
+        {hasError.status && (
+          <Text style={[styles.underneathText, props.underneathTextStyle]}>
+            {props.underneathText || hasError.message}
+          </Text>
+        )}
+      </>
+    );
+  }
 
   return (
     <>
@@ -74,6 +172,9 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           style={[
             styles.label,
             !props.asterik ? { marginLeft: 4 } : undefined,
+            props.floatingLabel
+              ? { marginBottom: -10, marginLeft: 16, zIndex: 1 }
+              : undefined,
             props.labelStyle,
           ]}
           asterik={props.asterik}
@@ -88,10 +189,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             : undefined,
         ]}
       >
-        {
-          // this is separated from props because adding it causes TextInput to throw an error
-          children
-        }
+        {children}
         <TextInput
           {...props}
           style={[styles.inputText, props.textInputStyle]}

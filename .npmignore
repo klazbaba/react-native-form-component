@@ -9,3 +9,5 @@ yarn-error.log
 example/
 
 .editorconfig
+
+CONTRIBUTING.md
