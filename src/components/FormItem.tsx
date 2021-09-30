@@ -43,7 +43,6 @@ let wrapperHeight = 0;
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   const [hasError, setHasError] = useState({ status: false, message: '' });
   const [animatedBottom] = useState(new Animated.Value(0));
-  const [additionalStyle, setAdditionalStyle] = useState({});
   const [shouldAnimate, setShouldAnimate] = useState(true);
   const { isRequired, value, keyboardType } = props;
   const inputRef: any = useRef();
@@ -75,14 +74,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
         toValue: wrapperHeight / 2,
         useNativeDriver: false,
         duration: 300,
-      }).start(() => {
-        setAdditionalStyle({
-          position: 'absolute',
-          width: '98%',
-          marginHorizontal: 16,
-        });
-        setShouldAnimate(false);
-      });
+      }).start(() => setShouldAnimate(false));
 
     if (props.onFocus) props.onFocus(e);
   };
@@ -124,14 +116,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             />
           )}
 
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              width: '78%',
-              ...additionalStyle,
-            }}
-          >
+          <View style={styles.floatingInputWrapper}>
             {children}
             <TextInput
               {...props}
@@ -300,6 +285,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  floatingInputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    position: 'absolute',
+    marginLeft: 16,
+    paddingRight: 8,
   },
 });
 
