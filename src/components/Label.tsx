@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactText } from 'react';
 import { Text, StyleSheet, Animated } from 'react-native';
 
-export interface LabelProps {
-  text: string;
+interface LabelProps {
+  text: ReactText;
   asterik?: boolean;
   style?: object | object[];
   textStyle?: object | object[];

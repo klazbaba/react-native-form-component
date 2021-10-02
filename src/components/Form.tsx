@@ -74,6 +74,7 @@ export default function Form(props: Props) {
         Platform.OS == 'ios' ? props.keyboardVerticalOffset || 50 : undefined
       }
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
+      style={{ flex: 1 }}
     >
       {props.children}
       <Pressable

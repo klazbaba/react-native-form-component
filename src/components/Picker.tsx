@@ -5,23 +5,18 @@ import React, {
   RefObject,
   ReactNode,
 } from 'react';
-import {
-  View,
-  StyleSheet,
-  Pressable,
-  Modal,
-  ScrollView,
-  Text,
-} from 'react-native';
-import { colors } from 'src/colors';
-import Label, { LabelProps } from './Label';
+import { View, StyleSheet, Pressable, ScrollView, Text } from 'react-native';
+
+import { colors } from '../colors';
+import Label from './Label';
+import Modal from './Modal';
 
 interface Item {
   label: string;
   value: ReactText;
 }
 
-interface Props extends LabelProps {
+interface Props {
   items: Array<Item>;
   onSelection: (item: Item) => void;
   selectedValue: ReactText;
@@ -38,13 +33,13 @@ interface Props extends LabelProps {
 }
 
 const button: RefObject<View> = createRef();
-export default function ShrPicker(props: Props) {
+export default function Picker(props: Props) {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
   return (
     <>
-      {props.label && <Label {...props} />}
+      {props.label && <Label text={props.label} textStyle={props.labelStyle} />}
       <Pressable
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
@@ -72,7 +67,7 @@ export default function ShrPicker(props: Props) {
         </View>
       </Pressable>
 
-      <Modal transparent visible={showPicker}>
+      <Modal show={showPicker}>
         <Pressable
           style={{ ...StyleSheet.absoluteFillObject }}
           onPress={() => setShowPicker(false)}
@@ -81,9 +76,9 @@ export default function ShrPicker(props: Props) {
             style={[
               styles.wrapper,
               {
-                top: position.height + position.y + 8,
+                top: position.height / 2 + position.y,
                 width: position.width,
-                left: position.x,
+                // left: position.x,
               },
             ]}
             nestedScrollEnabled
@@ -125,12 +120,6 @@ export default function ShrPicker(props: Props) {
   );
 }
 
-ShrPicker.defaultProps = {
-  asterik: false,
-  asterikStyle: {},
-  buttonStyle: {},
-};
-
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: colors.white,
@@ -157,10 +146,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flex: 1,
     paddingLeft: 8,
-    height: 44,
     marginBottom: 24,
+    height: 44,
   },
   childIconWrapper: {
     backgroundColor: colors.faintBlue,
