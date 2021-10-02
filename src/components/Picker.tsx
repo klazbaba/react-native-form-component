@@ -43,7 +43,7 @@ export default function Picker(props: Props) {
       <Pressable
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
-          button.current?.measureInWindow(
+          button.current?.measure(
             (x: number, y: number, width: number, height: number) =>
               setPosition({ x, y, width, height })
           );
@@ -76,9 +76,9 @@ export default function Picker(props: Props) {
             style={[
               styles.wrapper,
               {
-                top: position.height / 2 + position.y,
                 width: position.width,
-                // left: position.x,
+                position: 'absolute',
+                top: position.y + position.height + 8,
               },
             ]}
             nestedScrollEnabled
