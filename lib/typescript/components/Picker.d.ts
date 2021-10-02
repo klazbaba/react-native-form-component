@@ -1,10 +1,9 @@
 import { ReactText, ReactNode } from 'react';
-import { LabelProps } from './Label';
 interface Item {
     label: string;
     value: ReactText;
 }
-interface Props extends LabelProps {
+interface Props {
     items: Array<Item>;
     onSelection: (item: Item) => void;
     selectedValue: ReactText;
@@ -19,12 +18,5 @@ interface Props extends LabelProps {
     childWrapperStyle?: object | object[];
     itemLabelStyle?: object | object[];
 }
-declare function ShrPicker(props: Props): JSX.Element;
-declare namespace ShrPicker {
-    var defaultProps: {
-        asterik: boolean;
-        asterikStyle: {};
-        buttonStyle: {};
-    };
-}
-export default ShrPicker;
+export default function Picker(props: Props): JSX.Element;
+export {};
