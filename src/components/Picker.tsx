@@ -20,7 +20,7 @@ interface Props {
   items: Array<Item>;
   onSelection: (item: Item) => void;
   selectedValue: ReactText;
-  children?: ReactNode;
+  pickerIcon?: ReactNode;
   asterik?: boolean;
   labelStyle?: object | object[];
   asterikStyle?: object | object[];
@@ -63,7 +63,7 @@ export default function Picker(props: Props) {
         </Text>
 
         <View style={[styles.childIconWrapper, props.childWrapperStyle]}>
-          {props.children}
+          {props.pickerIcon || <View style={styles.pickerIcon} />}
         </View>
       </Pressable>
 
@@ -140,8 +140,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   pickerButton: {
-    borderWidth: 1,
-    borderColor: colors.lightBlue,
     borderRadius: 4,
     flexDirection: 'row',
     alignItems: 'center',
@@ -149,16 +147,26 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     marginBottom: 24,
     height: 44,
+    backgroundColor: colors.white,
   },
   childIconWrapper: {
-    backgroundColor: colors.faintBlue,
+    backgroundColor: colors.white,
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'stretch',
-    borderLeftWidth: 1,
-    borderColor: colors.faintBlue,
     padding: 8,
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
+    marginRight: 8,
+  },
+  pickerIcon: {
+    borderTopColor: colors.grey,
+    borderTopWidth: 10,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderLeftWidth: 9,
+    borderRightWidth: 9,
+    borderBottomWidth: 0,
+    borderRadius: 4,
   },
 });
