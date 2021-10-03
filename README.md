@@ -61,7 +61,7 @@ return (
 ### Form Item
 
 ```jsx
-import { createRef } from 'react';
+import React, { createRef } from 'react';
 import { FormItem } from 'react-native-form-component';
 //...
 
