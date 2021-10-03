@@ -149,6 +149,9 @@ return (
 
 <br />
 
+![Simulator Screen Shot - iPod touch (7th generation) - 2021-10-03 at 16 03 23](https://user-images.githubusercontent.com/34392299/135759915-81e69456-68d4-459c-bbcd-c54c25def55e.png)
+
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
