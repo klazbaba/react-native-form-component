@@ -16,6 +16,7 @@ import {
   TextInputFocusEventData,
   KeyboardTypeOptions,
   Animated,
+  Platform,
 } from 'react-native';
 
 import Label from '../components/Label';
@@ -263,6 +264,7 @@ const styles = StyleSheet.create({
   inputText: {
     flex: 1,
     paddingVertical: 8,
+    ...Platform.select({ web: { outlineWidth: 0 } }),
   },
   underneathText: {
     marginTop: -24,

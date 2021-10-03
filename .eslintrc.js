@@ -13,6 +13,7 @@ module.exports = {
     ],
     'eqeqeq': 0,
     'react-native/no-inline-styles': 0,
+    'no-shadow': 0,
   },
   ignorePatterns: ['node_modules/', 'lib/'],
 };

@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { ReactText } from 'react';
 import { Text, StyleSheet, Animated } from 'react-native';
 
-interface Props {
-  text: string;
+interface LabelProps {
+  text: ReactText;
   asterik?: boolean;
   style?: object | object[];
   textStyle?: object | object[];
+  asterikStyle?: object | object[];
 }
 
-export default function Label(props: Props) {
+export default function Label(props: LabelProps) {
   return (
     <Animated.View style={[styles.wrapper, props.style]}>
       <Text style={[styles.label, props.textStyle]}>{props.text}</Text>
-      {props.asterik ? <Text style={styles.asterik}>*</Text> : null}
+      {props.asterik ? (
+        <Text style={[styles.asterik, props.asterikStyle]}>*</Text>
+      ) : null}
     </Animated.View>
   );
 }
