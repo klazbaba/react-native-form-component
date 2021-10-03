@@ -29,6 +29,7 @@ yarn add react-native-form-component
 - [FormItem](#form-item)
 - [Label](#label)
 - [Modal](#Modal)
+- [Picker](#Picker)
 
 ### Form
 
@@ -114,14 +115,13 @@ return (
 
 ### Props
 
-| Prop      | Type                                                       | Required |
-| --------- | ---------------------------------------------------------- | -------- |
-| text      | string                                                     | yes      |
-| asterik   | boolean                                                    | no       |
-| textStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
-| style     | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
-
-<br />
+| Prop         | Type                                                       | Required |
+| ------------ | ---------------------------------------------------------- | -------- |
+| text         | string                                                     | yes      |
+| asterik      | boolean                                                    | no       |
+| textStyle    | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
+| style        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
+| asterikStyle | object \| object[]                                         | no       |
 
 <br />
 
@@ -146,6 +146,47 @@ return (
 | show            | boolean   | yes      |
 | backgroundColor | string    | no       |
 | children        | ReactNode | no       |
+
+<br />
+
+### Picker
+
+```jsx
+import React, { useState } from 'react';
+import { Picker } from 'react-native-form-component';
+
+const [number, setNumber] = useState(1);
+
+return (
+  <Picker
+    items={[
+      { label: 'One', value: 1 },
+      { label: 'Two', value: 2 },
+      { label: 'Three', value: 3 },
+    ]}
+    label="Pick a number"
+    selectedValue={number}
+    onSelection={(item) => setNumber(item.value)}
+  />
+);
+```
+
+### Props
+
+| Prop               | Type                                                       | Required |
+| ------------------ | ---------------------------------------------------------- | -------- |
+| items              | Array<{label: string; value: ReactText}>                   | yes      |
+| onSelection        | (item) => void                                             | yes      |
+| selectedValue      | ReactText                                                  | yes      |
+| pickerIcon         | ReactNode                                                  | no       |
+| asterik            | boolean                                                    | no       |
+| asterikStyle       | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
+| label              | string                                                     | no       |
+| placeholder        | string                                                     | no       |
+| selectedValueStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
+| buttonStyle        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
+| childWrapperStyle  | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
+| itemLabelStyle     | [TextStyle](https://reactnative.dev/docs/view-style-props) | no       |
 
 <br />
 
