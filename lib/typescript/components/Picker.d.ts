@@ -7,7 +7,7 @@ interface Props {
     items: Array<Item>;
     onSelection: (item: Item) => void;
     selectedValue: ReactText;
-    children?: ReactNode;
+    pickerIcon?: ReactNode;
     asterik?: boolean;
     labelStyle?: object | object[];
     asterikStyle?: object | object[];

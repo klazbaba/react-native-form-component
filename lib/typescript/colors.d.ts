@@ -6,4 +6,5 @@ export declare const colors: {
     lightBlue: string;
     faintBlue: string;
     lightgrey: string;
+    grey: string;
 };
