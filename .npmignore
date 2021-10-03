@@ -6,7 +6,7 @@ yarn-error.log
 # Expo
 .expo/*
 
-example/
+example/*
 
 .editorconfig
 
