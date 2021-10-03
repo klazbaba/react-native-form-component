@@ -109,10 +109,6 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               style={{
                 position: 'relative',
                 bottom: animatedBottom,
-                backgroundColor: animatedBottom.interpolate({
-                  inputRange: [0, wrapperHeight / 2],
-                  outputRange: ['transparent', colors.white],
-                }),
               }}
             />
           )}
