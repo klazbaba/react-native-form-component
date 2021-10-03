@@ -28,6 +28,7 @@ yarn add react-native-form-component
 - [Form](#form)
 - [FormItem](#form-item)
 - [Label](#label)
+- [Modal](#Modal)
 
 ### Form
 
@@ -119,6 +120,32 @@ return (
 | asterik   | boolean                                                    | no       |
 | textStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | style     | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
+
+<br />
+
+<br />
+
+### Modal
+
+```jsx
+import { Modal } from 'react-native-form-component';
+
+return (
+  <Modal show isRequired>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>I am inside a modal!</Text>
+    </View>
+  </Modal>
+);
+```
+
+### Props
+
+| Prop            | Type      | Required |
+| --------------- | --------- | -------- |
+| show            | boolean   | yes      |
+| backgroundColor | string    | no       |
+| children        | ReactNode | no       |
 
 <br />
 
