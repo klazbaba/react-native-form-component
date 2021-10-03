@@ -9,12 +9,7 @@
   "source": "src/index",
   "files": [
     "src",
-    "lib",
-    "!lib/typescript/example",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!example"
+    "lib"
   ],
   "scripts": {
     "test": "jest",
