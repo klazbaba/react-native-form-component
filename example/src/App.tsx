@@ -14,6 +14,7 @@ export default function App() {
           label="Firstname"
           asterik
           onChangeText={(firstname) => setFirstname(firstname)}
+          floatingLabel
         />
         <Picker
           items={[

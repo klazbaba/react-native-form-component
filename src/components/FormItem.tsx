@@ -100,15 +100,17 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               text={props.label}
               textStyle={[
                 !props.asterik ? { marginLeft: 4 } : undefined,
-                props.floatingLabel
-                  ? { marginBottom: 0, marginHorizontal: 8 }
-                  : undefined,
+                props.floatingLabel ? { marginBottom: 0 } : undefined,
                 props.labelStyle,
               ]}
               asterik={props.asterik}
               style={{
                 position: 'relative',
                 bottom: animatedBottom,
+                backgroundColor: animatedBottom.interpolate({
+                  inputRange: [0, wrapperHeight / 2],
+                  outputRange: ['transparent', colors.white],
+                }),
               }}
             />
           )}
