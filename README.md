@@ -98,6 +98,7 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 | ref                 | Used to identify the component and also to expose TextInput methods `FormItem`                                                                                                                                                                                                       | `RefObject<TextInput>`                   | yes      |
 | children            | A ReactElement to render on the left part of the TextInput. Usually an icon                                                                                                                                                                                                          | ReactElement                             | no       |
 | floatingLabel       | Whether or not the label should float                                                                                                                                                                                                                                                | boolean                                  | no       |
+| textArea            | Whether or not the input should be a textArea                                                                                                                                                                                                                                        | boolean                                  | no       |
 
 <br />
 
@@ -150,6 +151,7 @@ return (
 <br />
 
 ### Picker
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135761859-c3efad0a-9171-449b-a808-279b347aab89.gif)
 
 ```jsx

@@ -37,14 +37,14 @@ interface Props extends ComponentProps<typeof TextInput> {
   asterik?: boolean;
   ref: RefObject<TextInput>;
   floatingLabel?: boolean;
+  textArea?: boolean;
 }
-
-let wrapperHeight = 0;
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   const [hasError, setHasError] = useState({ status: false, message: '' });
   const [animatedBottom] = useState(new Animated.Value(0));
   const [shouldAnimate, setShouldAnimate] = useState(true);
+  const [wrapperHeight, setWrapperHeight] = useState(0);
   const { isRequired, value, keyboardType } = props;
   const inputRef: any = useRef();
 
@@ -72,7 +72,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     setHasError({ status: false, message: '' });
     if (props.floatingLabel && shouldAnimate)
       Animated.timing(animatedBottom, {
-        toValue: wrapperHeight / 2,
+        toValue: wrapperHeight - 8,
         useNativeDriver: false,
         duration: 300,
       }).start(() => setShouldAnimate(false));
@@ -86,13 +86,14 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
         <View
           style={[
             styles.wrapper,
+            props.textArea ? { height: 150 } : undefined,
             props.style,
             hasError.status
               ? { borderColor: colors.red, borderWidth: 1 }
               : undefined,
           ]}
           onLayout={({ nativeEvent }) =>
-            (wrapperHeight = nativeEvent.layout.height)
+            setWrapperHeight(nativeEvent.layout.height)
           }
         >
           {props.label && (
@@ -100,22 +101,39 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               text={props.label}
               textStyle={[
                 !props.asterik ? { marginLeft: 4 } : undefined,
-                props.floatingLabel ? { marginBottom: 0 } : undefined,
                 props.labelStyle,
               ]}
               asterik={props.asterik}
-              style={{
-                position: 'relative',
-                bottom: animatedBottom,
-                backgroundColor: animatedBottom.interpolate({
-                  inputRange: [0, wrapperHeight / 2],
-                  outputRange: ['transparent', colors.white],
-                }),
-              }}
+              style={[
+                props.floatingLabel
+                  ? { marginBottom: animatedBottom }
+                  : undefined,
+                {
+                  paddingHorizontal: 2,
+                  zIndex: 1,
+                  backgroundColor: animatedBottom.interpolate({
+                    inputRange: [0, wrapperHeight / 2],
+                    outputRange: ['transparent', colors.white],
+                  }),
+                },
+              ]}
             />
           )}
 
-          <View style={styles.floatingInputWrapper}>
+          <View
+            style={[
+              styles.wrapper,
+              {
+                marginBottom: 0,
+                flex: 1,
+                paddingHorizontal: 0,
+                height: '100%',
+                position: 'absolute',
+                right: 8,
+                left: 8,
+              },
+            ]}
+          >
             {children}
             <TextInput
               {...props}
@@ -130,6 +148,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               }
               maxLength={props.maxLength || 150}
               placeholder=""
+              multiline={props.textArea || props.multiline}
             />
             {hasError.status && (
               <View style={styles.errorWrapper}>
@@ -153,7 +172,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
       {props.label && (
         <Label
           text={props.label}
-          style={[
+          textStyle={[
             styles.label,
             !props.asterik ? { marginLeft: 4 } : undefined,
             props.floatingLabel
@@ -167,6 +186,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
       <View
         style={[
           styles.wrapper,
+          props.textArea ? { height: 150 } : undefined,
           props.style,
           hasError.status
             ? { borderColor: colors.red, borderWidth: 1 }
@@ -186,6 +206,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             (props.keyboardType == 'email-address' ? 'none' : undefined)
           }
           maxLength={props.maxLength || 150}
+          multiline={props.textArea || props.multiline}
         />
         {hasError.status && (
           <View style={styles.errorWrapper}>
@@ -255,7 +276,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     paddingHorizontal: 8,
-    minHeight: 48,
+    height: 48,
     alignItems: 'center',
     marginBottom: 24,
   },
@@ -263,6 +284,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 8,
     ...Platform.select({ web: { outlineWidth: 0 } }),
+    height: '90%',
   },
   underneathText: {
     marginTop: -24,
@@ -285,14 +307,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
-  },
-  floatingInputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    position: 'absolute',
-    marginLeft: 16,
-    paddingRight: 8,
   },
 });
 

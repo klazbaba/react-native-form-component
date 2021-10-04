@@ -6,6 +6,7 @@ import { Form, FormItem, Picker } from 'react-native-form-component';
 export default function App() {
   const [firstname, setFirstname] = React.useState('');
   const [number, setNumber] = React.useState<React.ReactText>(1);
+  const [lastName, setLastName] = React.useState('');
   return (
     <View style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
       <Form onButtonPress={() => console.warn('slap')}>
@@ -15,6 +16,7 @@ export default function App() {
           asterik
           onChangeText={(firstname) => setFirstname(firstname)}
           floatingLabel
+          isRequired
         />
         <Picker
           items={[
@@ -32,6 +34,15 @@ export default function App() {
           label="Pick a number"
           selectedValue={number}
           onSelection={(item) => setNumber(item.value)}
+        />
+        <FormItem
+          value={lastName}
+          label="Last Name"
+          asterik
+          onChangeText={(lastName) => setLastName(lastName)}
+          floatingLabel
+          isRequired
+          textArea
         />
       </Form>
     </View>
