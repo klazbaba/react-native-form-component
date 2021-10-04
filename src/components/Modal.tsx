@@ -28,6 +28,7 @@ export default function Modal(props: Props) {
 const styles = StyleSheet.create({
   modal: {
     ...StyleSheet.absoluteFillObject,
+    elevation: 3,
     zIndex: 1,
   },
 });
