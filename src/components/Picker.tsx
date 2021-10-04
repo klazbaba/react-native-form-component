@@ -36,21 +36,24 @@ const button: RefObject<View> = createRef();
 export default function Picker(props: Props) {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
+  const [position, setPosition] = useState({ y: 0, width: 0, height: 0 });
   return (
     <>
       {props.label && <Label text={props.label} textStyle={props.labelStyle} />}
       <Pressable
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
-          button.current?.measure(
-            (x: number, y: number, width: number, height: number) =>
-              setPosition({ x, y, width, height })
-          );
           setShowPicker(!showPicker);
         }}
         // @ts-ignore
         ref={button}
+        onLayout={({ nativeEvent }) =>
+          setPosition({
+            height: nativeEvent.layout.height,
+            y: nativeEvent.layout.y,
+            width: nativeEvent.layout.width,
+          })
+        }
       >
         <Text
           style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
@@ -69,7 +72,7 @@ export default function Picker(props: Props) {
 
       <Modal show={showPicker}>
         <Pressable
-          style={{ ...StyleSheet.absoluteFillObject }}
+          style={{ ...StyleSheet.absoluteFillObject, elevation: 3 }}
           onPress={() => setShowPicker(false)}
         >
           <ScrollView
