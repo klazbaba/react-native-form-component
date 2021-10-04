@@ -72,7 +72,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     setHasError({ status: false, message: '' });
     if (props.floatingLabel && shouldAnimate)
       Animated.timing(animatedBottom, {
-        toValue: wrapperHeight - 8,
+        toValue: wrapperHeight / 2,
         useNativeDriver: false,
         duration: 300,
       }).start(() => setShouldAnimate(false));
@@ -105,12 +105,9 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               ]}
               asterik={props.asterik}
               style={[
-                props.floatingLabel
-                  ? { marginBottom: animatedBottom }
-                  : undefined,
+                props.floatingLabel ? { bottom: animatedBottom } : undefined,
                 {
                   paddingHorizontal: 2,
-                  zIndex: 1,
                   backgroundColor: animatedBottom.interpolate({
                     inputRange: [0, wrapperHeight / 2],
                     outputRange: ['transparent', colors.white],
@@ -131,6 +128,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
                 position: 'absolute',
                 right: 8,
                 left: 8,
+                backgroundColor: 'transparent',
               },
             ]}
           >
