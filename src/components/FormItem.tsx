@@ -72,7 +72,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     setHasError({ status: false, message: '' });
     if (props.floatingLabel && shouldAnimate)
       Animated.timing(animatedBottom, {
-        toValue: props.textArea ? 34 : wrapperHeight / 2,
+        toValue: props.textArea ? 24 : wrapperHeight / 2,
         useNativeDriver: false,
         duration: 300,
       }).start(() => setShouldAnimate(false));
@@ -111,10 +111,10 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
                 {
                   paddingHorizontal: 2,
                   backgroundColor: animatedBottom.interpolate({
-                    inputRange: [0, props.textArea ? 34 : wrapperHeight / 2],
+                    inputRange: [0, props.textArea ? 24 : wrapperHeight / 2],
                     outputRange: ['transparent', colors.white],
                   }),
-                  marginTop: props.textArea ? 25 : 0,
+                  marginTop: props.textArea ? 16 : 0,
                 },
               ]}
             />
@@ -147,7 +147,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
                 props.autoCapitalize ||
                 (props.keyboardType == 'email-address' ? 'none' : undefined)
               }
-              maxLength={props.maxLength || 120}
+              maxLength={props.maxLength || 150}
               placeholder=""
               multiline={props.textArea || props.multiline}
             />
@@ -206,7 +206,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             props.autoCapitalize ||
             (props.keyboardType == 'email-address' ? 'none' : undefined)
           }
-          maxLength={props.maxLength || 120}
+          maxLength={props.maxLength || 150}
           multiline={props.textArea || props.multiline}
         />
         {hasError.status && (
