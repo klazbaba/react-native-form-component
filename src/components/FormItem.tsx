@@ -72,7 +72,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     setHasError({ status: false, message: '' });
     if (props.floatingLabel && shouldAnimate)
       Animated.timing(animatedBottom, {
-        toValue: wrapperHeight / 2,
+        toValue: props.textArea ? 34 : wrapperHeight / 2,
         useNativeDriver: false,
         duration: 300,
       }).start(() => setShouldAnimate(false));
@@ -86,7 +86,9 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
         <View
           style={[
             styles.wrapper,
-            props.textArea ? { height: 150 } : undefined,
+            props.textArea
+              ? { height: 120, alignItems: 'flex-start' }
+              : undefined,
             props.style,
             hasError.status
               ? { borderColor: colors.red, borderWidth: 1 }
@@ -109,9 +111,10 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
                 {
                   paddingHorizontal: 2,
                   backgroundColor: animatedBottom.interpolate({
-                    inputRange: [0, wrapperHeight / 2],
+                    inputRange: [0, props.textArea ? 34 : wrapperHeight / 2],
                     outputRange: ['transparent', colors.white],
                   }),
+                  marginTop: props.textArea ? 25 : 0,
                 },
               ]}
             />
@@ -144,7 +147,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
                 props.autoCapitalize ||
                 (props.keyboardType == 'email-address' ? 'none' : undefined)
               }
-              maxLength={props.maxLength || 150}
+              maxLength={props.maxLength || 120}
               placeholder=""
               multiline={props.textArea || props.multiline}
             />
@@ -184,7 +187,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
       <View
         style={[
           styles.wrapper,
-          props.textArea ? { height: 150 } : undefined,
+          props.textArea ? { height: 120 } : undefined,
           props.style,
           hasError.status
             ? { borderColor: colors.red, borderWidth: 1 }
@@ -203,7 +206,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             props.autoCapitalize ||
             (props.keyboardType == 'email-address' ? 'none' : undefined)
           }
-          maxLength={props.maxLength || 150}
+          maxLength={props.maxLength || 120}
           multiline={props.textArea || props.multiline}
         />
         {hasError.status && (
