@@ -176,9 +176,6 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           textStyle={[
             styles.label,
             !props.asterik ? { marginLeft: 4 } : undefined,
-            props.floatingLabel
-              ? { marginBottom: -10, marginLeft: 16, zIndex: 1 }
-              : undefined,
             props.labelStyle,
           ]}
           asterik={props.asterik}
