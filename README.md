@@ -182,13 +182,14 @@ return (
 | onSelection        | (item) => void                                             | yes      |
 | selectedValue      | ReactText                                                  | yes      |
 | pickerIcon         | ReactNode                                                  | no       |
+| iconWrapperStyle   | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | asterik            | boolean                                                    | no       |
 | asterikStyle       | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | label              | string                                                     | no       |
+| labelStyle         | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | placeholder        | string                                                     | no       |
 | selectedValueStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | buttonStyle        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
-| childWrapperStyle  | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | itemLabelStyle     | [TextStyle](https://reactnative.dev/docs/view-style-props) | no       |
 
 <br />
