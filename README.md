@@ -187,6 +187,7 @@ return (
 | asterikStyle       | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | label              | string                                                     | no       |
 | labelStyle         | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
+| labelWrapperStyle  | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | placeholder        | string                                                     | no       |
 | selectedValueStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | buttonStyle        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
