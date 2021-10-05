@@ -150,6 +150,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               maxLength={props.maxLength || 150}
               placeholder=""
               multiline={props.textArea || props.multiline}
+              textAlignVertical={props.textArea ? 'top' : 'center'}
             />
             {hasError.status && (
               <View style={styles.errorWrapper}>
@@ -205,6 +206,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           }
           maxLength={props.maxLength || 150}
           multiline={props.textArea || props.multiline}
+          textAlignVertical={props.textArea ? 'top' : 'center'}
         />
         {hasError.status && (
           <View style={styles.errorWrapper}>
