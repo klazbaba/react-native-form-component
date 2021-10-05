@@ -21,14 +21,15 @@ interface Props {
   onSelection: (item: Item) => void;
   selectedValue: ReactText;
   pickerIcon?: ReactNode;
+  iconWrapperStyle?: object | object[];
   asterik?: boolean;
   labelStyle?: object | object[];
   asterikStyle?: object | object[];
   label?: ReactText;
+  labelWrapperStyle?: object | object[];
   placeholder?: string;
   selectedValueStyle?: object | object[];
   buttonStyle?: object | object[];
-  childWrapperStyle?: object | object[];
   itemLabelStyle?: object | object[];
 }
 
@@ -39,7 +40,15 @@ export default function Picker(props: Props) {
   const [position, setPosition] = useState({ y: 0, width: 0, height: 0 });
   return (
     <>
-      {props.label && <Label text={props.label} textStyle={props.labelStyle} />}
+      {props.label && (
+        <Label
+          text={props.label}
+          textStyle={props.labelStyle}
+          style={props.labelWrapperStyle}
+          asterik={props.asterik}
+          asterikStyle={props.asterikStyle}
+        />
+      )}
       <Pressable
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
@@ -65,7 +74,7 @@ export default function Picker(props: Props) {
             '--Pick a value--'}
         </Text>
 
-        <View style={[styles.childIconWrapper, props.childWrapperStyle]}>
+        <View style={[styles.childIconWrapper, props.iconWrapperStyle]}>
           {props.pickerIcon || <View style={styles.pickerIcon} />}
         </View>
       </Pressable>
