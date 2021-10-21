@@ -37,7 +37,7 @@ const button: RefObject<View> = createRef();
 export default function Picker(props: Props) {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
-  const [position, setPosition] = useState({ y: 0, width: 0, height: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
   return (
     <>
       {props.label && (
@@ -61,6 +61,7 @@ export default function Picker(props: Props) {
             height: nativeEvent.layout.height,
             y: nativeEvent.layout.y,
             width: nativeEvent.layout.width,
+            x: nativeEvent.layout.x,
           })
         }
       >
@@ -91,6 +92,7 @@ export default function Picker(props: Props) {
                 width: position.width,
                 position: 'absolute',
                 top: position.y + position.height + 8,
+                left: position.x,
               },
             ]}
             nestedScrollEnabled
