@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Modal as NativeModal, Platform } from 'react-native';
 
 interface Props {
   children: ReactNode;
@@ -9,6 +9,20 @@ interface Props {
 
 export default function Modal(props: Props) {
   if (props.show) {
+    if (Platform.OS !== 'web')
+      return (
+        <NativeModal transparent>
+          <View
+            style={{
+              backgroundColor: props.backgroundColor,
+              ...StyleSheet.absoluteFillObject,
+            }}
+          />
+
+          {props.children}
+        </NativeModal>
+      );
+
     return (
       <View style={styles.modal}>
         <View

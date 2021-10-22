@@ -5,7 +5,14 @@ import React, {
   RefObject,
   ReactNode,
 } from 'react';
-import { View, StyleSheet, Pressable, ScrollView, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Text,
+  Platform,
+} from 'react-native';
 
 import { colors } from '../colors';
 import Label from './Label';
@@ -56,14 +63,24 @@ export default function Picker(props: Props) {
         }}
         // @ts-ignore
         ref={button}
-        onLayout={({ nativeEvent }) =>
-          setPosition({
-            height: nativeEvent.layout.height,
-            y: nativeEvent.layout.y,
-            width: nativeEvent.layout.width,
-            x: nativeEvent.layout.x,
-          })
-        }
+        onLayout={({ nativeEvent }) => {
+          if (Platform.OS === 'web')
+            setPosition({
+              height: nativeEvent.layout.height,
+              y: nativeEvent.layout.y,
+              width: nativeEvent.layout.width,
+              x: nativeEvent.layout.x,
+            });
+          else
+            button.current?.measure((_x, _y, width, height, pageX, pageY) => {
+              setPosition({
+                height: height,
+                y: pageY + height,
+                width: width,
+                x: pageX,
+              });
+            });
+        }}
       >
         <Text
           style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
@@ -138,14 +155,14 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: colors.white,
     borderRadius: 4,
-    zIndex: 1,
+    zIndex: 10,
     maxHeight: 200,
     flexGrow: 0,
     borderWidth: 0.5,
     borderColor: colors.lightBlue,
-    elevation: 4,
+    elevation: 50,
     shadowColor: colors.lightgrey,
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 4,
   },
