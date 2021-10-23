@@ -5,14 +5,7 @@ import React, {
   RefObject,
   ReactNode,
 } from 'react';
-import {
-  View,
-  StyleSheet,
-  Pressable,
-  ScrollView,
-  Text,
-  Platform,
-} from 'react-native';
+import { View, StyleSheet, Pressable, ScrollView, Text } from 'react-native';
 
 import { colors } from '../colors';
 import Label from './Label';
@@ -59,28 +52,14 @@ export default function Picker(props: Props) {
       <Pressable
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
+          if (!showPicker)
+            button.current?.measureInWindow((x, y, width, height) => {
+              setPosition({ x, y, width, height });
+            });
           setShowPicker(!showPicker);
         }}
         // @ts-ignore
         ref={button}
-        onLayout={({ nativeEvent }) => {
-          if (Platform.OS === 'web')
-            setPosition({
-              height: nativeEvent.layout.height,
-              y: nativeEvent.layout.y,
-              width: nativeEvent.layout.width,
-              x: nativeEvent.layout.x,
-            });
-          else
-            button.current?.measure((_x, _y, width, height, pageX, pageY) => {
-              setPosition({
-                height: height,
-                y: pageY + height,
-                width: width,
-                x: pageX,
-              });
-            });
-        }}
       >
         <Text
           style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
