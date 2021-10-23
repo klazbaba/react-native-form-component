@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Modal as Native } from 'react-native';
 
 interface Props {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface Props {
 export default function Modal(props: Props) {
   if (props.show) {
     return (
-      <View style={styles.modal}>
+      <Native transparent>
         <View
           style={{
             backgroundColor: props.backgroundColor,
@@ -19,16 +19,8 @@ export default function Modal(props: Props) {
         />
 
         {props.children}
-      </View>
+      </Native>
     );
   }
   return null;
 }
-
-const styles = StyleSheet.create({
-  modal: {
-    ...StyleSheet.absoluteFillObject,
-    elevation: 3,
-    zIndex: 1,
-  },
-});
