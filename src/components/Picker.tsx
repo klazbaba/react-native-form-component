@@ -1,9 +1,9 @@
 import React, {
   useState,
   ReactText,
-  createRef,
-  RefObject,
   ReactNode,
+  forwardRef,
+  RefObject,
 } from 'react';
 import { View, StyleSheet, Pressable, ScrollView, Text } from 'react-native';
 
@@ -31,10 +31,10 @@ interface Props {
   selectedValueStyle?: object | object[];
   buttonStyle?: object | object[];
   itemLabelStyle?: object | object[];
+  ref: RefObject<View>;
 }
 
-const button: RefObject<View> = createRef();
-export default function Picker(props: Props) {
+const Picker = forwardRef((props: Props, ref: any) => {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
@@ -53,13 +53,14 @@ export default function Picker(props: Props) {
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
           if (!showPicker)
-            button.current?.measureInWindow((x, y, width, height) => {
-              setPosition({ x, y, width, height });
-            });
+            ref.current?.measureInWindow(
+              (x: number, y: number, width: number, height: number) => {
+                setPosition({ x, y, width, height });
+              }
+            );
           setShowPicker(!showPicker);
         }}
-        // @ts-ignore
-        ref={button}
+        ref={ref}
       >
         <Text
           style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
@@ -128,7 +129,7 @@ export default function Picker(props: Props) {
       </Modal>
     </>
   );
-}
+});
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -180,3 +181,5 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
 });
+
+export default Picker;
