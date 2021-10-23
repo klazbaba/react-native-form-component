@@ -31,7 +31,6 @@ interface Props {
   selectedValueStyle?: object | object[];
   buttonStyle?: object | object[];
   itemLabelStyle?: object | object[];
-  ref: RefObject<View>;
 }
 
 export default function Picker(props: Props) {
@@ -62,6 +61,7 @@ export default function Picker(props: Props) {
             );
           setShowPicker(!showPicker);
         }}
+        ref={pickerRef}
       >
         <Text
           style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
