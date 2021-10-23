@@ -1,4 +1,5 @@
-import { ReactText, ReactNode } from 'react';
+import React, { ReactText, ReactNode, RefObject } from 'react';
+import { View } from 'react-native';
 interface Item {
     label: string;
     value: ReactText;
@@ -18,6 +19,7 @@ interface Props {
     selectedValueStyle?: object | object[];
     buttonStyle?: object | object[];
     itemLabelStyle?: object | object[];
+    ref: RefObject<View>;
 }
-export default function Picker(props: Props): JSX.Element;
-export {};
+declare const Picker: React.ForwardRefExoticComponent<Pick<Props, "asterik" | "label" | "placeholder" | "labelStyle" | "items" | "onSelection" | "selectedValue" | "pickerIcon" | "iconWrapperStyle" | "asterikStyle" | "labelWrapperStyle" | "selectedValueStyle" | "buttonStyle" | "itemLabelStyle"> & React.RefAttributes<unknown>>;
+export default Picker;
