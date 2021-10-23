@@ -34,7 +34,7 @@ interface Props {
   ref: RefObject<View>;
 }
 
-const Picker = forwardRef((props: Props, ref: any) => {
+const Picker = forwardRef((props: Props) => {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
@@ -53,14 +53,13 @@ const Picker = forwardRef((props: Props, ref: any) => {
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
           if (!showPicker)
-            ref.current?.measureInWindow(
+            props.ref.current?.measureInWindow(
               (x: number, y: number, width: number, height: number) => {
                 setPosition({ x, y, width, height });
               }
             );
           setShowPicker(!showPicker);
         }}
-        ref={ref}
       >
         <Text
           style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
