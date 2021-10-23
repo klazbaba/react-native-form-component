@@ -13,9 +13,8 @@ export default function Modal(props: Props) {
       <Native transparent>
         <View
           style={{
-            backgroundColor: 'red',
+            backgroundColor: props.backgroundColor,
             ...StyleSheet.absoluteFillObject,
-            zIndex: 4,
           }}
         />
 
