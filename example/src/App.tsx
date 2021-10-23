@@ -7,9 +7,11 @@ export default function App() {
   const [firstname, setFirstname] = React.useState('');
   const [number, setNumber] = React.useState<React.ReactText>(1);
   const [lastName, setLastName] = React.useState('');
+  const picker = React.useRef();
+
   return (
     <View style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
-      <Form onButtonPress={() => console.warn('slap')}>
+      <Form onButtonPress={() => console.warn('pressed button')}>
         <FormItem
           value={firstname}
           label="Firstname"
@@ -34,6 +36,7 @@ export default function App() {
           label="Pick a number"
           selectedValue={number}
           onSelection={(item) => setNumber(item.value)}
+          ref={picker}
         />
         <FormItem
           value={lastName}

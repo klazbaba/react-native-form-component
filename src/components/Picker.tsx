@@ -2,8 +2,8 @@ import React, {
   useState,
   ReactText,
   ReactNode,
-  forwardRef,
   RefObject,
+  useRef,
 } from 'react';
 import { View, StyleSheet, Pressable, ScrollView, Text } from 'react-native';
 
@@ -34,10 +34,12 @@ interface Props {
   ref: RefObject<View>;
 }
 
-const Picker = forwardRef((props: Props) => {
+export default function Picker(props: Props) {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
+  const pickerRef: RefObject<View> = useRef() as RefObject<View>;
+
   return (
     <>
       {props.label && (
@@ -53,7 +55,7 @@ const Picker = forwardRef((props: Props) => {
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={() => {
           if (!showPicker)
-            props.ref.current?.measureInWindow(
+            pickerRef.current?.measureInWindow(
               (x: number, y: number, width: number, height: number) => {
                 setPosition({ x, y, width, height });
               }
@@ -128,7 +130,7 @@ const Picker = forwardRef((props: Props) => {
       </Modal>
     </>
   );
-});
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -180,5 +182,3 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
 });
-
-export default Picker;
