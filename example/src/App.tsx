@@ -36,7 +36,7 @@ export default function App() {
           ]}
           label="Pick a number"
           selectedValue={number}
-          onSelection={(item) => setGender(item.value)}
+          onSelection={(item) => setNumber(item.value)}
         />
 
         <Picker
@@ -46,7 +46,8 @@ export default function App() {
           ]}
           label="Gender"
           selectedValue={gender}
-          onSelection={(item) => setNumber(item.value)}
+          onSelection={(item) => setGender(item.value)}
+          floatingLabel
         />
 
         <FormItem
