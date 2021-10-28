@@ -18,6 +18,7 @@ interface Props {
     selectedValueStyle?: object | object[];
     buttonStyle?: object | object[];
     itemLabelStyle?: object | object[];
+    floatingLabel?: boolean;
 }
 export default function Picker(props: Props): JSX.Element;
 export {};

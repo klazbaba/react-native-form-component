@@ -65,8 +65,6 @@ import React, { createRef } from 'react';
 import { FormItem } from 'react-native-form-component';
 //...
 
-const inputRef = React.createRef();
-
 return (
   //...
   <FormItem
@@ -74,7 +72,6 @@ return (
     isRequired
     value={email}
     onChangeText={(email) => setEmail(email)}
-    ref={inputRef}
     asterik
   />
 );
@@ -95,7 +92,6 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 | underneathTextStyle | Style of underneathText                                                                                                                                                                                                                                                              | object \| object[]                       | no       |
 | customValidation    | A function used to add custom validation to a `FormItem`. The function returns an object of the shape `{status: boolean, message: string}`. `status` is true when the validation passes and false when it fails. `message` is the underneath text to be shown when validation fails. | () => {status: boolean, message: string} | no       |
 | asterik             | Whether or not to add an asterik to label                                                                                                                                                                                                                                            | boolean                                  | no       |
-| ref                 | Used to identify the component and also to expose TextInput methods `FormItem`                                                                                                                                                                                                       | `RefObject<TextInput>`                   | yes      |
 | children            | A ReactElement to render on the left part of the TextInput. Usually an icon                                                                                                                                                                                                          | ReactElement                             | no       |
 | floatingLabel       | Whether or not the label should float                                                                                                                                                                                                                                                | boolean                                  | no       |
 | textArea            | Whether or not the input should be a textArea                                                                                                                                                                                                                                        | boolean                                  | no       |

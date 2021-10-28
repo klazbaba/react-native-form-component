@@ -5,7 +5,14 @@ import React, {
   RefObject,
   useRef,
 } from 'react';
-import { View, StyleSheet, Pressable, ScrollView, Text } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Text,
+  Animated,
+} from 'react-native';
 
 import { colors } from '../colors';
 import Label from './Label';
@@ -31,17 +38,38 @@ interface Props {
   selectedValueStyle?: object | object[];
   buttonStyle?: object | object[];
   itemLabelStyle?: object | object[];
+  floatingLabel?: boolean;
 }
 
 export default function Picker(props: Props) {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
+  const [animatedBottom] = useState(new Animated.Value(0));
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+
   const pickerRef: RefObject<View> = useRef() as RefObject<View>;
+
+  const handlePress = () => {
+    if (props.floatingLabel && shouldAnimate)
+      Animated.timing(animatedBottom, {
+        toValue: position.height,
+        useNativeDriver: false,
+        duration: 300,
+      }).start(() => setShouldAnimate(false));
+
+    if (!showPicker)
+      pickerRef.current?.measureInWindow(
+        (x: number, y: number, width: number, height: number) => {
+          setPosition({ x, y, width, height });
+        }
+      );
+    setShowPicker(!showPicker);
+  };
 
   return (
     <>
-      {props.label && (
+      {props.label && !props.floatingLabel && (
         <Label
           text={props.label}
           textStyle={props.labelStyle}
@@ -52,19 +80,41 @@ export default function Picker(props: Props) {
       )}
       <Pressable
         style={[styles.pickerButton, props.buttonStyle]}
-        onPress={() => {
-          if (!showPicker)
-            pickerRef.current?.measureInWindow(
-              (x: number, y: number, width: number, height: number) => {
-                setPosition({ x, y, width, height });
-              }
-            );
-          setShowPicker(!showPicker);
-        }}
+        onPress={handlePress}
         ref={pickerRef}
+        onLayout={({ nativeEvent }) =>
+          setPosition({ ...position, height: nativeEvent.layout.height })
+        }
       >
+        {props.floatingLabel && props.label && (
+          <Label
+            text={props.label}
+            textStyle={props.labelStyle}
+            style={[
+              props.labelWrapperStyle,
+              {
+                position: 'absolute',
+                marginBottom: animatedBottom,
+                paddingHorizontal: 2,
+                backgroundColor: animatedBottom.interpolate({
+                  inputRange: [0, position.height],
+                  outputRange: ['transparent', colors.white],
+                }),
+              },
+            ]}
+            asterik={props.asterik}
+            asterikStyle={props.asterikStyle}
+          />
+        )}
+
         <Text
-          style={[{ maxWidth: '90%' }, props.selectedValueStyle]}
+          style={[
+            {
+              maxWidth: '90%',
+              opacity: props.floatingLabel && shouldAnimate ? 0 : 1,
+            },
+            props.selectedValueStyle,
+          ]}
           numberOfLines={1}
         >
           {props.items.filter((item) => item.value === props.selectedValue)[0]
