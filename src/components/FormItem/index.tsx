@@ -3,7 +3,6 @@ import React, {
   useState,
   useImperativeHandle,
   useRef,
-  RefObject,
   ComponentProps,
   ReactNode,
 } from 'react';
@@ -19,8 +18,8 @@ import {
   Platform,
 } from 'react-native';
 
-import Label from '../components/Label';
-import { colors } from '../colors';
+import Label from '../Label';
+import { colors } from '../../colors';
 
 type Validation = { status: boolean; message: string };
 
@@ -35,7 +34,6 @@ interface Props extends ComponentProps<typeof TextInput> {
   value: string;
   customValidation?: () => Validation;
   asterik?: boolean;
-  ref: RefObject<TextInput>;
   floatingLabel?: boolean;
   textArea?: boolean;
 }
@@ -151,6 +149,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               placeholder=""
               multiline={props.textArea || props.multiline}
               textAlignVertical={props.textArea ? 'top' : 'center'}
+              testID="input"
             />
             {hasError.status && (
               <View style={styles.errorWrapper}>
@@ -207,6 +206,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           maxLength={props.maxLength || 150}
           multiline={props.textArea || props.multiline}
           textAlignVertical={props.textArea ? 'top' : 'center'}
+          testID="input"
         />
         {hasError.status && (
           <View style={styles.errorWrapper}>
