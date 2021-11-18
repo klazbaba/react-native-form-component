@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 
 import FormItem from './';
 
-describe('test FormInput', () => {
+describe('test email input to FormInput', () => {
   it('renders error when email format is wrong', () => {
     const { getByTestId, getByText } = render(
       <FormItem value="xyz@mail." keyboardType="email-address" />
@@ -20,5 +20,16 @@ describe('test FormInput', () => {
 
     fireEvent(getByTestId('input'), 'blur');
     expect(queryByText('Enter a valid email')).toBeNull();
+  });
+});
+
+describe('test number input to FormInput', () => {
+  it('renders error if a non number is entered', () => {
+    const { getByTestId, getByText } = render(
+      <FormItem value="1472ad" keyboardType="numeric" />
+    );
+
+    fireEvent(getByTestId('input'), 'blur');
+    expect(getByText('Invalid number')).toBeTruthy();
   });
 });
