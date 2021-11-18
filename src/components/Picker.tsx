@@ -45,7 +45,7 @@ export default function Picker(props: Props) {
   const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
-  const [animatedBottom] = useState(new Animated.Value(0));
+  const [animatedBottom, setAnimatedBottom] = useState(new Animated.Value(0));
   const [shouldAnimate, setShouldAnimate] = useState(true);
 
   const pickerRef: RefObject<View> = useRef() as RefObject<View>;
@@ -53,7 +53,7 @@ export default function Picker(props: Props) {
   const handlePress = () => {
     if (props.floatingLabel && shouldAnimate)
       Animated.timing(animatedBottom, {
-        toValue: position.height,
+        toValue: position.height - 10,
         useNativeDriver: false,
         duration: 300,
       }).start(() => setShouldAnimate(false));
@@ -82,9 +82,10 @@ export default function Picker(props: Props) {
         style={[styles.pickerButton, props.buttonStyle]}
         onPress={handlePress}
         ref={pickerRef}
-        onLayout={({ nativeEvent }) =>
-          setPosition({ ...position, height: nativeEvent.layout.height })
-        }
+        onLayout={({ nativeEvent }) => {
+          setPosition({ ...position, height: nativeEvent.layout.height });
+          setAnimatedBottom(new Animated.Value(nativeEvent.layout.height / 4));
+        }}
       >
         {props.floatingLabel && props.label && (
           <Label
@@ -94,11 +95,11 @@ export default function Picker(props: Props) {
               props.labelWrapperStyle,
               {
                 position: 'absolute',
-                marginBottom: animatedBottom,
+                bottom: animatedBottom,
                 paddingHorizontal: 2,
                 backgroundColor: animatedBottom.interpolate({
-                  inputRange: [0, position.height],
-                  outputRange: ['transparent', colors.white],
+                  inputRange: [0, position.height / 3, position.height / 2],
+                  outputRange: ['transparent', 'transparent', colors.white],
                 }),
               },
             ]}
