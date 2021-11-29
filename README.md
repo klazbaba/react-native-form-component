@@ -138,6 +138,8 @@ return (
 
 ### Props
 
+Inherits [Modal Props](https://reactnative.dev/docs/modal)
+
 | Prop            | Type      | Required |
 | --------------- | --------- | -------- |
 | show            | boolean   | yes      |

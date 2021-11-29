@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-interface Props {
+import { ModalProps } from 'react-native';
+interface Props extends ModalProps {
     children: ReactNode;
     show: boolean;
     backgroundColor?: string;
