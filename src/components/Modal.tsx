@@ -1,7 +1,12 @@
 import React, { ReactNode } from 'react';
-import { View, StyleSheet, Modal as NativeModal } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Modal as NativeModal,
+  ModalProps,
+} from 'react-native';
 
-interface Props {
+interface Props extends ModalProps {
   children: ReactNode;
   show: boolean;
   backgroundColor?: string;
@@ -10,7 +15,7 @@ interface Props {
 export default function Modal(props: Props) {
   if (props.show) {
     return (
-      <NativeModal transparent>
+      <NativeModal {...props} transparent>
         <View
           style={{
             backgroundColor: props.backgroundColor,
