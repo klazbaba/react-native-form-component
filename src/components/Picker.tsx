@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   RefObject,
   useRef,
+  useEffect,
 } from 'react';
 import {
   View,
@@ -66,6 +67,15 @@ export default function Picker(props: Props) {
       );
     setShowPicker(!showPicker);
   };
+
+  useEffect(() => {
+    if (props.floatingLabel && props.selectedValue)
+      Animated.timing(animatedBottom, {
+        toValue: position.height - 10,
+        useNativeDriver: false,
+        duration: 300,
+      }).start(() => setShouldAnimate(false));
+  }, [shouldAnimate]);
 
   return (
     <>

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Form, FormItem, Picker } from 'react-native-form-component';
 
 export default function App() {
-  const [firstname, setFirstname] = React.useState('');
+  const [firstname, setFirstname] = React.useState('Frank');
   const [number, setNumber] = React.useState<React.ReactText>(1);
   const [lastName, setLastName] = React.useState('');
   const [gender, setGender] = React.useState<React.ReactText>('male');

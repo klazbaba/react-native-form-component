@@ -5,6 +5,7 @@ import React, {
   useRef,
   ComponentProps,
   ReactNode,
+  useEffect,
 } from 'react';
 import {
   TextInput,
@@ -66,7 +67,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
     if (props.onBlur) props.onBlur(e);
   };
 
-  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleFocus = (e?: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setHasError({ status: false, message: '' });
     if (props.floatingLabel && shouldAnimate)
       Animated.timing(animatedBottom, {
@@ -75,8 +76,18 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
         duration: 300,
       }).start(() => setShouldAnimate(false));
 
-    if (props.onFocus) props.onFocus(e);
+    if (props.onFocus) props.onFocus(e!);
   };
+
+  useEffect(() => {
+    console.log('see');
+    if (props.floatingLabel && props.value)
+      Animated.timing(animatedBottom, {
+        toValue: props.textArea ? 24 : wrapperHeight / 2,
+        useNativeDriver: false,
+        duration: 300,
+      }).start(() => setShouldAnimate(false));
+  }, [shouldAnimate]);
 
   if (props.floatingLabel) {
     return (

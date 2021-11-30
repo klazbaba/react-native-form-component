@@ -15,7 +15,7 @@ interface Props extends ModalProps {
 export default function Modal(props: Props) {
   if (props.show) {
     return (
-      <NativeModal {...props} transparent>
+      <NativeModal {...props} transparent visible>
         <View
           style={{
             backgroundColor: props.backgroundColor,
