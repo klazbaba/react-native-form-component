@@ -37,6 +37,7 @@ interface Props extends ComponentProps<typeof TextInput> {
   asterik?: boolean;
   floatingLabel?: boolean;
   textArea?: boolean;
+  showErrorIcon?: boolean;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -161,7 +162,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               textAlignVertical={props.textArea ? 'top' : 'center'}
               testID="input"
             />
-            {hasError.status && (
+            {hasError.status && props.showErrorIcon && (
               <View style={styles.errorWrapper}>
                 <Text style={styles.exclamation}>{'\u0021'}</Text>
               </View>
@@ -319,5 +320,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+FormItem.defaultProps = {
+  showErrorIcon: true,
+};
 
 export default FormItem;
