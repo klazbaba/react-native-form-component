@@ -58,7 +58,7 @@ return (
 
 <br />
 
-### Form Item
+### FormItem
 
 ```jsx
 import React, { createRef } from 'react';
@@ -95,6 +95,7 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 | children            | A ReactElement to render on the left part of the TextInput. Usually an icon                                                                                                                                                                                                          | ReactElement                             | no       |
 | floatingLabel       | Whether or not the label should float                                                                                                                                                                                                                                                | boolean                                  | no       |
 | textArea            | Whether or not the input should be a textArea                                                                                                                                                                                                                                        | boolean                                  | no       |
+| showErrorIcon       | Whether or not to show an icon when an error occurs                                                                                                                                                                                                                                  | boolean                                  | no       |
 
 <br />
 
