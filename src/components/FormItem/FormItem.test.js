@@ -34,7 +34,7 @@ describe('test number input to FormInput', () => {
   });
 });
 
-describe('test the props of FormInput', () => {
+describe('test behaviour when an error occurs', () => {
   it('should not show error icon when showErrorIcon is false', () => {
     const { getByDisplayValue, queryByText } = render(
       <FormItem value="" showErrorIcon={false} isRequired />
@@ -42,5 +42,14 @@ describe('test the props of FormInput', () => {
 
     fireEvent(getByDisplayValue(''), 'blur');
     expect(queryByText('\u0021')).toBeFalsy();
+  });
+
+  it('should show error icon when an error occurs', () => {
+    const { getByDisplayValue, queryByText } = render(
+      <FormItem value="" isRequired />
+    );
+
+    fireEvent(getByDisplayValue(''), 'blur');
+    expect(queryByText('\u0021')).toBeTruthy();
   });
 });
