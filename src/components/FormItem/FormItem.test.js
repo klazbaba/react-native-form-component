@@ -14,22 +14,33 @@ describe('test email input to FormInput', () => {
   });
 
   it('does not render email error when email format is correct', () => {
-    const { getByTestId, queryByText } = render(
+    const { getByDisplayValue, queryByText } = render(
       <FormItem value="giwaklaz@gmail.com" keyboardType="email-address" />
     );
 
-    fireEvent(getByTestId('input'), 'blur');
+    fireEvent(getByDisplayValue('giwaklaz@gmail.com'), 'blur');
     expect(queryByText('Enter a valid email')).toBeNull();
   });
 });
 
 describe('test number input to FormInput', () => {
   it('renders error if a non number is entered', () => {
-    const { getByTestId, getByText } = render(
+    const { getByDisplayValue, getByText } = render(
       <FormItem value="1472ad" keyboardType="numeric" />
     );
 
-    fireEvent(getByTestId('input'), 'blur');
+    fireEvent(getByDisplayValue('1472ad'), 'blur');
     expect(getByText('Invalid number')).toBeTruthy();
+  });
+});
+
+describe('test the props of FormInput', () => {
+  it('should not show error icon when showErrorIcon is false', () => {
+    const { getByDisplayValue, queryByText } = render(
+      <FormItem value="" showErrorIcon={false} isRequired />
+    );
+
+    fireEvent(getByDisplayValue(''), 'blur');
+    expect(queryByText('\u0021')).toBeFalsy();
   });
 });

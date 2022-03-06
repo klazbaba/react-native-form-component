@@ -163,7 +163,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               testID="input"
             />
             {hasError.status && props.showErrorIcon && (
-              <View style={styles.errorWrapper}>
+              <View style={styles.errorWrapper} testID="error icon wrapper">
                 <Text style={styles.exclamation}>{'\u0021'}</Text>
               </View>
             )}
@@ -219,8 +219,8 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           textAlignVertical={props.textArea ? 'top' : 'center'}
           testID="input"
         />
-        {hasError.status && (
-          <View style={styles.errorWrapper}>
+        {hasError.status && props.showErrorIcon && (
+          <View style={styles.errorWrapper} testID="error icon wrapper">
             <Text style={styles.exclamation}>{'\u0021'}</Text>
           </View>
         )}
