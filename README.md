@@ -96,6 +96,7 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 | floatingLabel       | Whether or not the label should float                                                                                                                                                                                                                                                | boolean                                  | no       |
 | textArea            | Whether or not the input should be a textArea                                                                                                                                                                                                                                        | boolean                                  | no       |
 | showErrorIcon       | Whether or not to show an icon when an error occurs                                                                                                                                                                                                                                  | boolean                                  | no       |
+| errorBorderColor    | Set the color of the border when an error occurs                                                                                                                                                                                                                                     | string                                   | no       |
 
 <br />
 
