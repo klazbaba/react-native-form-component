@@ -37,6 +37,8 @@ interface Props extends ComponentProps<typeof TextInput> {
   asterik?: boolean;
   floatingLabel?: boolean;
   textArea?: boolean;
+  showErrorIcon?: boolean;
+  errorBorderColor?: string;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -99,7 +101,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               : undefined,
             props.style,
             hasError.status
-              ? { borderColor: colors.red, borderWidth: 1 }
+              ? { borderColor: props.errorBorderColor, borderWidth: 1 }
               : undefined,
           ]}
           onLayout={({ nativeEvent }) =>
@@ -161,8 +163,8 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               textAlignVertical={props.textArea ? 'top' : 'center'}
               testID="input"
             />
-            {hasError.status && (
-              <View style={styles.errorWrapper}>
+            {hasError.status && props.showErrorIcon && (
+              <View style={styles.errorWrapper} testID="error icon wrapper">
                 <Text style={styles.exclamation}>{'\u0021'}</Text>
               </View>
             )}
@@ -197,7 +199,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           props.textArea ? { height: 120 } : undefined,
           props.style,
           hasError.status
-            ? { borderColor: colors.red, borderWidth: 1 }
+            ? { borderColor: props.errorBorderColor, borderWidth: 1 }
             : undefined,
         ]}
       >
@@ -218,8 +220,8 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           textAlignVertical={props.textArea ? 'top' : 'center'}
           testID="input"
         />
-        {hasError.status && (
-          <View style={styles.errorWrapper}>
+        {hasError.status && props.showErrorIcon && (
+          <View style={styles.errorWrapper} testID="error icon wrapper">
             <Text style={styles.exclamation}>{'\u0021'}</Text>
           </View>
         )}
@@ -319,5 +321,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+FormItem.defaultProps = {
+  showErrorIcon: true,
+  errorBorderColor: colors.red,
+};
 
 export default FormItem;

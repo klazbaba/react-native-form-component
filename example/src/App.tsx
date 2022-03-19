@@ -58,6 +58,7 @@ export default function App() {
           floatingLabel
           isRequired
           textArea
+          showErrorIcon={false}
         />
       </Form>
     </View>
