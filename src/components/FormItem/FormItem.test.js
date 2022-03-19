@@ -52,4 +52,14 @@ describe('test behaviour when an error occurs', () => {
     fireEvent(getByDisplayValue(''), 'blur');
     expect(queryByText('\u0021')).toBeTruthy();
   });
+
+  it('error border color can be set to any color', () => {
+    const { getByDisplayValue } = render(
+      <FormItem value="" errorBorderColor="green" />
+    );
+
+    const element = getByDisplayValue('');
+    fireEvent(element, 'blur');
+    expect(element.props.errorBorderColor).toBe('green');
+  });
 });

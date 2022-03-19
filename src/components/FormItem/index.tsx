@@ -38,6 +38,7 @@ interface Props extends ComponentProps<typeof TextInput> {
   floatingLabel?: boolean;
   textArea?: boolean;
   showErrorIcon?: boolean;
+  errorBorderColor?: string;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -100,7 +101,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               : undefined,
             props.style,
             hasError.status
-              ? { borderColor: colors.red, borderWidth: 1 }
+              ? { borderColor: props.errorBorderColor, borderWidth: 1 }
               : undefined,
           ]}
           onLayout={({ nativeEvent }) =>
@@ -198,7 +199,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           props.textArea ? { height: 120 } : undefined,
           props.style,
           hasError.status
-            ? { borderColor: colors.red, borderWidth: 1 }
+            ? { borderColor: props.errorBorderColor, borderWidth: 1 }
             : undefined,
         ]}
       >
@@ -323,6 +324,7 @@ const styles = StyleSheet.create({
 
 FormItem.defaultProps = {
   showErrorIcon: true,
+  errorBorderColor: colors.red,
 };
 
 export default FormItem;
