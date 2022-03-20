@@ -26,7 +26,7 @@ yarn add react-native-form-component
 ## Components
 
 - [Form](#form)
-- [FormItem](#form-item)
+- [FormItem](#formitem)
 - [Label](#label)
 - [Modal](#Modal)
 - [Picker](#Picker)
