@@ -19,6 +19,7 @@ export default function App() {
           onChangeText={(firstname) => setFirstname(firstname)}
           floatingLabel
           isRequired
+          secureTextEntry
         />
 
         <Picker

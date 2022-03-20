@@ -17,10 +17,12 @@ import {
   KeyboardTypeOptions,
   Animated,
   Platform,
+  Pressable,
 } from 'react-native';
 
 import Label from '../Label';
 import { colors } from '../../colors';
+import ShowTextIcon from '../_icons/ShowTextIcon';
 
 type Validation = { status: boolean; message: string };
 
@@ -48,6 +50,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   const [wrapperHeight, setWrapperHeight] = useState(0);
   const { isRequired, value, keyboardType } = props;
   const inputRef: any = useRef();
+  const [hideText, setHideText] = useState(props.secureTextEntry);
 
   useImperativeHandle(ref, () => ({
     setState: () => {
@@ -162,11 +165,17 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               multiline={props.textArea || props.multiline}
               textAlignVertical={props.textArea ? 'top' : 'center'}
               testID="input"
+              secureTextEntry={hideText}
             />
             {hasError.status && props.showErrorIcon && (
               <View style={styles.errorWrapper} testID="error icon wrapper">
                 <Text style={styles.exclamation}>{'\u0021'}</Text>
               </View>
+            )}
+            {props.secureTextEntry && !hasError.status && (
+              <Pressable onPress={() => setHideText(!hideText)}>
+                <ShowTextIcon hide={hideText!} />
+              </Pressable>
             )}
           </View>
         </View>

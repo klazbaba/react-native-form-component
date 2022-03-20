@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TextInputSubmitEditingEventData,
   NativeSyntheticEvent,
+  ViewStyle,
 } from 'react-native';
 
 import { containsError } from './FormItem';
@@ -19,6 +20,7 @@ interface Props {
   buttonStyle?: object | object[];
   buttonTextStyle?: object | object[];
   onButtonPress: () => void;
+  style?: ViewStyle;
 }
 
 export let submitForm: (
@@ -74,7 +76,7 @@ export default function Form(props: Props) {
         Platform.OS == 'ios' ? props.keyboardVerticalOffset || 50 : undefined
       }
       behavior={Platform.OS == 'ios' ? 'padding' : undefined}
-      style={{ flex: 1 }}
+      style={props.style}
     >
       {props.children}
       <Pressable
@@ -96,6 +98,10 @@ export default function Form(props: Props) {
     </KeyboardAvoidingView>
   );
 }
+
+Form.defaultProps = {
+  style: {},
+};
 
 const styles = StyleSheet.create({
   button: {

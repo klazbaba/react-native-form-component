@@ -55,6 +55,7 @@ return (
 | buttonStyle            | Style of submit button                                                                                 | object \| object[] | -       | All      |
 | buttonTextStyle        | Style of submit button text                                                                            | object \| object[] | -       | All      |
 | onButtonPress          | Action to be performed when button is pressed                                                          | () => void         | -       | All      |
+| style                  | Style Form wrapper                                                                                     | ViewStyle          | {}      | All      |
 
 <br />
 
