@@ -23,11 +23,10 @@ export default function ShowTextIcon(props: Props) {
 const styles = StyleSheet.create({
   eye: {
     borderWidth: 2,
-    height: 12,
+    height: 15,
     width: 20,
     borderColor: colors.lightgrey,
-    // @ts-expect-error
-    borderRadius: '50%',
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   line: {
-    height: 24,
+    height: 26,
     width: 2,
     backgroundColor: colors.lightgrey,
     position: 'absolute',
