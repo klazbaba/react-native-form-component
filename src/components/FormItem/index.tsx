@@ -228,11 +228,17 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           multiline={props.textArea || props.multiline}
           textAlignVertical={props.textArea ? 'top' : 'center'}
           testID="input"
+          secureTextEntry={hideText}
         />
         {hasError.status && props.showErrorIcon && (
           <View style={styles.errorWrapper} testID="error icon wrapper">
             <Text style={styles.exclamation}>{'\u0021'}</Text>
           </View>
+        )}
+        {props.secureTextEntry && !hasError.status && (
+          <Pressable onPress={() => setHideText(!hideText)}>
+            <ShowTextIcon hide={hideText!} />
+          </Pressable>
         )}
       </View>
 
