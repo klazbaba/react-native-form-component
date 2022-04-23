@@ -41,6 +41,8 @@ interface Props extends ComponentProps<typeof TextInput> {
   textArea?: boolean;
   showErrorIcon?: boolean;
   errorBorderColor?: string;
+  showIcon?: JSX.Element;
+  hideIcon?: JSX.Element;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -174,7 +176,11 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             )}
             {props.secureTextEntry && !hasError.status && (
               <Pressable onPress={() => setHideText(!hideText)}>
-                <ShowTextIcon hide={hideText!} />
+                <ShowTextIcon
+                  hide={hideText!}
+                  showIcon={props.showIcon}
+                  hideIcon={props.hideIcon}
+                />
               </Pressable>
             )}
           </View>
@@ -237,7 +243,11 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
         )}
         {props.secureTextEntry && !hasError.status && (
           <Pressable onPress={() => setHideText(!hideText)}>
-            <ShowTextIcon hide={hideText!} />
+            <ShowTextIcon
+              hide={hideText!}
+              showIcon={props.showIcon}
+              hideIcon={props.hideIcon}
+            />
           </Pressable>
         )}
       </View>

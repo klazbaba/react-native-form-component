@@ -4,9 +4,13 @@ import { colors } from '../../colors';
 
 interface Props {
   hide: boolean;
+  showIcon?: JSX.Element;
+  hideIcon?: JSX.Element;
 }
 
 export default function ShowTextIcon(props: Props) {
+  if (props.showIcon && !props.hide) return props.showIcon;
+  if (props.hideIcon && props.hide) return props.hideIcon;
   return (
     <View>
       <View style={styles.eye}>
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   line: {
-    height: 26,
+    height: 27,
     width: 2,
     backgroundColor: colors.lightgrey,
     position: 'absolute',
