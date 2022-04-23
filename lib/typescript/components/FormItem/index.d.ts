@@ -19,6 +19,8 @@ interface Props extends ComponentProps<typeof TextInput> {
     textArea?: boolean;
     showErrorIcon?: boolean;
     errorBorderColor?: string;
+    showIcon?: JSX.Element;
+    hideIcon?: JSX.Element;
 }
 declare const FormItem: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;
 export declare const containsError: (keyboardType: KeyboardTypeOptions | undefined, isRequired: boolean, value: string, extraValidation?: Validation | undefined) => {
