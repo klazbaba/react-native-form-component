@@ -62,9 +62,11 @@ return (
 ### FormItem
 
 ```jsx
-import React, { createRef } from 'react';
+import React, { useRef } from 'react';
 import { FormItem } from 'react-native-form-component';
 //...
+
+const emailInput = useRef();
 
 return (
   //...
@@ -74,6 +76,7 @@ return (
     value={email}
     onChangeText={(email) => setEmail(email)}
     asterik
+    ref={emailInput}
   />
 );
 ```
@@ -84,11 +87,12 @@ Inherits [TextInput Props](https://reactnative.dev/docs/textinput#props)
 
 | Prop                | Function                                                                                                                                                                                                                                                                             | Type                                     | Required |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- | -------- |
+| ref                 | ref for item                                                                                                                                                                                                                                                                         | React.Ref<TextInput>                     | yes      |
+| value               | Value to show for the `FormItem`                                                                                                                                                                                                                                                     | string                                   | yes      |
 | label               | Label for FormItem                                                                                                                                                                                                                                                                   | string                                   | no       |
 | labelStyle          | Style of label                                                                                                                                                                                                                                                                       | object \| object[]                       | no       |
 | textInputStyle      | Style of TextInput portion of `FormItem`                                                                                                                                                                                                                                             | object \| object[]                       | no       |
 | isRequired          | Indicates whethter this item is required or not                                                                                                                                                                                                                                      | boolean                                  | no       |
-| value               | Value to show for the `FormItem`                                                                                                                                                                                                                                                     | string                                   | yes      |
 | underneathText      | Text just below the `FormItem`                                                                                                                                                                                                                                                       | string                                   | no       |
 | underneathTextStyle | Style of underneathText                                                                                                                                                                                                                                                              | object \| object[]                       | no       |
 | customValidation    | A function used to add custom validation to a `FormItem`. The function returns an object of the shape `{status: boolean, message: string}`. `status` is true when the validation passes and false when it fails. `message` is the underneath text to be shown when validation fails. | () => {status: boolean, message: string} | no       |
