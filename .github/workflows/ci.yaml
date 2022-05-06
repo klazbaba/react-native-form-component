@@ -17,4 +17,4 @@ jobs:
           node-version: 12.18.3
           cache: yarn
       - run: yarn
-      - run: yarn test && yarn lint && yarn typescript
+      - run: yarn lint && yarn typescript && yarn test
