@@ -76,7 +76,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn typescript && yarn prepare"
+      "pre-commit": "yarn prepare"
     }
   },
   "commitlint": {
