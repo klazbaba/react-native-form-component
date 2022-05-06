@@ -8,13 +8,13 @@ on:
 
 jobs:
   ci:
-  name: Run CI
-  runs-on: macos-latest
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 12.18.3
-        cache: yarn
-    - run: yarn
-    - run: yarn test && yarn lint && yarn typescript
+    name: Run CI
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 12.18.3
+          cache: yarn
+      - run: yarn
+      - run: yarn test && yarn lint && yarn typescript
