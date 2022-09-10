@@ -75,7 +75,7 @@ export default function Picker(props: Props) {
         useNativeDriver: false,
         duration: 300,
       }).start(() => setShouldAnimate(false));
-  }, [shouldAnimate]);
+  }, [shouldAnimate, position]);
 
   return (
     <>
