@@ -199,6 +199,7 @@ return (
 | selectedValueStyle | [TextStyle](https://reactnative.dev/docs/text#style)       | no       |
 | buttonStyle        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | itemLabelStyle     | [TextStyle](https://reactnative.dev/docs/view-style-props) | no       |
+| type               | "modal" \| "dropdown"                                      | no       |
 
 <br />
 

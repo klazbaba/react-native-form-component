@@ -199,13 +199,13 @@ export default function Picker(props: Props) {
               ))}
             </ScrollView>
           ) : (
-            <>
+            <View style={{ justifyContent: 'flex-end', maxHeight: '50%' }}>
               <View style={styles.buttomHeader}>
                 <Text style={[props.itemLabelStyle, styles.buttomButtonText]}>
                   {props.label}
                 </Text>
               </View>
-              <ScrollView style={styles.buttomPickerWrapper}>
+              <ScrollView>
                 {props.items.map((item) => (
                   <Pressable
                     key={item.value}
@@ -239,7 +239,7 @@ export default function Picker(props: Props) {
                   </Pressable>
                 ))}
               </ScrollView>
-            </>
+            </View>
           )}
         </Pressable>
       </Modal>
@@ -298,7 +298,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     borderRadius: 4,
   },
-  buttomPickerWrapper: { maxHeight: '50%' },
   buttomButton: {
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: 'rgba(0,0,0,0.1)',
