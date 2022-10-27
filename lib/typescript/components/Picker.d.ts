@@ -19,6 +19,12 @@ interface Props {
     buttonStyle?: object | object[];
     itemLabelStyle?: object | object[];
     floatingLabel?: boolean;
+    type?: 'dropdown' | 'modal';
 }
-export default function Picker(props: Props): JSX.Element;
-export {};
+declare function Picker(props: Props): JSX.Element;
+declare namespace Picker {
+    var defaultProps: {
+        type: string;
+    };
+}
+export default Picker;
