@@ -38,6 +38,7 @@ export default function App() {
           label="Pick a number"
           selectedValue={number}
           onSelection={(item) => setNumber(item.value)}
+          type="modal"
         />
 
         <Picker

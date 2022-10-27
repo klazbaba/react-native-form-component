@@ -40,6 +40,7 @@ interface Props {
   buttonStyle?: object | object[];
   itemLabelStyle?: object | object[];
   floatingLabel?: boolean;
+  type?: 'dropdown' | 'modal';
 }
 
 export default function Picker(props: Props) {
@@ -141,57 +142,112 @@ export default function Picker(props: Props) {
 
       <Modal show={showPicker}>
         <Pressable
-          style={{ ...StyleSheet.absoluteFillObject, elevation: 3 }}
+          style={[
+            { ...StyleSheet.absoluteFillObject, elevation: 3 },
+            props.type === 'dropdown' ? {} : { justifyContent: 'flex-end' },
+          ]}
           onPress={() => setShowPicker(false)}
         >
-          <ScrollView
-            style={[
-              styles.wrapper,
-              {
-                width: position.width,
-                position: 'absolute',
-                top: position.y + position.height + 8,
-                left: position.x,
-              },
-            ]}
-            nestedScrollEnabled
-          >
-            {props.items.map((item) => (
-              <Pressable
-                key={item.value}
-                style={[
-                  styles.button,
-                  props.selectedValue === item.value
-                    ? { backgroundColor: colors.blue }
-                    : null,
-                ]}
-                onPress={() => {
-                  setSelectedValue(item.value);
-                  setShowPicker(false);
-                  props.onSelection(item);
-                }}
-              >
-                <Text
+          <View
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              ...StyleSheet.absoluteFillObject,
+            }}
+          />
+          {props.type === 'dropdown' ? (
+            <ScrollView
+              style={[
+                styles.wrapper,
+                {
+                  width: position.width,
+                  position: 'absolute',
+                  top: position.y + position.height + 8,
+                  left: position.x,
+                },
+              ]}
+              nestedScrollEnabled
+            >
+              {props.items.map((item) => (
+                <Pressable
+                  key={item.value}
                   style={[
-                    props.itemLabelStyle,
-                    {
-                      color:
-                        selectedValue === item.value
-                          ? colors.white
-                          : colors.text,
-                    },
+                    styles.button,
+                    props.selectedValue === item.value
+                      ? { backgroundColor: colors.blue }
+                      : null,
                   ]}
+                  onPress={() => {
+                    setSelectedValue(item.value);
+                    setShowPicker(false);
+                    props.onSelection(item);
+                  }}
                 >
-                  {item.label}
+                  <Text
+                    style={[
+                      props.itemLabelStyle,
+                      {
+                        color:
+                          selectedValue === item.value
+                            ? colors.white
+                            : colors.text,
+                      },
+                    ]}
+                  >
+                    {item.label}
+                  </Text>
+                </Pressable>
+              ))}
+            </ScrollView>
+          ) : (
+            <>
+              <View style={styles.buttomHeader}>
+                <Text style={[props.itemLabelStyle, styles.buttomButtonText]}>
+                  {props.label}
                 </Text>
-              </Pressable>
-            ))}
-          </ScrollView>
+              </View>
+              <ScrollView style={styles.buttomPickerWrapper}>
+                {props.items.map((item) => (
+                  <Pressable
+                    key={item.value}
+                    style={[
+                      styles.button,
+                      styles.buttomButton,
+                      props.selectedValue === item.value
+                        ? { backgroundColor: colors.blue }
+                        : null,
+                    ]}
+                    onPress={() => {
+                      setSelectedValue(item.value);
+                      setShowPicker(false);
+                      props.onSelection(item);
+                    }}
+                  >
+                    <Text
+                      style={[
+                        props.itemLabelStyle,
+                        styles.buttomButtonText,
+                        {
+                          color:
+                            selectedValue === item.value
+                              ? colors.white
+                              : colors.text,
+                        },
+                      ]}
+                    >
+                      {item.label}
+                    </Text>
+                  </Pressable>
+                ))}
+              </ScrollView>
+            </>
+          )}
         </Pressable>
       </Modal>
     </>
   );
 }
+
+Picker.defaultProps = { type: 'dropdown' };
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -241,5 +297,25 @@ const styles = StyleSheet.create({
     borderRightWidth: 9,
     borderBottomWidth: 0,
     borderRadius: 4,
+  },
+  buttomPickerWrapper: { maxHeight: '50%' },
+  buttomButton: {
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: 'rgba(0,0,0,0.1)',
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+    marginHorizontal: 8,
+  },
+  buttomButtonText: { textAlign: 'center', fontSize: 16 },
+  buttomHeader: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+    marginHorizontal: 8,
+    fontSize: 16,
   },
 });
