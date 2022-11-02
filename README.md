@@ -30,6 +30,7 @@ yarn add react-native-form-component
 - [Label](#label)
 - [Modal](#Modal)
 - [Picker](#Picker)
+- [PinInput](#PinInput)
 
 ### Form
 
@@ -200,6 +201,26 @@ return (
 | buttonStyle        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | itemLabelStyle     | [TextStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | type               | "modal" \| "dropdown"                                      | no       |
+
+<br />
+
+### PinInput
+
+```jsx
+import React, { useState } from 'react';
+import { PinInput } from 'react-native-form-component';
+
+const [pin, setPin] = useState('');
+
+return <PinInput numOfInput={4} onChangeText={(text) => setPin(text)} />;
+```
+
+### Props
+
+| Prop         | Type                   | Required |
+| ------------ | ---------------------- | -------- |
+| numOfInput   | number                 | yes      |
+| onChangeText | (text: string) => void | yes      |
 
 <br />
 

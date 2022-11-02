@@ -4,7 +4,7 @@ import FormItem from './FormItem';
 
 interface Props {
   numOfInput: number;
-  onChangeText: (pin: string) => string;
+  onChangeText: (pin: string) => void;
 }
 
 const refs: RefObject<TextInput>[] = [];
