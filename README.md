@@ -7,6 +7,7 @@ It handles basic validation of inputs, and also alerts you of failed validations
 
 ![WhatsApp Image 2021-09-28 at 6 30 53 PM](https://user-images.githubusercontent.com/34392299/135331616-78e74fb6-2e89-4529-9bb3-e50b99213adc.jpeg)
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135331258-525de545-1937-40dc-8225-122d9a102572.gif)
+
 <br />
 
 ## Installation
@@ -30,6 +31,7 @@ yarn add react-native-form-component
 - [Label](#label)
 - [Modal](#Modal)
 - [Picker](#Picker)
+- [PinInput](#PinInput)
 
 ### Form
 
@@ -200,6 +202,26 @@ return (
 | buttonStyle        | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | itemLabelStyle     | [TextStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | type               | "modal" \| "dropdown"                                      | no       |
+
+<br />
+
+### PinInput
+
+```jsx
+import React, { useState } from 'react';
+import { PinInput } from 'react-native-form-component';
+
+const [pin, setPin] = useState('');
+
+return <PinInput numOfInput={4} onChangeText={(text) => setPin(text)} />;
+```
+
+### Props
+
+| Prop         | Type                   | Required |
+| ------------ | ---------------------- | -------- |
+| numOfInput   | number                 | yes      |
+| onChangeText | (text: string) => void | yes      |
 
 <br />
 

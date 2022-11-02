@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-import { Form, FormItem, Picker } from 'react-native-form-component';
+import { Form, FormItem, Picker, PinInput } from 'react-native-form-component';
 
 export default function App() {
   const [firstname, setFirstname] = React.useState('');
@@ -61,6 +61,11 @@ export default function App() {
           isRequired
           textArea
           showErrorIcon={false}
+        />
+
+        <PinInput
+          numOfInput={4}
+          onChangeText={(pin) => console.log('pin:', pin)}
         />
       </Form>
     </View>
