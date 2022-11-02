@@ -163,7 +163,6 @@ Inherits [Modal Props](https://reactnative.dev/docs/modal)
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135761859-c3efad0a-9171-449b-a808-279b347aab89.gif)
 
-
 ```jsx
 import React, { useState } from 'react';
 import { Picker } from 'react-native-form-component';
