@@ -7,8 +7,6 @@ It handles basic validation of inputs, and also alerts you of failed validations
 
 ![WhatsApp Image 2021-09-28 at 6 30 53 PM](https://user-images.githubusercontent.com/34392299/135331616-78e74fb6-2e89-4529-9bb3-e50b99213adc.jpeg)
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135331258-525de545-1937-40dc-8225-122d9a102572.gif)
-![Simulator Screen Shot - iPhone 13 Pro Max - 2022-11-02 at 16 02 09](https://user-images.githubusercontent.com/34392299/199532279-bc4d8fc5-0dff-49df-8a5e-6c0ff7caa2b8.png)
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135761859-c3efad0a-9171-449b-a808-279b347aab89.gif)
 
 <br />
 
@@ -163,7 +161,7 @@ Inherits [Modal Props](https://reactnative.dev/docs/modal)
 
 ### Picker
 
-
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135761859-c3efad0a-9171-449b-a808-279b347aab89.gif)
 
 
 ```jsx
