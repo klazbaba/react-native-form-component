@@ -160,6 +160,8 @@ Inherits [Modal Props](https://reactnative.dev/docs/modal)
 ### Picker
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/34392299/135761859-c3efad0a-9171-449b-a808-279b347aab89.gif)
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-11-02 at 16 02 09](https://user-images.githubusercontent.com/34392299/199532279-bc4d8fc5-0dff-49df-8a5e-6c0ff7caa2b8.png)
+
 
 ```jsx
 import React, { useState } from 'react';
