@@ -64,7 +64,7 @@ export default function App() {
         />
 
         <PinInput
-          numOfInput={6}
+          numOfInput={4}
           onChangeText={(pin) => console.log('pin:', pin)}
         />
       </Form>
