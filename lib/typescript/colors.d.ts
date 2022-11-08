@@ -7,4 +7,5 @@ export declare const colors: {
     faintBlue: string;
     lightgrey: string;
     grey: string;
+    black: string;
 };
