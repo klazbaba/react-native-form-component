@@ -1,5 +1,6 @@
 import React, { useState, createRef, RefObject } from 'react';
 import { View, StyleSheet, TextInput, TextStyle } from 'react-native';
+
 import { colors } from '../colors';
 import FormItem from './FormItem';
 
@@ -29,7 +30,7 @@ export default function PinInput(props: Props) {
       {pin.map((_, index) => (
         <FormItem
           value={pin[index]}
-          style={{ backgroundColor: 'transparent', flex: 1 }}
+          style={styles.formItem}
           onChangeText={(text) => {
             pin[index] = text;
             setPin([...pin]);
@@ -37,7 +38,7 @@ export default function PinInput(props: Props) {
             props.onChangeText(pin.toString().replace(/,/g, ''));
           }}
           textInputStyle={[
-            styles.formItem,
+            styles.input,
             {
               borderBottomColor:
                 activeInput === index ? colors.black : colors.lightgrey,
@@ -57,12 +58,18 @@ export default function PinInput(props: Props) {
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
-    alignSelf: 'center',
+    justifyContent: 'space-around',
   },
-  formItem: {
+  input: {
     maxWidth: 40,
     borderBottomWidth: 1.5,
     textAlign: 'center',
     fontSize: 20,
+  },
+  formItem: {
+    backgroundColor: 'transparent',
+    paddingLeft: 0,
+    paddingRight: 0,
+    minWidth: 40,
   },
 });
