@@ -5,9 +5,9 @@ import { Form, FormItem, Picker, PinInput } from 'react-native-form-component';
 
 export default function App() {
   const [firstname, setFirstname] = React.useState('');
-  const [number, setNumber] = React.useState<React.ReactText>(1);
+  const [number, setNumber] = React.useState(1);
   const [lastName, setLastName] = React.useState('');
-  const [gender, setGender] = React.useState<React.ReactText>('male');
+  const [gender, setGender] = React.useState('male');
 
   return (
     <View style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>

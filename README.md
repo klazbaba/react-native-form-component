@@ -218,10 +218,11 @@ return <PinInput numOfInput={4} onChangeText={(text) => setPin(text)} />;
 
 ### Props
 
-| Prop         | Type                   | Required |
-| ------------ | ---------------------- | -------- |
-| numOfInput   | number                 | yes      |
-| onChangeText | (text: string) => void | yes      |
+| Prop           | Type                   | Required |
+| -------------- | ---------------------- | -------- |
+| numOfInput     | number                 | yes      |
+| onChangeText   | (text: string) => void | yes      |
+| textInputStyle | TextStyle              | no       |
 
 <br />
 

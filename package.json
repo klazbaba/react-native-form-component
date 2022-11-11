@@ -31,7 +31,9 @@
     "component",
     "react-native-web",
     "web",
-    "picker"
+    "picker",
+    "pin input",
+    "otp"
   ],
   "repository": "https://github.com/klazbaba/react-native-form-component",
   "author": "klazbaba <giwaklaz@gmail.com> (https://github.com/klazbaba)",
