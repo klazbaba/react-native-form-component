@@ -3,7 +3,6 @@ import React, {
   useState,
   useImperativeHandle,
   useRef,
-  ComponentProps,
   ReactNode,
   useEffect,
 } from 'react';
@@ -18,6 +17,7 @@ import {
   Animated,
   Platform,
   Pressable,
+  TextInputProps,
 } from 'react-native';
 
 import Label from '../Label';
@@ -26,7 +26,7 @@ import ShowTextIcon from '../_icons/ShowTextIcon';
 
 type Validation = { status: boolean; message: string };
 
-interface Props extends ComponentProps<typeof TextInput> {
+interface Props extends TextInputProps {
   textInputStyle?: object | object[];
   children?: ReactNode;
   underneathText?: string;

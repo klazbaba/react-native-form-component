@@ -1,10 +1,10 @@
-import React, { ComponentProps, ReactNode } from 'react';
-import { TextInput, KeyboardTypeOptions } from 'react-native';
-declare type Validation = {
+import React, { ReactNode } from 'react';
+import { KeyboardTypeOptions, TextInputProps } from 'react-native';
+type Validation = {
     status: boolean;
     message: string;
 };
-interface Props extends ComponentProps<typeof TextInput> {
+interface Props extends TextInputProps {
     textInputStyle?: object | object[];
     children?: ReactNode;
     underneathText?: string;
@@ -23,7 +23,7 @@ interface Props extends ComponentProps<typeof TextInput> {
     hideIcon?: JSX.Element;
 }
 declare const FormItem: React.ForwardRefExoticComponent<Props & React.RefAttributes<unknown>>;
-export declare const containsError: (keyboardType: KeyboardTypeOptions | undefined, isRequired: boolean, value: string, extraValidation?: Validation | undefined) => {
+export declare const containsError: (keyboardType: KeyboardTypeOptions | undefined, isRequired: boolean, value: string, extraValidation?: Validation) => {
     status: boolean;
     message: string;
 };
