@@ -166,7 +166,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               placeholder=""
               multiline={props.textArea || props.multiline}
               textAlignVertical={props.textArea ? 'top' : 'center'}
-              testID="input"
+              testID={props.testID || 'input'}
               secureTextEntry={hideText}
             />
             {hasError.status && props.showErrorIcon && (
@@ -233,7 +233,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           maxLength={props.maxLength || 150}
           multiline={props.textArea || props.multiline}
           textAlignVertical={props.textArea ? 'top' : 'center'}
-          testID="input"
+          testID={props.testID || 'input'}
           secureTextEntry={hideText}
         />
         {hasError.status && props.showErrorIcon && (
