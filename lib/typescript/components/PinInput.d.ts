@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { TextStyle } from 'react-native';
 interface Props {
     numOfInput: number;

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 interface Props {
     hide: boolean;
     showIcon?: JSX.Element;

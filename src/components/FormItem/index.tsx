@@ -3,7 +3,6 @@ import React, {
   useState,
   useImperativeHandle,
   useRef,
-  ComponentProps,
   ReactNode,
   useEffect,
 } from 'react';
@@ -18,6 +17,7 @@ import {
   Animated,
   Platform,
   Pressable,
+  TextInputProps,
 } from 'react-native';
 
 import Label from '../Label';
@@ -26,7 +26,7 @@ import ShowTextIcon from '../_icons/ShowTextIcon';
 
 type Validation = { status: boolean; message: string };
 
-interface Props extends ComponentProps<typeof TextInput> {
+interface Props extends TextInputProps {
   textInputStyle?: object | object[];
   children?: ReactNode;
   underneathText?: string;
@@ -166,7 +166,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
               placeholder=""
               multiline={props.textArea || props.multiline}
               textAlignVertical={props.textArea ? 'top' : 'center'}
-              testID="input"
+              testID={props.testID || 'input'}
               secureTextEntry={hideText}
             />
             {hasError.status && props.showErrorIcon && (
@@ -233,7 +233,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           maxLength={props.maxLength || 150}
           multiline={props.textArea || props.multiline}
           textAlignVertical={props.textArea ? 'top' : 'center'}
-          testID="input"
+          testID={props.testID || 'input'}
           secureTextEntry={hideText}
         />
         {hasError.status && props.showErrorIcon && (
