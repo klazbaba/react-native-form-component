@@ -16,7 +16,7 @@ export default function App() {
           value={firstname}
           label="Firstname"
           asterik
-          onChangeText={(firstname) => setFirstname(firstname)}
+          onChangeText={(firstname: string) => setFirstname(firstname)}
           floatingLabel
           isRequired
           secureTextEntry
@@ -37,7 +37,7 @@ export default function App() {
           ]}
           label="Pick a number"
           selectedValue={number}
-          onSelection={(item) => setNumber(item.value)}
+          onSelection={(item: any) => setNumber(item.value as number)}
           type="modal"
         />
 
@@ -48,7 +48,7 @@ export default function App() {
           ]}
           label="Gender"
           selectedValue={gender}
-          onSelection={(item) => setGender(item.value)}
+          onSelection={(item: any) => setGender(item.value)}
           floatingLabel
         />
 
@@ -56,7 +56,7 @@ export default function App() {
           value={lastName}
           label="Last Name"
           asterik
-          onChangeText={(lastName) => setLastName(lastName)}
+          onChangeText={(lastName: string) => setLastName(lastName)}
           floatingLabel
           isRequired
           textArea
@@ -65,7 +65,7 @@ export default function App() {
 
         <PinInput
           numOfInput={4}
-          onChangeText={(pin) => console.log('pin:', pin)}
+          onChangeText={(pin: string) => console.log('pin:', pin)}
         />
       </Form>
     </View>
