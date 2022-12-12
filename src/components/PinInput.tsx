@@ -1,5 +1,12 @@
 import React, { useState, createRef, RefObject } from 'react';
-import { View, StyleSheet, TextInput, TextStyle } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  TextStyle,
+  ViewStyle,
+  StyleProp,
+} from 'react-native';
 
 import { colors } from '../colors';
 import FormItem from './FormItem';
@@ -8,6 +15,7 @@ interface Props {
   numOfInput: number;
   onChangeText: (pin: string) => void;
   textInputStyle?: TextStyle;
+  style?: StyleProp<ViewStyle>;
 }
 
 const refs: RefObject<TextInput>[] = [];
@@ -26,7 +34,7 @@ export default function PinInput(props: Props) {
   };
 
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, props.style]}>
       {pin.map((_, index) => (
         <FormItem
           value={pin[index]}

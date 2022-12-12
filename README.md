@@ -223,6 +223,7 @@ return <PinInput numOfInput={4} onChangeText={(text) => setPin(text)} />;
 | numOfInput     | number                 | yes      |
 | onChangeText   | (text: string) => void | yes      |
 | textInputStyle | TextStyle              | no       |
+| style          | StyleProp<ViewStyle>   | no       |
 
 <br />
 
