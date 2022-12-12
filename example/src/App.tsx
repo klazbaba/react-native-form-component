@@ -10,7 +10,6 @@ export default function App() {
   const [gender, setGender] = React.useState('male');
 
   return (
-    //@ts-ignore
     <View style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
       <Form onButtonPress={() => console.warn('pressed button')}>
         <FormItem
