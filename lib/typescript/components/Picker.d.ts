@@ -1,18 +1,18 @@
-import { ReactText, ReactNode } from 'react';
+import { ReactNode } from 'react';
 interface Item {
     label: string;
-    value: ReactText;
+    value: string | number;
 }
 interface Props {
     items: Array<Item>;
     onSelection: (item: Item) => void;
-    selectedValue: ReactText;
+    selectedValue: string | number;
     pickerIcon?: ReactNode;
     iconWrapperStyle?: object | object[];
     asterik?: boolean;
     labelStyle?: object | object[];
     asterikStyle?: object | object[];
-    label?: ReactText;
+    label?: string | number;
     labelWrapperStyle?: object | object[];
     placeholder?: string;
     selectedValueStyle?: object | object[];
