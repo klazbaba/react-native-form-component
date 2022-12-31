@@ -187,9 +187,9 @@ return (
 
 | Prop               | Type                                                       | Required |
 | ------------------ | ---------------------------------------------------------- | -------- |
-| items              | Array<{label: string; value: ReactText}>                   | yes      |
+| items              | Array<{label: string; value: string \| number}>            | yes      |
 | onSelection        | (item) => void                                             | yes      |
-| selectedValue      | ReactText                                                  | yes      |
+| selectedValue      | string \| number                                           | yes      |
 | pickerIcon         | ReactNode                                                  | no       |
 | iconWrapperStyle   | [ViewStyle](https://reactnative.dev/docs/view-style-props) | no       |
 | asterik            | boolean                                                    | no       |
