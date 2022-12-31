@@ -1,6 +1,6 @@
-import { ReactText } from 'react';
+/// <reference types="react" />
 interface LabelProps {
-    text: ReactText;
+    text: string | number;
     asterik?: boolean;
     style?: object | object[];
     textStyle?: object | object[];

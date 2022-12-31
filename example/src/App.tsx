@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 import { Form, FormItem, Picker, PinInput } from 'react-native-form-component';
 
@@ -10,64 +10,66 @@ export default function App() {
   const [gender, setGender] = React.useState('male');
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
-      <Form onButtonPress={() => console.warn('pressed button')}>
-        <FormItem
-          value={firstname}
-          label="Firstname"
-          asterik
-          onChangeText={(firstname: string) => setFirstname(firstname)}
-          floatingLabel
-          isRequired
-          secureTextEntry
-        />
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
+      <View style={{ padding: 24 }}>
+        <Form onButtonPress={() => console.warn('pressed button')}>
+          <FormItem
+            value={firstname}
+            label="Firstname"
+            asterik
+            onChangeText={(firstname: string) => setFirstname(firstname)}
+            floatingLabel
+            isRequired
+            secureTextEntry
+          />
 
-        <Picker
-          items={[
-            { label: 'One', value: 1 },
-            { label: 'Two', value: 2 },
-            { label: 'Three', value: 3 },
-            { label: 'Four', value: 4 },
-            { label: 'Five', value: 5 },
-            { label: 'Six', value: 6 },
-            { label: 'Seven', value: 7 },
-            { label: 'Eight', value: 8 },
-            { label: 'Nine', value: 9 },
-            { label: 'Ten', value: 10 },
-          ]}
-          label="Pick a number"
-          selectedValue={number}
-          onSelection={(item: any) => setNumber(item.value as number)}
-          type="modal"
-        />
+          <Picker
+            items={[
+              { label: 'One', value: 1 },
+              { label: 'Two', value: 2 },
+              { label: 'Three', value: 3 },
+              { label: 'Four', value: 4 },
+              { label: 'Five', value: 5 },
+              { label: 'Six', value: 6 },
+              { label: 'Seven', value: 7 },
+              { label: 'Eight', value: 8 },
+              { label: 'Nine', value: 9 },
+              { label: 'Ten', value: 10 },
+            ]}
+            label="Pick a number"
+            selectedValue={number}
+            onSelection={(item: any) => setNumber(item.value as number)}
+            type="modal"
+          />
 
-        <Picker
-          items={[
-            { label: 'Male', value: 'male' },
-            { label: 'Female', value: 'female' },
-          ]}
-          label="Gender"
-          selectedValue={gender}
-          onSelection={(item: any) => setGender(item.value)}
-          floatingLabel
-        />
+          <Picker
+            items={[
+              { label: 'Male', value: 'male' },
+              { label: 'Female', value: 'female' },
+            ]}
+            label="Gender"
+            selectedValue={gender}
+            onSelection={(item: any) => setGender(item.value)}
+            floatingLabel
+          />
 
-        <FormItem
-          value={lastName}
-          label="Last Name"
-          asterik
-          onChangeText={(lastName: string) => setLastName(lastName)}
-          floatingLabel
-          isRequired
-          textArea
-          showErrorIcon={false}
-        />
+          <FormItem
+            value={lastName}
+            label="Last Name"
+            asterik
+            onChangeText={(lastName: string) => setLastName(lastName)}
+            floatingLabel
+            isRequired
+            textArea
+            showErrorIcon={false}
+          />
 
-        <PinInput
-          numOfInput={4}
-          onChangeText={(pin: string) => console.log('pin:', pin)}
-        />
-      </Form>
-    </View>
+          <PinInput
+            numOfInput={4}
+            onChangeText={(pin: string) => console.log('pin:', pin)}
+          />
+        </Form>
+      </View>
+    </SafeAreaView>
   );
 }
