@@ -10,8 +10,8 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { containsError } from './FormItem';
-import { colors } from '../colors';
+import { containsError } from '../FormItem';
+import { colors } from '../../colors';
 
 interface Props {
   children: ReactNode;
