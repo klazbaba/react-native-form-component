@@ -5,6 +5,7 @@ import React, {
   useRef,
   ReactNode,
   useEffect,
+  RefObject,
 } from 'react';
 import {
   TextInput,
@@ -43,6 +44,7 @@ interface Props extends TextInputProps {
   errorBorderColor?: string;
   showIcon?: JSX.Element;
   hideIcon?: JSX.Element;
+  ref: RefObject<TextInput>;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
@@ -97,7 +99,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
 
   if (props.floatingLabel) {
     return (
-      <>
+      <View>
         <View
           style={[
             styles.wrapper,
@@ -191,12 +193,12 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             {props.underneathText || hasError.message}
           </Text>
         )}
-      </>
+      </View>
     );
   }
 
   return (
-    <>
+    <View>
       {props.label && (
         <Label
           text={props.label}
@@ -257,7 +259,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           {props.underneathText || hasError.message}
         </Text>
       )}
-    </>
+    </View>
   );
 });
 
@@ -328,6 +330,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginBottom: 24,
     color: colors.red,
+    textAlign: 'left',
   },
   label: {
     marginBottom: 2,
