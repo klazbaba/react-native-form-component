@@ -198,7 +198,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
   }
 
   return (
-    <>
+    <View>
       {props.label && (
         <Label
           text={props.label}
@@ -259,7 +259,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
           {props.underneathText || hasError.message}
         </Text>
       )}
-    </>
+    </View>
   );
 });
 
