@@ -99,7 +99,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
 
   if (props.floatingLabel) {
     return (
-      <>
+      <View>
         <View
           style={[
             styles.wrapper,
@@ -193,7 +193,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             {props.underneathText || hasError.message}
           </Text>
         )}
-      </>
+      </View>
     );
   }
 
@@ -330,6 +330,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginBottom: 24,
     color: colors.red,
+    textAlign: 'left',
   },
   label: {
     marginBottom: 2,
