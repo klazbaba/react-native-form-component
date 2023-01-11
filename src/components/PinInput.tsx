@@ -6,12 +6,13 @@ import {
   TextStyle,
   ViewStyle,
   StyleProp,
+  TextInputProps,
 } from 'react-native';
 
 import { colors } from '../colors';
 import FormItem from './FormItem';
 
-interface Props {
+interface Props extends TextInputProps {
   numOfInput: number;
   onChangeText: (pin: string) => void;
   textInputStyle?: TextStyle;
@@ -37,6 +38,7 @@ export default function PinInput(props: Props) {
     <View style={[styles.wrapper, props.style]}>
       {pin.map((_, index) => (
         <FormItem
+          {...props}
           value={pin[index]}
           style={styles.formItem}
           onChangeText={(text) => {

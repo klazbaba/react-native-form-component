@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { TextStyle, ViewStyle, StyleProp } from 'react-native';
-interface Props {
+import { TextStyle, ViewStyle, StyleProp, TextInputProps } from 'react-native';
+interface Props extends TextInputProps {
     numOfInput: number;
     onChangeText: (pin: string) => void;
     textInputStyle?: TextStyle;
