@@ -59,6 +59,7 @@ export default function PinInput(props: Props) {
           key={index}
           ref={refs[index]}
           onFocus={() => setActiveInput(index)}
+          customValidation={() => ({ status: true, message: '' })}
         />
       ))}
     </View>
