@@ -3,6 +3,9 @@ import { SafeAreaView, View } from 'react-native';
 
 import { Form, FormItem, Picker, PinInput } from 'react-native-form-component';
 
+const firstnameInput = React.createRef();
+const lastnameInput = React.createRef();
+
 export default function App() {
   const [firstname, setFirstname] = React.useState('');
   const [number, setNumber] = React.useState(1);
@@ -21,6 +24,7 @@ export default function App() {
             floatingLabel
             isRequired
             secureTextEntry
+            ref={firstnameInput}
           />
 
           <Picker
@@ -62,6 +66,7 @@ export default function App() {
             isRequired
             textArea
             showErrorIcon={false}
+            ref={lastnameInput}
           />
 
           <PinInput
