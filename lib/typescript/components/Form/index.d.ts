@@ -8,6 +8,7 @@ interface Props {
     buttonTextStyle?: object | object[];
     onButtonPress: () => void;
     style?: ViewStyle;
+    hideSubmitButton?: boolean;
 }
 export declare let submitForm: (e?: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void;
 declare function Form(props: Props): JSX.Element;
