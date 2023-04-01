@@ -21,6 +21,7 @@ interface Props {
   buttonTextStyle?: object | object[];
   onButtonPress: () => void;
   style?: ViewStyle;
+  hideSubmitButton?: boolean;
 }
 
 export let submitForm: (
@@ -79,22 +80,24 @@ export default function Form(props: Props) {
       style={props.style}
     >
       {props.children}
-      <Pressable
-        style={[
-          styles.button,
-          Platform.OS == 'ios' ? { opacity } : undefined,
-          props.buttonStyle,
-        ]}
-        onPress={handleButtonPress}
-        android_ripple={{ color: 'lightgrey', radius: width }}
-        onLayout={(event) => setWidth(event.nativeEvent.layout.width)}
-        onPressIn={() => setOpacity(0.5)}
-        onPressOut={() => setOpacity(1)}
-      >
-        <Text style={[styles.buttonText, props.buttonTextStyle]}>
-          {props.buttonText || 'Submit'}
-        </Text>
-      </Pressable>
+      {!props.hideSubmitButton && (
+        <Pressable
+          style={[
+            styles.button,
+            Platform.OS == 'ios' ? { opacity } : undefined,
+            props.buttonStyle,
+          ]}
+          onPress={handleButtonPress}
+          android_ripple={{ color: 'lightgrey', radius: width }}
+          onLayout={(event) => setWidth(event.nativeEvent.layout.width)}
+          onPressIn={() => setOpacity(0.5)}
+          onPressOut={() => setOpacity(1)}
+        >
+          <Text style={[styles.buttonText, props.buttonTextStyle]}>
+            {props.buttonText || 'Submit'}
+          </Text>
+        </Pressable>
+      )}
     </KeyboardAvoidingView>
   );
 }
