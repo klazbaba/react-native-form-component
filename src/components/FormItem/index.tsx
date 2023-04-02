@@ -43,6 +43,7 @@ interface Props extends TextInputProps {
   errorBorderColor?: string;
   showIcon?: JSX.Element;
   hideIcon?: JSX.Element;
+  ref: React.RefObject<TextInput>;
 }
 
 const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
