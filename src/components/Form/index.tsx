@@ -19,7 +19,7 @@ interface Props {
   buttonText?: string;
   buttonStyle?: object | object[];
   buttonTextStyle?: object | object[];
-  onButtonPress: () => void;
+  onButtonPress?: () => void;
   style?: ViewStyle;
   hideSubmitButton?: boolean;
 }
@@ -37,13 +37,9 @@ export default function Form(props: Props) {
     Children.forEach(props.children, (child, index) => {
       //@ts-ignore
       if (child && child.ref?.current?.getComponent() == 'FormItem') {
-        const {
-          keyboardType,
-          isRequired,
-          value,
-          customValidation,
+        const { keyboardType, isRequired, value, customValidation } =
           //@ts-ignore
-        } = child.props;
+          child.props;
         let validation;
 
         if (customValidation) validation = customValidation();
@@ -66,7 +62,7 @@ export default function Form(props: Props) {
       return;
     }
 
-    props.onButtonPress();
+    props.onButtonPress?.();
   };
 
   submitForm = () => handleButtonPress();
