@@ -56,7 +56,7 @@ return (
 | buttonText             | Text to be displayed by submit button                                                                  | string             | Submit  | All      |
 | buttonStyle            | Style of submit button                                                                                 | object \| object[] | -       | All      |
 | buttonTextStyle        | Style of submit button text                                                                            | object \| object[] | -       | All      |
-| onButtonPress          | Action to be performed when button is pressed                                                          | () => void         | -       | All      |
+| onButtonPress          | Action to be performed when submit button is pressed                                                   | () => void         | -       | All      |
 | style                  | Style Form wrapper                                                                                     | ViewStyle          | {}      | All      |
 | hideSubmitButton       | To not render the submit button                                                                        | boolean            | false   | All      |
 
