@@ -6,7 +6,7 @@ interface Props {
     buttonText?: string;
     buttonStyle?: object | object[];
     buttonTextStyle?: object | object[];
-    onButtonPress: () => void;
+    onButtonPress?: () => void;
     style?: ViewStyle;
     hideSubmitButton?: boolean;
 }
