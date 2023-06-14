@@ -13,7 +13,9 @@ export default function App() {
   const [gender, setGender] = React.useState('male');
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'yellow', padding: 24 }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: 'lightgreen', padding: 24 }}
+    >
       <View style={{ padding: 24 }}>
         <Form onButtonPress={() => console.warn('pressed button')}>
           <FormItem
@@ -25,6 +27,7 @@ export default function App() {
             isRequired
             secureTextEntry
             ref={firstnameInput}
+            keyboardType="numeric"
           />
 
           <Picker

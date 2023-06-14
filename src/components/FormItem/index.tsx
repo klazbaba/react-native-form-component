@@ -175,7 +175,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
                 <Text style={styles.exclamation}>{'\u0021'}</Text>
               </View>
             )}
-            {props.secureTextEntry && !hasError.status && (
+            {props.secureTextEntry && (
               <Pressable onPress={() => setHideText(!hideText)}>
                 <ShowTextIcon
                   hide={hideText!}
@@ -341,6 +341,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.red,
+    marginHorizontal: 4,
   },
   exclamation: {
     color: 'white',
