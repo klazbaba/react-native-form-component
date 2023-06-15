@@ -242,7 +242,7 @@ const FormItem = forwardRef(({ children, ...props }: Props, ref: any) => {
             <Text style={styles.exclamation}>{'\u0021'}</Text>
           </View>
         )}
-        {props.secureTextEntry && !hasError.status && (
+        {props.secureTextEntry && (
           <Pressable onPress={() => setHideText(!hideText)}>
             <ShowTextIcon
               hide={hideText!}
