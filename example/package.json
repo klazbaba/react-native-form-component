@@ -27,6 +27,7 @@
     "@types/react-native": "^0.69.8",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-expo": "~9.2.0",
-    "expo-cli": "^4.0.13"
+    "expo-cli": "^4.0.13",
+    "typescript": "^5.2.2"
   }
 }

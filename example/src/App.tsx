@@ -74,7 +74,11 @@ export default function App() {
 
           <PinInput
             numOfInput={4}
-            onChangeText={(pin: string) => console.log('pin:', pin)}
+            placeholder="-"
+            placeholderTextColor={'gray'}
+            onChangeText={(text: string) => console.log(text)}
+            autoFocus={true}
+            keyboardType="number-pad"
           />
         </Form>
       </View>
