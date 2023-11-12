@@ -76,7 +76,7 @@ export default function App() {
             numOfInput={4}
             placeholder="-"
             placeholderTextColor={'gray'}
-            onChangeText={(text) => console.log(text)}
+            onChangeText={(text: string) => console.log(text)}
             autoFocus={true}
             keyboardType="number-pad"
           />
