@@ -17,6 +17,7 @@ interface Props extends TextInputProps {
   onChangeText: (pin: string) => void;
   textInputStyle?: TextStyle;
   style?: StyleProp<ViewStyle>;
+  autoFocus?: boolean;
 }
 
 const refs: RefObject<TextInput>[] = [];
@@ -60,6 +61,7 @@ export default function PinInput(props: Props) {
           ref={refs[index]}
           onFocus={() => setActiveInput(index)}
           customValidation={() => ({ status: true, message: '' })}
+          autoFocus={props.autoFocus && index === 0}
         />
       ))}
     </View>
