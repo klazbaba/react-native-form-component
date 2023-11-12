@@ -5,6 +5,7 @@ interface Props extends TextInputProps {
     onChangeText: (pin: string) => void;
     textInputStyle?: TextStyle;
     style?: StyleProp<ViewStyle>;
+    autoFocus?: boolean;
 }
 export default function PinInput(props: Props): JSX.Element;
 export {};
