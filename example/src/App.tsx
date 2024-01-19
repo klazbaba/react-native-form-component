@@ -77,7 +77,6 @@ export default function App() {
             placeholder="-"
             placeholderTextColor={'gray'}
             onChangeText={(text: string) => console.log(text)}
-            autoFocus={true}
             keyboardType="number-pad"
           />
         </Form>
