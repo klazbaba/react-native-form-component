@@ -43,7 +43,6 @@ interface Props {
 }
 
 export default function Picker(props: Props) {
-  const [selectedValue, setSelectedValue] = useState(props.selectedValue);
   const [showPicker, setShowPicker] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const [animatedBottom, setAnimatedBottom] = useState(new Animated.Value(0));
@@ -176,7 +175,6 @@ export default function Picker(props: Props) {
                       : null,
                   ]}
                   onPress={() => {
-                    setSelectedValue(item.value);
                     setShowPicker(false);
                     props.onSelection(item);
                   }}
@@ -186,7 +184,7 @@ export default function Picker(props: Props) {
                       props.itemLabelStyle,
                       {
                         color:
-                          selectedValue === item.value
+                          props.selectedValue === item.value
                             ? colors.white
                             : colors.text,
                       },
@@ -216,7 +214,6 @@ export default function Picker(props: Props) {
                         : null,
                     ]}
                     onPress={() => {
-                      setSelectedValue(item.value);
                       setShowPicker(false);
                       props.onSelection(item);
                     }}
@@ -227,7 +224,7 @@ export default function Picker(props: Props) {
                         styles.buttomButtonText,
                         {
                           color:
-                            selectedValue === item.value
+                            props.selectedValue === item.value
                               ? colors.white
                               : colors.text,
                         },
