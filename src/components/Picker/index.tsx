@@ -14,9 +14,9 @@ import {
   Animated,
 } from 'react-native';
 
-import { colors } from '../colors';
-import Label from './Label';
-import Modal from './Modal';
+import { colors } from '../../colors';
+import Label from './../Label';
+import Modal from './../Modal';
 
 interface Item {
   label: string;
@@ -40,6 +40,7 @@ interface Props {
   itemLabelStyle?: object | object[];
   floatingLabel?: boolean;
   type?: 'dropdown' | 'modal';
+  testID?: string;
 }
 
 export default function Picker(props: Props) {
@@ -95,6 +96,7 @@ export default function Picker(props: Props) {
           setPosition({ ...position, height: nativeEvent.layout.height });
           setAnimatedBottom(new Animated.Value(nativeEvent.layout.height / 4));
         }}
+        testID={props.testID}
       >
         {props.floatingLabel && props.label && (
           <Label
@@ -178,6 +180,7 @@ export default function Picker(props: Props) {
                     setShowPicker(false);
                     props.onSelection(item);
                   }}
+                  testID={`picker-item-${item.value}`}
                 >
                   <Text
                     style={[
