@@ -9,8 +9,8 @@ import {
   TextInputProps,
 } from 'react-native';
 
-import { colors } from '../colors';
-import FormItem from './FormItem';
+import { colors } from '../../colors';
+import FormItem from '.././FormItem';
 
 interface Props extends TextInputProps {
   numOfInput: number;
@@ -18,6 +18,8 @@ interface Props extends TextInputProps {
   textInputStyle?: TextStyle;
   style?: StyleProp<ViewStyle>;
   autoFocus?: boolean;
+  testID?: string;
+  inputTestID?: string;
 }
 
 const refs: RefObject<TextInput>[] = [];
@@ -36,7 +38,7 @@ export default function PinInput(props: Props) {
   };
 
   return (
-    <View style={[styles.wrapper, props.style]}>
+    <View style={[styles.wrapper, props.style]} testID={props.testID}>
       {pin.map((_, index) => (
         <FormItem
           {...props}
@@ -62,6 +64,7 @@ export default function PinInput(props: Props) {
           onFocus={() => setActiveInput(index)}
           customValidation={() => ({ status: true, message: '' })}
           autoFocus={props.autoFocus && index === 0}
+          testID={props.inputTestID}
         />
       ))}
     </View>
